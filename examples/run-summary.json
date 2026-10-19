@@ -1,0 +1,24 @@
+{
+  "example_selection": "Independent public demonstration, not a brokerage portfolio",
+  "as_of": "2026-10-19",
+  "run_id": "20261019-135059-304351",
+  "instruments": [
+    "AAPL / equity",
+    "SPY / ETF"
+  ],
+  "actual_completed_web_search_calls": 5,
+  "original_source_checks": {
+    "matched": 2,
+    "total": 3,
+    "reason": "PDF could not be checked by initial HTML-only path"
+  },
+  "rechecked_source_checks": {
+    "matched": 3,
+    "total": 3,
+    "checked_at": "2026-10-19T14:00:28+08:00"
+  },
+  "model_called_for_recheck": false,
+  "explicit_calculations_checked": 4,
+  "semantic_fact_audit": "not performed",
+  "known_remaining_issue": "The SPY top-ten subtotal and all other unlisted arithmetic were not independently recomputed; excerpt matching is not a full fact audit."
+}

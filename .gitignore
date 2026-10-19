@@ -1,0 +1,17 @@
+# Runtime research and private inputs are never public by default.
+__pycache__/
+*.pyc
+.venv/
+.env*
+!.env.example
+private/
+runs/
+state/
+output/
+latest-*
+*holdings*
+*positions*
+*account*
+*.log
+*.jsonl
+*.tmp

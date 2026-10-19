@@ -1,0 +1,2 @@
+# Optional PDF source checking. The HTML workflow uses the standard library.
+pypdf==6.10.0

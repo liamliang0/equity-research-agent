@@ -1,0 +1,7 @@
+{
+  "label": "Public demonstration — not a brokerage portfolio",
+  "assets": [
+    {"id":"AAPL","name":"Apple","kind":"equity","group":"consumer-platform","currency":"USD","domains":["www.apple.com","investor.apple.com"],"questions":["Revenue mix, margins, cash flow and guidance; distinguish realized figures from management expectations."]},
+    {"id":"SPY","name":"SPDR S&P 500 ETF Trust","kind":"etf","group":"index-fund","currency":"USD","domains":["www.ssga.com","www.spdrs.com"],"questions":["Fund mandate, expense ratio, concentration, tracking and dated holdings; do not analyze the ETF as an operating company."]}
+  ]
+}

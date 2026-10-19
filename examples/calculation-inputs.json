@@ -1,0 +1,6 @@
+[
+  {"id":"iphone-share","claim_id":"a1","operation":"ratio_pct","values":[54252,109417],"unit":"USD millions, FY2026 Q3 revenue","source_ids":["a-financials"],"scope":"iPhone revenue / total revenue only; inputs manually transcribed from the cited issuer statement","stated_value":49.6,"tolerance":0.05},
+  {"id":"services-share","claim_id":"a1","operation":"ratio_pct","values":[30739,109417],"unit":"USD millions, FY2026 Q3 revenue","source_ids":["a-financials"],"scope":"Services revenue / total revenue only","stated_value":28.1,"tolerance":0.05},
+  {"id":"top-three-subtotal","claim_id":"s2","operation":"sum","values":[7.88,7.48,6.00],"unit":"percent of SPY assets, 2026-10-15","source_ids":["s-fund"],"scope":"Top-three subtotal only. Does NOT audit the top-ten subtotal in the same claim","stated_value":21.36,"tolerance":0.001},
+  {"id":"tracking-difference","claim_id":"s3","operation":"difference","values":[15.60,15.74],"unit":"percentage points; 1-year total return through 2026-09-30","source_ids":["s-fund"],"scope":"NAV return minus index return; not tracking-error volatility","stated_value":-0.14,"tolerance":0.001}
+]

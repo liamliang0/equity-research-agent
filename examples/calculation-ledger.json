@@ -1,0 +1,71 @@
+[
+  {
+    "operation": "ratio_pct",
+    "inputs": [
+      "54252",
+      "109417"
+    ],
+    "input_unit": "USD millions, FY2026 Q3 revenue",
+    "result": "49.58278878053684527998391475",
+    "source_ids": [
+      "a-financials"
+    ],
+    "interpretation": "code_computed; input accuracy and comparability must be verified separately",
+    "id": "iphone-share",
+    "claim_id": "a1",
+    "scope": "iPhone revenue / total revenue only; inputs manually transcribed from the cited issuer statement",
+    "matches_stated_value": true
+  },
+  {
+    "operation": "ratio_pct",
+    "inputs": [
+      "30739",
+      "109417"
+    ],
+    "input_unit": "USD millions, FY2026 Q3 revenue",
+    "result": "28.09344069020353327179505927",
+    "source_ids": [
+      "a-financials"
+    ],
+    "interpretation": "code_computed; input accuracy and comparability must be verified separately",
+    "id": "services-share",
+    "claim_id": "a1",
+    "scope": "Services revenue / total revenue only",
+    "matches_stated_value": true
+  },
+  {
+    "operation": "sum",
+    "inputs": [
+      "7.88",
+      "7.48",
+      "6.0"
+    ],
+    "input_unit": "percent of SPY assets, 2026-10-15",
+    "result": "21.36",
+    "source_ids": [
+      "s-fund"
+    ],
+    "interpretation": "code_computed; input accuracy and comparability must be verified separately",
+    "id": "top-three-subtotal",
+    "claim_id": "s2",
+    "scope": "Top-three subtotal only. Does NOT audit the top-ten subtotal in the same claim",
+    "matches_stated_value": true
+  },
+  {
+    "operation": "difference",
+    "inputs": [
+      "15.6",
+      "15.74"
+    ],
+    "input_unit": "percentage points; 1-year total return through 2026-09-30",
+    "result": "-0.14",
+    "source_ids": [
+      "s-fund"
+    ],
+    "interpretation": "code_computed; input accuracy and comparability must be verified separately",
+    "id": "tracking-difference",
+    "claim_id": "s3",
+    "scope": "NAV return minus index return; not tracking-error volatility",
+    "matches_stated_value": true
+  }
+]
