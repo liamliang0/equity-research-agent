@@ -1,0 +1,301 @@
+{
+  "editorial_as_of": "2026-10-19",
+  "profiles": [
+    {
+      "symbol": "MU",
+      "name": "美光",
+      "question": "存储涨价已经兑现，当前报价依赖怎样的盈利持续性？",
+      "verdict": "不能用高景气年份的低PE直接判断便宜；先测试利润回落后价格还能否成立。",
+      "thesis": "DRAM与数据中心存储需求已经体现在经营结果。更有用的分歧是供给约束能持续多久，以及客户预付款与资本开支如何改变现金回报，而非单纯争论AI有没有需求。",
+      "editorial_as_of": "2026-10-19",
+      "facts": [
+        {
+          "title": "年度盈利跃升",
+          "fact": "FY2026收入1,331.88亿美元，GAAP摊薄EPS为74.33美元。",
+          "interpretation": "盈利已兑现；历史EPS不等于未来可持续EPS。",
+          "source": "MU"
+        },
+        {
+          "title": "现金与再投资",
+          "fact": "全年CFO896.75亿美元，购建固定资产支出307.12亿美元。",
+          "interpretation": "两者相减589.63亿美元是未扣SBC的简单口径，不等同公司调整后FCF。",
+          "source": "MU"
+        },
+        {
+          "title": "下一季是指引",
+          "fact": "FY2027 Q1收入指引615±15亿美元。",
+          "interpretation": "指引强于当期不代表供需拐点已消失，需要后续实际交付验证。",
+          "source": "MU"
+        }
+      ],
+      "views": [
+        {
+          "name": "产业与供需",
+          "text": "关注HBM与普通DRAM的产能分配，而非把所有存储视作同一紧缺品。"
+        },
+        {
+          "name": "成长与兑现",
+          "text": "收入与利润已大幅提升，关注量、价与产品结构对下一季的贡献。"
+        },
+        {
+          "name": "预期与催化",
+          "text": "下一次实际收入及指引是否继续超出自身前期水平，比重复AI叙事更有信息量。"
+        },
+        {
+          "name": "宏观与资金",
+          "text": "利率影响估值倍数；客户资本支出收缩会先影响订单能见度。"
+        },
+        {
+          "name": "经营质量",
+          "text": "CFO减资本开支后仍需考虑SBC和客户预付款，不能把现金增加全部视作重复利润。"
+        },
+        {
+          "name": "周期与风险",
+          "text": "利润高位可能同时产生低PE和周期风险；以盈利保留比例而非单一目标价表达。"
+        }
+      ],
+      "watch": [
+        {
+          "signal": "下一次季报",
+          "test": "比较实际收入与615±15亿美元指引，并检查后续指引。",
+          "invalidates": "持续降价或客户削减采购削弱供给紧张解释。"
+        },
+        {
+          "signal": "现金回报",
+          "test": "核对净资本开支、SBC、客户预付款及其现金流分类。",
+          "invalidates": "现金流依赖不可持续预收款或扩产成本高于判断。"
+        },
+        {
+          "signal": "供需拐点",
+          "test": "检查公司披露的库存、出货和价格变化。",
+          "invalidates": "供给恢复快于需求，利润率持续回落。"
+        }
+      ],
+      "model": {
+        "kind": "earnings",
+        "title": "盈利能力 × 估值倍数",
+        "basis": "FY2026 GAAP摊薄EPS；0年表示当前正常化盈利能力实验，不是未来目标价。",
+        "parameters": {
+          "eps": 74.33,
+          "factor": 0.8,
+          "pe": 16,
+          "years": 0,
+          "discount": 0
+        },
+        "controls": [
+          {
+            "key": "factor",
+            "label": "盈利相对锚点的倍数",
+            "min": 0.25,
+            "max": 2,
+            "step": 0.05,
+            "unit": "倍"
+          },
+          {
+            "key": "pe",
+            "label": "市盈率假设",
+            "min": 8,
+            "max": 80,
+            "step": 1,
+            "unit": "倍"
+          }
+        ],
+        "scenarios": {
+          "bear": {
+            "factor": 0.4,
+            "pe": 12
+          },
+          "base": {
+            "factor": 0.8,
+            "pe": 16
+          },
+          "bull": {
+            "factor": 1.3,
+            "pe": 20
+          }
+        },
+        "reverse": {
+          "key": "factor",
+          "label": "支持当前报价所需的盈利 / 锚点",
+          "unit": "倍",
+          "range": [
+            0,
+            10
+          ]
+        },
+        "formula": "模型每股价值 = 年度EPS锚点 × 盈利倍数 × 假设PE ÷ (1 + 折现率)^年数；PE是压力参数，不是同业中位数。"
+      },
+      "limits": [
+        "盈利保留40%/80%/130%与12/16/20倍PE是研究压力参数，不是共识预测。",
+        "没有把短期极高利润率外推为永续利润率；也没有把净现金再加到PE模型里造成双计。"
+      ],
+      "correction": "默认债务tag停在2013年，本页不使用它算净债务；EPS模型直接引用最新官方公告。",
+      "sources": [
+        {
+          "id": "MU",
+          "title": "美光 官方业绩披露",
+          "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/default.aspx",
+          "published": "2026-09-30",
+          "receipt": {
+            "url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/default.aspx",
+            "fetched_at": "2026-10-19T18:20:06+08:00",
+            "http_status": 200,
+            "sha256": "2c5f0d7d93519a7338a2e05d041333ffb0f680d89dfe5cf34070a2c8e2cefd1c",
+            "attempts": 1,
+            "status": "ok",
+            "bytes": 774314
+          }
+        }
+      ],
+      "authorship": "当前Codex对话逐家检索官方披露、编辑研究框架及代码复算；不是一次新的全自动CLI运行，也不是用户已确认的投资观点。"
+    },
+    {
+      "symbol": "SNDK",
+      "name": "闪迪",
+      "question": "NAND盈利弹性很强，但多少来自能够持续的价格？",
+      "verdict": "价格上涨比出货增长更关键；用盈利正常化检验估值，不能只看最新单季年化。",
+      "thesis": "数据中心转型已有收入证明，但季度收入增长大部分来自价格。投资解释需要同时容纳两件事：企业SSD结构改善可以持久，NAND高价与极高利润率可能不能。",
+      "editorial_as_of": "2026-10-19",
+      "facts": [
+        {
+          "title": "收入由价格驱动",
+          "fact": "FY2026 Q4收入89.65亿美元；环比增长约三分之二来自价格。",
+          "interpretation": "不能把51%的环比增长全部归因于出货或份额。",
+          "source": "SNDK"
+        },
+        {
+          "title": "盈利口径不同",
+          "fact": "FY2026 GAAP摊薄EPS73.76美元，非GAAP为70.88美元。",
+          "interpretation": "调整后利润并非总高于GAAP；模型明确选择非GAAP锚点。",
+          "source": "SNDK"
+        },
+        {
+          "title": "数据中心正在兑现",
+          "fact": "Q4数据中心收入29.77亿美元，下一季收入指引103–108亿美元。",
+          "interpretation": "数据中心收入与全公司指引分别比较，指引不当作已确认收入。",
+          "source": "SNDK"
+        }
+      ],
+      "views": [
+        {
+          "name": "产业与供需",
+          "text": "NAND与HBM供给链不同，不把AI相关存储都当成同一种技术瓶颈。"
+        },
+        {
+          "name": "成长与兑现",
+          "text": "数据中心收入增长与企业客户结构支持转型，但仍需关注价格贡献。"
+        },
+        {
+          "name": "预期与催化",
+          "text": "新一季实际收入、合同条款和定价相对上季承诺的变化是催化。"
+        },
+        {
+          "name": "宏观与资金",
+          "text": "消费与企业需求共同影响NAND价格；折现与倍数会随风险偏好变化。"
+        },
+        {
+          "name": "经营质量",
+          "text": "合资制造的现金需求不只体现在直接capex，不能用小额购建支出认定资产极轻。"
+        },
+        {
+          "name": "周期与风险",
+          "text": "高毛利率若回归，EPS下降与PE压缩可能同时发生。"
+        }
+      ],
+      "watch": [
+        {
+          "signal": "新季兑现",
+          "test": "核对收入是否落在103–108亿美元，并拆分量价。",
+          "invalidates": "增长主要靠提价而终端需求走弱。"
+        },
+        {
+          "signal": "合同质量",
+          "test": "检查新商业模式协议的期限、承诺与取消条款。",
+          "invalidates": "客户仅表达意向，未形成可执行采购。"
+        },
+        {
+          "signal": "真实资本回报",
+          "test": "并看直接capex、合资投资和制造现金义务。",
+          "invalidates": "只看简单CFO-capex会高估可分配现金。"
+        }
+      ],
+      "model": {
+        "kind": "earnings",
+        "title": "盈利能力 × 估值倍数",
+        "basis": "FY2026非GAAP年度摊薄EPS；保留GAAP对照。",
+        "parameters": {
+          "eps": 70.88,
+          "factor": 1,
+          "pe": 16,
+          "years": 0,
+          "discount": 0
+        },
+        "controls": [
+          {
+            "key": "factor",
+            "label": "盈利相对锚点的倍数",
+            "min": 0.25,
+            "max": 2,
+            "step": 0.05,
+            "unit": "倍"
+          },
+          {
+            "key": "pe",
+            "label": "市盈率假设",
+            "min": 8,
+            "max": 80,
+            "step": 1,
+            "unit": "倍"
+          }
+        ],
+        "scenarios": {
+          "bear": {
+            "factor": 0.65,
+            "pe": 10
+          },
+          "base": {
+            "factor": 1,
+            "pe": 16
+          },
+          "bull": {
+            "factor": 1.5,
+            "pe": 20
+          }
+        },
+        "reverse": {
+          "key": "factor",
+          "label": "支持当前报价所需的盈利 / 锚点",
+          "unit": "倍",
+          "range": [
+            0,
+            10
+          ]
+        },
+        "formula": "模型每股价值 = 年度EPS锚点 × 盈利倍数 × 假设PE ÷ (1 + 折现率)^年数；PE是压力参数，不是同业中位数。"
+      },
+      "limits": [
+        "非GAAP指标剔除项目仍有经济成本；没有把Q4 EPS简单乘4作为基准。",
+        "盈利和PE会共同随周期变化，三情景没有赋予概率。"
+      ],
+      "correction": "最新直接quarter现金流仍是Q1；研究引用FY2026全年与Q4公告，不把该quarter标签冒充Q4。",
+      "sources": [
+        {
+          "id": "SNDK",
+          "title": "闪迪 官方业绩披露",
+          "url": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-08-05-sandisk-reports-fiscal-fourth-quarter-2026-financial-results",
+          "published": "2026-08-05",
+          "receipt": {
+            "url": "https://www.sandisk.com/company/newsroom/press-releases/2026/2026-08-05-sandisk-reports-fiscal-fourth-quarter-2026-financial-results",
+            "fetched_at": "2026-10-19T18:20:06+08:00",
+            "http_status": 200,
+            "sha256": "cd57869dc80e054ae6e28c7aceea991dfe4f59c2f2d298a1c4ae77793ff435d6",
+            "attempts": 1,
+            "status": "ok",
+            "bytes": 223852
+          }
+        }
+      ],
+      "authorship": "当前Codex对话逐家检索官方披露、编辑研究框架及代码复算；不是一次新的全自动CLI运行，也不是用户已确认的投资观点。"
+    }
+  ]
+}

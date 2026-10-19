@@ -39,7 +39,7 @@ flowchart LR
 - **明确输入的计算账本：**用 Decimal 复算比例、增幅、差值或求和，保存输入与来源。不会猜出所有模型计算的输入，也不声称自动审计全部数字。
 - **私人输入最小化：**观察名单加载只保留证券标识与研究配置，不把份额、成本、盈亏等附加字段放入模型提示。私人名单与结果默认不发布。
 
-**当前公开主案例为独立选择的 AVGO，不是券商账户展示。** 将 SEC 财报的年度、年内累计与可比累计衔接为 TTM，检查现金流、股权薪酬和债务，再计算条件情景与价格隐含增长。AAPL/SPY 旧样例保留为早期工作流记录，不代表新版主案例。没有虚构生产用户、投资收益或金融专业资质。
+**当前公开页面有 AVGO、MU、SNDK 三份研究示例，不是券商账户展示。** 将 SEC 财报的年度、年内累计与可比累计衔接为 TTM，检查现金流、股权薪酬和债务，再计算条件情景与价格隐含增长。AAPL/SPY 旧样例保留为早期工作流记录，不代表新版主案例。没有虚构生产用户、投资收益或金融专业资质。
 
 ## 快速运行
 
@@ -51,7 +51,7 @@ codex login
 python market_data.py --output output/data
 python render_case.py
 # 重新联网研究及第二轮审阅（需要 Codex 额度）
-python showcase.py --watchlist watchlist.case.example.json --case-profile examples/avgo-case-profile.json --output output/public-case
+python showcase.py --watchlist watchlist.case.example.json --case-profile examples/avgo-case-profile.json --company-profiles examples/memory-company-profiles.json --output output/public-case
 python research_agent.py --plan-only
 python research_agent.py --watchlist watchlist.example.json
 ```
@@ -60,12 +60,14 @@ Windows 可双击 `setup.cmd` 安装项目内环境，再运行 `showcase.cmd` �
 
 ### 当前案例怎样读
 
-先读结论与三条证据，再切换“价格与假设”，调整增长、WACC、永续增长或现金流起点，最后在“来源与过程”核查原始披露与接口记录。页面离线可读，不需要前端服务器。
+先在总览选择公司，读结论与三条证据，再切换“价格与假设”，调整增长、WACC、永续增长或现金流起点，最后在“来源与过程”核查原始披露与接口记录。页面离线可读，不需要前端服务器。
 
 - 用“上一财年 + 本年累计 − 上年可比累计”构造 TTM，不将九个月数字误当全年。最近季度现金流由累计差额取得。
 - 从经营现金流扣资本支出、股权薪酬经济成本，再加税后现金利息代理；这是显式简化的 FCFF 代理，缺少租赁、少数股东等完整调整。
 - 情景、反推增长和敏感性由 Python 计算；浏览器重算与 Python 核对。TTM 和最近季度年化都展示，后者只是起点敏感性，不是预测。
 - ERP、Beta、正常化税率及未来增长属于分析假设；没有机构共识或情景概率。终值占比显式展示，不把模型输出说成精确目标价。
+
+新增标的按业务分流：周期盈利、交付与利润、储备业务及ADR报价诊断各有独立公式，不能全部套博通。详见[多标的研究与模型分流](docs/company-research.md)。
 
 `python render_case.py` 会重新读取公共接口并计算，**不会重新生成 AI 观点**。研究叙述保留原日期。当前完整案例由本次交互式 Codex 研究、原披露核对及程序计算组成，不冒充一次新的自动 CLI 研究成功。`showcase.py` 则可运行完整两轮流程；网络或认证失败会明确报错。
 

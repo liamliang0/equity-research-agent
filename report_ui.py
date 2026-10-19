@@ -77,6 +77,8 @@ def render(report,review,telemetry,output,case,private=False):
     scope='私人持仓工作台 · 仅本地保存' if private else '独立公开研究案例 · 不展示券商账户或持仓'
     page=f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Liam 的研究笔记 · {e(symbol)}</title><style>{css}</style></head><body>
 <header class="topbar"><a href="#company-{e(symbol)}" class="brand">Liam 的研究笔记<span>把判断放到证据与价格里检验</span></a><span class="scope">{scope}</span></header><div class="workspace"><aside class="sidebar"><p>研究目录</p><nav aria-label="证券目录">{nav}</nav><div class="sidebar-note">观点有日期，假设可检查。打开本页不会自动刷新数据。</div></aside><main>{case_html}{''.join(other)}</main></div><script id="case-data" type="application/json">{payload}</script><script>{js}</script><noscript><style>.company[hidden],.panel[hidden]{{display:block!important}}.controls,.text-button{{display:none}}</style><p>JavaScript未启用；全部静态研究内容仍可阅读，互动模型不可用。</p></noscript></body></html>'''
+    import company_reports
+    page=company_reports.attach(page,snapshot,output,case)
     (output/'index.html').write_text(page,encoding='utf-8')
     u.save(output/'case-study.json',case)
 

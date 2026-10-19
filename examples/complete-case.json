@@ -815,7 +815,7 @@
   "baseline_cash_yield": 0.020590882675200872,
   "source_receipt": {
     "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001730168.json",
-    "fetched_at": "2026-10-19T17:56:45+08:00",
+    "fetched_at": "2026-10-19T18:28:13+08:00",
     "http_status": 200,
     "sha256": "3bdb6644c12addf1e63c4dc861008d7804fbf3d3f5aa6eb9b97f72c0e89a7adf",
     "attempts": 1,

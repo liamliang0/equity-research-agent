@@ -15,6 +15,32 @@
       "questions": [
         "AI业务已兑现到什么程度？软件收入确认、SBC和现金流期间如何影响价格判断？"
       ]
+    },
+    {
+      "id": "MU",
+      "name": "Micron Technology",
+      "kind": "equity",
+      "currency": "USD",
+      "sec_cik": "723125",
+      "domains": [
+        "investors.micron.com"
+      ],
+      "questions": [
+        "周期盈利能维持多久，当前价格需要怎样的兑现？"
+      ]
+    },
+    {
+      "id": "SNDK",
+      "name": "Sandisk",
+      "kind": "equity",
+      "currency": "USD",
+      "sec_cik": "2023554",
+      "domains": [
+        "investor.sandisk.com"
+      ],
+      "questions": [
+        "周期盈利能维持多久，当前价格需要怎样的兑现？"
+      ]
     }
   ]
 }

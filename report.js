@@ -15,13 +15,12 @@ const reverse=(cash,debt,shares,price,wacc,g)=>{
  for(let i=0;i<80;i++){const mid=(lo+hi)/2;if(f(mid)<price)lo=mid;else hi=mid}
  return (lo+hi)/2;
 };
-function tab(name){
- const company=document.getElementById('company-'+data.symbol);
+function tab(name,company=document.getElementById('company-'+data.symbol)){
  company.querySelectorAll('[data-panel]').forEach(x=>{const selected=x.dataset.panel===name;x.classList.toggle('active',selected);x.setAttribute('aria-selected',String(selected))});
  company.querySelectorAll('[data-content]').forEach(x=>{x.hidden=x.dataset.content!==name;x.classList.toggle('active',!x.hidden)});
 }
-document.querySelectorAll('[data-panel]').forEach(x=>x.addEventListener('click',()=>tab(x.dataset.panel)));
-document.querySelectorAll('[data-goto]').forEach(x=>x.addEventListener('click',()=>{tab(x.dataset.goto);document.querySelector('.tabs').scrollIntoView({block:'start'})}));
+document.querySelectorAll('[data-panel]').forEach(x=>x.addEventListener('click',()=>tab(x.dataset.panel,x.closest('.company'))));
+document.querySelectorAll('[data-goto]').forEach(x=>x.addEventListener('click',()=>{const company=x.closest('.company');tab(x.dataset.goto,company);company.querySelector('.tabs').scrollIntoView({block:'start'})}));
 function selectCompany(id){
  const found=document.getElementById('company-'+id);if(!found)return;
  document.querySelectorAll('.company').forEach(x=>{x.hidden=x!==found});
