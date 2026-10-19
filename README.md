@@ -60,6 +60,14 @@ Windows 可双击 `setup.cmd` 安装项目内环境，再运行 `showcase.cmd` �
 
 ### 使用自己的名单
 
+默认AAPL/SPY只用于公开演示，不是用户的实际持仓。私人持仓研究使用独立的本地名单和输出目录：
+
+```bash
+python showcase.py --watchlist private/watchlist.json --output private/results --private
+```
+
+`--private`在页面标注仅本地保存；它不是自动脱敏或访问控制，不能把该目录发布到Pages。打开旧页面不刷新数据，已有名单也不代表实时券商同步。自动CLI失败时不得把交互式人工补齐标成自动运行成功。
+
 按 `watchlist.example.json` 填写 `id/name/kind/domains/questions`；`kind` 支持 `equity/adr/etf`。把真实输入放在 gitignored 的 `private/` 或仓库外，先检查官方域名。
 
 ```bash

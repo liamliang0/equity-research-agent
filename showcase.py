@@ -73,7 +73,7 @@ def refs(point):
     return ' · '.join(point['fact_ids']) or '证据不足'
 
 
-def write_case(report, review, telemetry, output, model=None):
+def write_case(report, review, telemetry, output, model=None, private=False):
     output = Path(output)
     output.mkdir(parents=True,exist_ok=True)
     e = lambda v: html.escape(str(v))
@@ -109,17 +109,23 @@ def write_case(report, review, telemetry, output, model=None):
 <details><summary>展开 WACC × 永续增长敏感性</summary><table><tr><th>WACC</th><th>g</th><th>每股模型价值</th></tr>{grid}</table></details>
 <details><summary>展开全部输入、出处与逐年现金流</summary><pre>{e(json.dumps(model,ensure_ascii=False,indent=2))}</pre></details>
 <p>五年FCFF折现，终值显式扣除增长所需再投资；不把缺失股数、债务或报价填成0。未建模回购、逐年稀释或周期切换，周期股须先调整假设。</p></section>'''
-    flow=[('01 定义任务','用户的方法与研究问题'),('02 联网研究',f'第一轮实际搜索 {report.get("runtime",{}).get("search_events","未知")} 次'),('03 程序检查','来源片段、日期、引用与覆盖'),('04 第二轮审阅',f'独立调用，共享同一证据包；新增搜索 {telemetry["search_events"]} 次'),('05 计算与交付','Python计算 + 可展开证据 + 下一步任务')]
+    privacy_note = '本页包含私人持仓标的，仅在本地保存；不要上传到公开仓库。没有包含数量、成本和盈亏。' if private else '公开案例不含账户持仓或财务信息。'
+    workspace_label = 'PRIVATE PORTFOLIO / LOCAL ONLY' if private else 'AI WORKFLOW PORTFOLIO'
+    page_title = '我的持仓 · 六视角研究与审阅' if private else '把投资问题拆成<br>可执行、可检查的 AI 工作流'
+    interactive = telemetry.get('mode') == 'interactive-codex-review'
+    review_label = '研究 + 当前Codex交互式审阅' if interactive else '两轮真实模型调用'
+    review_note = '自动CLI审阅因网络失败；本次由当前Codex对话基于原证据包补齐，不声称全自动运行成功。' if interactive else f'独立调用，共享同一证据包；新增搜索 {telemetry["search_events"]} 次'
+    flow=[('01 定义任务','用户的方法与研究问题'),('02 联网研究',f'第一轮实际搜索 {report.get("runtime",{}).get("search_events","未知")} 次'),('03 程序检查','来源片段、日期、引用与覆盖'),('04 第二轮审阅',review_note),('05 计算与交付','Python计算 + 可展开证据 + 下一步任务' if model else '可展开证据 + 审阅修订 + 下一步任务')]
     pipeline=''.join(f'<article><b>{e(k)}</b><p>{e(v)}</p></article>' for k,v in flow)
     doc=f'''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Equity Research Agent · 项目演示</title>
 <style>:root{{--ink:#172d39;--accent:#087e72}}*{{box-sizing:border-box}}body{{margin:0;background:#f5f3ed;color:var(--ink);font:15px/1.8 "Segoe UI","Microsoft YaHei",sans-serif}}header{{background:#142f3a;color:white;padding:55px max(24px,calc((100vw - 1050px)/2))}}h1{{font-size:clamp(30px,5vw,48px);line-height:1.25;margin:12px 0}}h2{{font-size:25px;line-height:1.4}}h3{{font-size:17px}}main{{max-width:1100px;margin:auto;padding:24px}}section{{background:white;padding:28px;margin:24px 0;border:1px solid #dce1db;border-radius:14px}}.eyebrow{{font:12px/1.6 monospace;letter-spacing:2px;color:#458c83}}header .eyebrow{{color:#91d5c8}}.grid,.pipeline{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}}.pipeline{{grid-template-columns:repeat(5,minmax(0,1fr))}}article{{background:#f2f6f3;padding:18px;border-radius:10px}}article h3{{margin:0 0 8px}}small{{color:#667b7e}}.gap{{background:#fff4db;padding:12px;border-left:3px solid #c88d22}}.thesis{{background:#eaf5f0;padding:18px}}details{{border-top:1px solid #dce1db;padding:14px 0}}summary{{cursor:pointer;font-weight:600}}li{{margin:12px 0}}a{{color:#087e72;overflow-wrap:anywhere}}header a{{color:#a9e8dc}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;max-height:400px;overflow:auto}}table{{border-collapse:collapse;width:100%;font-size:14px}}td,th{{border-bottom:1px solid #dce1db;padding:9px;text-align:left}}.scroll{{overflow-x:auto}}nav a{{display:inline-block;margin:5px 10px 5px 0}}@media(max-width:700px){{.grid,.pipeline{{grid-template-columns:1fr}}main{{padding:14px}}section{{padding:18px}}}}</style>
-<header><p class="eyebrow">LIAM LIANG / AI WORKFLOW PORTFOLIO</p><h1>把投资问题拆成<br>可执行、可检查的 AI 工作流</h1><p>趋势 → 路线 → 叙事 → 预期差 → 量化 → 赔率</p><p>研究日期 {e(report['as_of'])} · 两轮真实模型调用 · 可追溯证据 · 显式假设计算</p><nav>{''.join(f'<a href="#asset-{e(a["id"])}">查看 {e(a["id"])} 案例 ↓</a>' for a in review['assets'])}</nav></header>
+<header><p class="eyebrow">LIAM LIANG / {workspace_label}</p><h1>{page_title}</h1><p>趋势 → 路线 → 叙事 → 预期差 → 量化 → 赔率</p><p>研究日期 {e(report['as_of'])} · {review_label} · 可追溯证据</p><p>{e(privacy_note)}</p><nav>{''.join(f'<a href="#asset-{e(a["id"])}">查看 {e(a["id"])} 案例 ↓</a>' for a in review['assets'])}</nav></header>
 <main><section><h2>30 秒看懂我做了什么</h2><p>从个人研究需求出发，定义问题、配置 Codex 的任务与权限、设置输出结构和检查规则，再根据失败记录迭代。代码与分析由 AI 辅助完成，底层模型和 Agent 运行时不是自研。</p><div class="pipeline">{pipeline}</div><p><b>需要人做的决定：</b>确认原始投资假设、审阅证据是否足够、选择估值参数、决定是否接受 AI 的修订。第二轮调用不等于独立专家或机构共识。</p><details><summary>原始运行记录与核验范围</summary><pre>{e(json.dumps({'research_runtime':report.get('runtime',{}),'review_runtime':telemetry,'source_audit':report.get('audit',{})},ensure_ascii=False,indent=2))}</pre></details></section>
-{''.join(cards)}{valuation_html}<section><h2>边界与下一轮</h2><p>此页不是交易信号。来源原文片段匹配不等于完整事实审计。六个角度是任务定义，不声称模拟某位大师；缺少证据时保持空缺。</p><ul>{''.join('<li>'+e(x)+'</li>' for x in review['limitations'])}</ul><p>打开页面不会联网更新；重新运行工作流才会生成新报告。公开案例不含账户持仓或财务信息。</p></section></main></html>'''
+{''.join(cards)}{valuation_html}<section><h2>边界与下一轮</h2><p>此页不是交易信号。来源原文片段匹配不等于完整事实审计。六个角度是任务定义，不声称模拟某位大师；缺少证据时保持空缺。</p><ul>{''.join('<li>'+e(x)+'</li>' for x in review['limitations'])}</ul><p>打开页面不会联网更新；重新运行工作流才会生成新报告。{e(privacy_note)}</p></section></main></html>'''
     (output/'index.html').write_text(doc,encoding='utf-8')
     u.save(output/'review.json',review)
     if model: u.save(output/'valuation-result.json',model)
-    u.save(output/'case-run.json',{'research_runtime':report.get('runtime',{}),'review_runtime':telemetry,'generated_at':u.now(),'boundary':'Two separate calls of the same runtime; not independent expert consensus.'})
+    u.save(output/'case-run.json',{'research_runtime':report.get('runtime',{}),'review_runtime':telemetry,'generated_at':u.now(),'boundary':review_note if interactive else 'Two separate calls of the same runtime; not independent expert consensus.'})
 
 
 def main():
@@ -128,8 +134,11 @@ def main():
     p.add_argument('--output',type=Path,default=r.SOURCE_ROOT/'output'/'showcase')
     p.add_argument('--research-file',type=Path,help='Reuse dated research evidence; does not refresh it')
     p.add_argument('--valuation-input',type=Path,help='Optional explicit assumptions; no default valuation')
+    p.add_argument('--private',action='store_true',help='Label this local page as private; never publish it')
     p.add_argument('--timeout',type=int,default=600)
     args=p.parse_args()
+    # Codex runs from SOURCE_ROOT; keep paths independent of caller's working directory.
+    args.output=args.output.resolve()
     r.configure(r.load_watchlist(args.watchlist),args.output/'research')
     report=u.load(args.research_file) if args.research_file else r.run(r.DEFAULT_QUESTION,timeout=args.timeout)
     r.validate_report(report,report['as_of'])
@@ -145,7 +154,7 @@ def main():
         validate_review(review,report)
     telemetry.update(run_id=run_dir.name,generated_at=u.now(),mode='separate-call-shared-evidence')
     model=valuation.evaluate(u.load(args.valuation_input)) if args.valuation_input else None
-    write_case(report,review,telemetry,args.output,model)
+    write_case(report,review,telemetry,args.output,model,private=args.private)
     print(args.output/'index.html',flush=True)
 
 

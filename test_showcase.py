@@ -2,6 +2,9 @@ import copy
 import json
 from pathlib import Path
 import unittest
+from unittest.mock import patch
+import tempfile
+import os
 import valuation as v
 import showcase as s
 
@@ -81,6 +84,21 @@ class ReviewTests(unittest.TestCase):
     def test_gap_cannot_be_hidden(self):
         self.review['assets'][0]['lenses'][0]['fact_ids']=[]
         with self.assertRaises(ValueError): s.validate_review(self.review,self.report)
+
+    def test_private_launcher_resolves_relative_output(self):
+        report=dict(self.report,question='test',scope_limitations=[])
+        assets=[{'id':'A','name':'A','kind':'equity','domains':['example.com'],'questions':['test']}]
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parent) as folder:
+            packet=Path(folder)/'packet.json'
+            packet.write_text(json.dumps(report),encoding='utf-8')
+            previous=Path.cwd()
+            try:
+                os.chdir(folder)
+                with patch('sys.argv',['showcase.py','--private','--research-file',str(packet),'--output','relative']), patch.object(s.r,'load_watchlist',return_value=assets), patch.object(s.r,'validate_report'), patch.object(s.r,'invoke',return_value=(copy.deepcopy(self.review),{'search_events':0})), patch.object(s,'write_case') as write:
+                    s.main()
+                    self.assertTrue(write.call_args.args[3].is_absolute())
+                    self.assertTrue(write.call_args.kwargs['private'])
+            finally: os.chdir(previous)
 
 
 if __name__=='__main__': unittest.main()
