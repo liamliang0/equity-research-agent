@@ -2,13 +2,13 @@
 
 **展示我如何把研究需求拆成 Agent 任务，并检查 AI 的输出。** A two-pass, evidence-tracked research workflow built with Codex CLI and Python.
 
-**新版入口：[完整案例展示页](docs/index.html) · [真实第二轮审阅](examples/showcase-review.json) · [设计与迭代](docs/design-and-iteration.md)**
+**新版入口：[直接打开演示](https://liamliang0.github.io/equity-research-agent/) · [真实第二轮审阅](examples/showcase-review.json) · [设计与迭代](docs/design-and-iteration.md)**
 
 以“趋势→路线→叙事→预期差→量化→赔率”为主线，将产业、成长、预期、宏观、质量与风险拆成明确任务。第一轮联网研究，第二轮在同一证据包上提出批评和修订；确定性代码检查引用并执行估值计算。人物名气不是验收标准，实际输出和运行记录才是。
 
 **先看结果：** [真实报告样例](examples/report.md) · [运行与核验记录](examples/run-summary.json) · [证据表](examples/evidence.csv) · [判断账本](examples/thesis-ledger.json) · [程序审查](examples/review.md)
 
-![实际运行生成的研究报告](docs/report-preview.png)
+![真实案例与Agent任务流程](docs/showcase-preview.png)
 
 ## 解决什么问题
 
