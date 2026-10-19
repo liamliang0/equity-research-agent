@@ -1,16 +1,42 @@
 # Equity Research Agent
 
-**展示我如何把研究需求拆成 Agent 任务，并检查 AI 的输出。** A two-pass, evidence-tracked research workflow built with Codex CLI and Python.
+把证券研究需求做成可复用的 AI 工作流：获取资料、组织证据、执行计算，交付可以核查的报告。
 
-**新版入口：[直接打开演示](https://liamliang0.github.io/equity-research-agent/) · [完整案例与假设](examples/complete-case.json) · [实际数据快照](examples/complete-case-data.json) · [设计与迭代](docs/design-and-iteration.md)**
+## 直接看效果
 
-**真实数据层：**SEC EDGAR财报、US Treasury利率、Yahoo公共行情接口；端点、时间、单位、实际覆盖和失败状态可展开。见[数据接口与边界](docs/data-sources.md)。这不是IBKR实时交易系统。
+### [打开交互式报告，无需安装](https://liamliang0.github.io/equity-research-agent/)
 
-以“趋势→路线→叙事→预期差→量化→赔率”为主线，将产业、成长、预期、宏观、质量与风险拆成明确任务。第一轮联网研究，第二轮在同一证据包上提出批评和修订；确定性代码检查引用并执行估值计算。人物名气不是验收标准，实际输出和运行记录才是。
+覆盖 **10 家公司**。可以切换研究、拖动参数重算，或点开原始披露核对依据。
 
-**先看结果：** [真实报告样例](examples/report.md) · [运行与核验记录](examples/run-summary.json) · [证据表](examples/evidence.csv) · [判断账本](examples/thesis-ledger.json) · [程序审查](examples/review.md)
+[![点击进入交互式报告](docs/showcase-preview.png)](https://liamliang0.github.io/equity-research-agent/)
 
-![真实案例与Agent任务流程](docs/showcase-preview.png)
+想快速了解项目，可以先看[博通完整报告](https://liamliang0.github.io/equity-research-agent/#company-AVGO)，再选“价格与假设”体验计算，或选“来源与过程”核对证据。
+
+## 我在项目中做了什么
+
+- **定义问题：**从个人研究需求出发，确定比较什么、需要哪些来源，以及什么结果算完成。
+- **配置流程：**借助 ChatGPT / Codex，把资料检索、公共数据接口、计算与报告交付连接起来。
+- **核验和迭代：**检查日期、季度与累计口径、币种和引用；根据实际取数、PDF读取和模型计算的失败修改流程。
+
+代码实现与研究整理由 Codex 辅助。项目重点是问题拆解、工具配置、输出验收与持续改进，不是自研底层模型。
+
+## 真实迭代记录
+
+从最初的存储研究需求，逐步加入可比期间检查、公开数据接口、分业务的价格实验和10家公司报告；再根据实际查看反馈补上导航、可见项目链接与交互演示。[查看代码变更](https://github.com/liamliang0/equity-research-agent/commits/main/)或[设计与迭代记录](docs/design-and-iteration.md)。
+
+## 可以核实的成果
+
+| 想看什么 | 从哪里看 |
+|---|---|
+| 最终交付 | [10家公司交互式报告](https://liamliang0.github.io/equity-research-agent/) |
+| 实际输入与假设 | [公司研究配置](examples/company-profiles.example.json)、[博通现金流案例](examples/complete-case.json) |
+| 数据与计算 | [接口快照](examples/complete-case-data.json)、[多公司计算记录](examples/multi-company-studies.json) |
+| 检查与取舍 | [自动检查](https://github.com/liamliang0/equity-research-agent/actions/workflows/tests.yml)、[研究质量与边界](docs/research-quality.md) |
+
+不同业务采用不同方法：周期盈利、现金流、收入兑现、储备收益与ADR报价诊断。未来增长和估值参数是显式假设，研究有日期，未展示账户金额、实际仓位或投资收益。
+
+<details>
+<summary>展开实现方式、运行命令和历史样例</summary>
 
 ## 解决什么问题
 
@@ -39,7 +65,7 @@ flowchart LR
 - **明确输入的计算账本：**用 Decimal 复算比例、增幅、差值或求和，保存输入与来源。不会猜出所有模型计算的输入，也不声称自动审计全部数字。
 - **私人输入最小化：**观察名单加载只保留证券标识与研究配置，不把份额、成本、盈亏等附加字段放入模型提示。私人名单与结果默认不发布。
 
-**当前公开页面有 AVGO、MU、SNDK 三份研究示例，不是券商账户展示。** 将 SEC 财报的年度、年内累计与可比累计衔接为 TTM，检查现金流、股权薪酬和债务，再计算条件情景与价格隐含增长。AAPL/SPY 旧样例保留为早期工作流记录，不代表新版主案例。没有虚构生产用户、投资收益或金融专业资质。
+**公开演示覆盖 10 家公司，首页可切换全部研究。仅发布公开企业资料与研究假设，不含账户金额、仓位、成本或盈亏。** 将 SEC 财报的年度、年内累计与可比累计衔接为 TTM，检查现金流、股权薪酬和债务，再计算条件情景与价格隐含增长。AAPL/SPY 旧样例保留为早期工作流记录，不代表新版主案例。没有虚构生产用户、投资收益或金融专业资质。
 
 ## 快速运行
 
@@ -51,7 +77,7 @@ codex login
 python market_data.py --output output/data
 python render_case.py
 # 重新联网研究及第二轮审阅（需要 Codex 额度）
-python showcase.py --watchlist watchlist.case.example.json --case-profile examples/avgo-case-profile.json --company-profiles examples/memory-company-profiles.json --output output/public-case
+python showcase.py --watchlist watchlist.case.example.json --case-profile examples/avgo-case-profile.json --company-profiles examples/company-profiles.example.json --output output/public-case
 python research_agent.py --plan-only
 python research_agent.py --watchlist watchlist.example.json
 ```
@@ -122,3 +148,6 @@ python -m unittest discover -p "test*.py" -v
 ```
 
 GitHub Actions 仅运行离线测试和规划，不使用用户账户或模型额度。真实演示的运行编号、来源检查及已知限制在 [run-summary.json](examples/run-summary.json)，不是用模拟测试冒充实际研究。
+
+
+</details>

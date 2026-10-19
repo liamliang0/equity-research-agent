@@ -45,7 +45,7 @@ def article(case):
 <script type="application/json" class="study-data">{json_script(case)}</script></article>'''
 
 
-def attach(page,snapshot,output,primary):
+def attach(page,snapshot,output,primary,private=False):
     path=Path(output)/'company-profiles.json'
     if not path.exists():return page
     config=u.load(path);cases={}
@@ -60,7 +60,7 @@ def attach(page,snapshot,output,primary):
         page,count=re.subn(pattern,lambda _:article(case),page,flags=re.S)
         if count!=1:raise ValueError('Expected one company placeholder: '+symbol)
         page=page.replace(f'<b>{symbol}</b><span>资料概览</span>',f'<b>{symbol}</b><span>研究报告</span>')
-    all_cases=dict(cases);rows=[]
+    rows=[];portfolio_rows=[]
     for symbol,a in snapshot['assets'].items():
         if symbol==primary['symbol']:
             title=primary['profile']['question'];method='现金流情景';value=primary['scenarios']['base']['value_per_share']
@@ -68,7 +68,18 @@ def attach(page,snapshot,output,primary):
             c=cases[symbol];title=c['profile']['question'];method=c['profile']['model']['title'];value=c['scenarios']['base']['value_per_share']
         else:continue
         rows.append(f'<tr><th><a href="#company-{symbol}" data-company="{symbol}">{symbol}</a></th><td>{e(title)}</td><td>{e(method)}</td><td>${a["quote"]["price"]:,.2f}</td><td>${value:,.2f}</td></tr>')
+        name='博通' if symbol==primary['symbol'] else cases[symbol]['profile']['name']
+        portfolio_rows.append(f'<tr><th><a href="#company-{symbol}" data-company="{symbol}">{e(name)}<small>{symbol}</small></a></th><td>{e(title)}</td><td>{e(method)}</td></tr>')
     overview=f'''<article class="company overview" id="company-_overview"><p class="caption">研究总览</p><h1>先看每家公司在验证什么</h1><p>共 {len(rows)} 份研究：点击标的查看判断、原始披露、不同视角和可调整的价格实验。</p><p class="callout">不同模型回答不同问题。基准条件价格仅用于检查假设；海力士的数字是ADR溢价情景，不能与其他公司的盈利或现金流估值横向排名。</p><div class="table-wrap"><table><tr><th>标的</th><th>研究问题</th><th>分析方法</th><th>观察报价</th><th>基准条件价</th></tr>{''.join(rows)}</table></div><section class="subsection"><h2>怎样更新</h2><p>刷新接口会更新报价和程序计算，研究文字与官方披露保留原日期。新的财报需要重新核查并更新事实及假设，不能靠改时间戳冒充已读新财报。</p></section></article>'''
+    if not private:
+        overview=f'''<article class="company overview portfolio-overview" id="company-_overview"><p class="caption">Liam Liang · 个人项目</p><h1>从问题定义到报告交付</h1><p class="project-intro">把个人证券研究需求做成可复用的 AI 工作流。我负责问题定义、流程配置与结果核验，借助 Codex 完成实现和研究整理。</p>
+<div class="project-actions"><a class="primary-action" href="#company-AVGO" data-company="AVGO">先看一份完整报告</a><a href="#company-MU" data-company="MU" data-open-panel="model">体验参数重算</a><a href="#company-CRCL" data-company="CRCL" data-open-panel="evidence">核对来源与过程</a></div>
+<div class="project-proof"><div><b>把需求拆成任务</b><p>确定研究问题、证据范围、输出结构与检查条件。</p></div><div><b>连接工具完成交付</b><p>组织资料检索、公开数据接口、程序计算与报告生成。</p></div><div><b>检查结果再迭代</b><p>核对数据口径、处理失败，保留来源和假设。</p></div></div>
+<section class="subsection"><h2>{len(rows)} 份研究，按业务选择分析方法</h2><p>选一家公司，可查看研究结论、调整价格假设，或展开原始披露。</p><div class="table-wrap"><table><tr><th>公司</th><th>研究问题</th><th>分析方法</th></tr>{''.join(portfolio_rows)}</table></div></section>
+<details><summary>数据、更新与研究边界</summary><p>公开行情、SEC申报和公司披露均保留来源及日期；未来参数属于分析假设，不是机构共识或交易建议。海力士使用ADR报价诊断，不将其换算价称为内在价值。</p><p>刷新数据会复算结果；研究文字需要在新披露后重新核对。这里展示的是有日期的交付成果，账户金额、仓位、成本与盈亏不公开。</p></details></article>'''
+        page=page.replace(f'href="#company-{primary["symbol"]}" class="brand"','href="#company-_overview" data-company="_overview" class="brand"',1)
+        page=page.replace('Liam 的研究笔记<span>把判断放到证据与价格里检验</span>','Equity Research Agent<span>Liam 的 AI 工作流实践</span>',1)
+        page=page.replace('公开研究报告 · 不含账户金额、仓位或成本','项目作品集 · 可交互报告',1)
     page=page.replace('<main>','<main>'+overview,1).replace(f'<article class="company" id="company-{primary["symbol"]}">',f'<article class="company" id="company-{primary["symbol"]}" hidden>')
     page=page.replace('class="selected"','class=""')
     page=page.replace(f'<title>Liam 的研究笔记 · {e(primary["symbol"])}</title>','<title>Liam 的研究笔记 · 多标的研究</title>')

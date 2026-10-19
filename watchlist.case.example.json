@@ -1,6 +1,21 @@
 {
-  "label": "Independent public research case; not an account portfolio",
+  "label": "Public company research universe; no account amounts or positions",
   "assets": [
+    {
+      "id": "AAOI",
+      "name": "Applied Optoelectronics",
+      "kind": "equity",
+      "currency": "USD",
+      "sec_cik": "1158114",
+      "domains": [
+        "investors.ao-inc.com",
+        "www.ao-inc.com",
+        "appliedoptoelectronics.gcs-web.com"
+      ],
+      "questions": [
+        "客户认证与量产收入；产品结构、毛利率及客户集中度。"
+      ]
+    },
     {
       "id": "AVGO",
       "name": "Broadcom",
@@ -9,24 +24,97 @@
       "sec_cik": "1730168",
       "domains": [
         "investors.broadcom.com",
-        "www.sec.gov",
-        "data.sec.gov"
+        "www.broadcom.com"
       ],
       "questions": [
-        "AI业务已兑现到什么程度？软件收入确认、SBC和现金流期间如何影响价格判断？"
+        "AI 半导体与软件收入质量；现金流、客户集中度和资本回报。"
+      ]
+    },
+    {
+      "id": "BE",
+      "name": "Bloom Energy",
+      "kind": "equity",
+      "currency": "USD",
+      "sec_cik": "1664703",
+      "domains": [
+        "investor.bloomenergy.com",
+        "www.bloomenergy.com"
+      ],
+      "questions": [
+        "电力需求是否兑现为交付和现金流；订单、融资与稀释风险。"
+      ]
+    },
+    {
+      "id": "CRCL",
+      "name": "Circle",
+      "kind": "equity",
+      "currency": "USD",
+      "sec_cik": "1876042",
+      "domains": [
+        "investor.circle.com",
+        "www.circle.com"
+      ],
+      "questions": [
+        "稳定币使用与储备收入；利率、渠道分成和利润质量。"
+      ]
+    },
+    {
+      "id": "IREN",
+      "name": "IREN",
+      "kind": "equity",
+      "currency": "USD",
+      "sec_cik": "1878848",
+      "domains": [
+        "iren.com",
+        "www.iren.com",
+        "investors.iren.com"
+      ],
+      "questions": [
+        "AI 云收入、合同与融资；区分客户承诺、计划产能与实际交付。"
       ]
     },
     {
       "id": "MU",
-      "name": "Micron Technology",
+      "name": "Micron",
       "kind": "equity",
       "currency": "USD",
       "sec_cik": "723125",
       "domains": [
-        "investors.micron.com"
+        "investors.micron.com",
+        "www.micron.com",
+        "micron.gcs-web.com"
       ],
       "questions": [
-        "周期盈利能维持多久，当前价格需要怎样的兑现？"
+        "DRAM/HBM/NAND 量价、现金流与资本开支；不要外推周期峰值。"
+      ]
+    },
+    {
+      "id": "ORCL",
+      "name": "Oracle",
+      "kind": "equity",
+      "currency": "USD",
+      "sec_cik": "1341439",
+      "domains": [
+        "investor.oracle.com",
+        "www.oracle.com"
+      ],
+      "questions": [
+        "云业务、剩余履约义务与收入兑现；资本开支和自由现金流。"
+      ]
+    },
+    {
+      "id": "SKHY",
+      "name": "SK hynix ADR",
+      "kind": "adr",
+      "currency": "USD",
+      "sec_cik": "2120882",
+      "domains": [
+        "www.skhynix.com",
+        "news.skhynix.com",
+        "skhynix.com"
+      ],
+      "questions": [
+        "公司基本面与韩国普通股、ADR 价格分开；HBM 交付、现金流与长期合同。"
       ]
     },
     {
@@ -36,10 +124,27 @@
       "currency": "USD",
       "sec_cik": "2023554",
       "domains": [
-        "investor.sandisk.com"
+        "investor.sandisk.com",
+        "www.sandisk.com",
+        "sandisk.gcs-web.com"
       ],
       "questions": [
-        "周期盈利能维持多久，当前价格需要怎样的兑现？"
+        "NAND 量价、数据中心产品结构、NBM 合约与现金流质量。"
+      ]
+    },
+    {
+      "id": "TSM",
+      "name": "Taiwan Semiconductor ADR",
+      "kind": "adr",
+      "currency": "USD",
+      "sec_cik": "1046179",
+      "domains": [
+        "investor.tsmc.com",
+        "pr.tsmc.com",
+        "www.tsmc.com"
+      ],
+      "questions": [
+        "先进制程与封装需求、资本开支和现金流；ADR 与台股、美元与台币口径分开。"
       ]
     }
   ]

@@ -14,7 +14,7 @@ if __name__=='__main__':
     p.add_argument('--watchlist',type=Path,default=root/'watchlist.case.example.json')
     p.add_argument('--profile',type=Path,default=root/'examples/avgo-case-profile.json')
     p.add_argument('--output',type=Path,default=root/'output/public-case')
-    p.add_argument('--company-profiles',type=Path,default=root/'examples/memory-company-profiles.json')
+    p.add_argument('--company-profiles',type=Path,default=root/'examples/company-profiles.example.json')
     a=p.parse_args()
     a.output=a.output.resolve()
     snapshot=market_data.collect(research_agent.load_watchlist(a.watchlist),a.output/'data')

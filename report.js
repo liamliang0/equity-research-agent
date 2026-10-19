@@ -26,7 +26,7 @@ function selectCompany(id){
  document.querySelectorAll('.company').forEach(x=>{x.hidden=x!==found});
  document.querySelectorAll('[data-company]').forEach(x=>{x.classList.toggle('selected',x.dataset.company===id);if(x.dataset.company===id)x.setAttribute('aria-current','page');else x.removeAttribute('aria-current')});
 }
-document.querySelectorAll('[data-company]').forEach(x=>x.addEventListener('click',ev=>{ev.preventDefault();selectCompany(x.dataset.company);history.replaceState(null,'','#company-'+x.dataset.company);window.scrollTo({top:0})}));
+document.querySelectorAll('[data-company]').forEach(x=>x.addEventListener('click',ev=>{ev.preventDefault();selectCompany(x.dataset.company);if(x.dataset.openPanel)tab(x.dataset.openPanel,document.getElementById('company-'+x.dataset.company));history.replaceState(null,'','#company-'+x.dataset.company);window.scrollTo({top:0})}));
 if(location.hash.startsWith('#company-'))selectCompany(location.hash.slice(9));
 const growth=document.getElementById('growth'),wacc=document.getElementById('wacc'),terminal=document.getElementById('terminal'),start=document.getElementById('cash-start');
 function calculate(){

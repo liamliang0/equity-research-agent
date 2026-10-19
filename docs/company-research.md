@@ -1,6 +1,6 @@
 # 多标的研究与模型分流
 
-公开主页面现在包含博通、美光、闪迪三份独立示例；它不是账户持仓展示。入口先给研究总览，再切换单个标的。私人名单、其他个人研究和账户数量不随公共演示发布。
+公开主页面覆盖10家公司的研究，入口先显示总览，再切换单个标的。公司名单与相关研究已经获授权公开；账户金额、实际持仓数量、成本和盈亏均不发布。
 
 ## 研究交付
 
@@ -18,7 +18,7 @@
 
 研究问题与验收由项目发起者提出；本次Codex交互逐家检索官方披露并整理叙述、事实锚点和假设。代码抓取HTTP响应、保留时间和指纹、执行数值计算并生成报告。手工核查的披露锚点不是自动XBRL抽取结果，也没有把失败的CLI调用记成成功。
 
-`company_models.py`不调用LLM，`company_reports.py`把明确输入呈现在页面。每个研究记录可下载，来源URL、日期及假设可核对。公开样例在`examples/memory-company-profiles.json`，计算结果在`examples/multi-company-studies.json`。
+`company_models.py`不调用LLM，`company_reports.py`把明确输入呈现在页面。每个研究记录可下载，来源URL、日期及假设可核对。公开样例在`examples/company-profiles.example.json`，计算结果在`examples/multi-company-studies.json`。
 
 ## 更新的实际含义
 

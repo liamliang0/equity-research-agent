@@ -700,6 +700,2669 @@
         }
       ],
       "boundary": "Conditional pricing experiment, not consensus, recommendation, audited valuation or a probability-weighted forecast. Editorial facts are dated and are not automatically refreshed by quote changes."
+    },
+    "TSM": {
+      "symbol": "TSM",
+      "profile": {
+        "symbol": "TSM",
+        "name": "台积电",
+        "question": "先进制程优势已兑现，ADR价格要求怎样的增长？",
+        "verdict": "业务强势有数据支撑；价格判断还要区分最新季度年化、年度盈利和ADR单位。",
+        "thesis": "先进制程的收入与利润已经兑现，主要分歧是工艺与产能优势可以维持多久，以及海外制造和未来再投资会消耗多少经济回报。用官方每ADR的美元EPS避免错误混用台币普通股EPS。",
+        "editorial_as_of": "2026-10-19",
+        "facts": [
+          {
+            "title": "最新季报替代旧SEC",
+            "fact": "2026 Q3美元收入467.2亿美元，同比增长41.2%。",
+            "interpretation": "最新季度应以10月15日公司季报为准，不用2024年SEC标准字段替代。",
+            "source": "TSM"
+          },
+          {
+            "title": "制程结构",
+            "fact": "Q3毛利率66.4%，7nm及以下占晶圆收入79%。",
+            "interpretation": "先进制程组合与盈利一致，但不自动证明全部需求来自AI。",
+            "source": "TSM"
+          },
+          {
+            "title": "ADR单位明确",
+            "fact": "公司披露Q3摊薄EPS为每ADR 4.60美元。",
+            "interpretation": "模型用4.60×4作单季年化敏感性，不冒称TTM EPS。",
+            "source": "TSM"
+          }
+        ],
+        "views": [
+          {
+            "name": "产业与供需",
+            "text": "节点、良率和先进封装是不同瓶颈，需要分别观察扩产与客户采用。"
+          },
+          {
+            "name": "成长与兑现",
+            "text": "先进工艺收入结构和利润率已经改善，继续关注产能利用与海外爬坡。"
+          },
+          {
+            "name": "预期与催化",
+            "text": "最新季度后的指引兑现比单纯引用技术领先更能改变判断。"
+          },
+          {
+            "name": "宏观与资金",
+            "text": "美元/台币、能源成本和资本开支影响利润；ADR与当地股票时点也可能不同。"
+          },
+          {
+            "name": "经营质量",
+            "text": "高毛利并不等于全部可分配现金，厂房设备与先进工艺投入必须保留。"
+          },
+          {
+            "name": "周期与风险",
+            "text": "地缘、客户集中及技术迁移风险可能触发倍数压缩，不能由高增长自动抵消。"
+          }
+        ],
+        "watch": [
+          {
+            "signal": "下季交付",
+            "test": "比较实际美元收入与公司Q4指引523–543亿美元。",
+            "invalidates": "实际落后指引并且后续需求转弱。"
+          },
+          {
+            "signal": "制程与利润",
+            "test": "跟踪2nm/3nm占比、毛利率与海外厂爬坡成本。",
+            "invalidates": "结构升级却不能维持盈利质量。"
+          },
+          {
+            "signal": "资本回报",
+            "test": "核对年度资本开支与现金流，不只看EPS。",
+            "invalidates": "扩张所需再投资长期压低回报。"
+          }
+        ],
+        "model": {
+          "kind": "earnings",
+          "title": "盈利能力 × 估值倍数",
+          "basis": "2026 Q3每ADR美元摊薄EPS×4，仅作单季年化起点。",
+          "parameters": {
+            "eps": 18.4,
+            "factor": 1.15,
+            "pe": 24,
+            "years": 1,
+            "discount": 0.1
+          },
+          "controls": [
+            {
+              "key": "factor",
+              "label": "盈利相对锚点的倍数",
+              "min": 0.25,
+              "max": 2,
+              "step": 0.05,
+              "unit": "倍"
+            },
+            {
+              "key": "pe",
+              "label": "市盈率假设",
+              "min": 8,
+              "max": 80,
+              "step": 1,
+              "unit": "倍"
+            }
+          ],
+          "scenarios": {
+            "bear": {
+              "factor": 0.8,
+              "pe": 16
+            },
+            "base": {
+              "factor": 1.15,
+              "pe": 24
+            },
+            "bull": {
+              "factor": 1.5,
+              "pe": 30
+            }
+          },
+          "reverse": {
+            "key": "factor",
+            "label": "支持当前报价所需的盈利 / 锚点",
+            "unit": "倍",
+            "range": [
+              0,
+              10
+            ]
+          },
+          "formula": "模型每股价值 = 年度EPS锚点 × 盈利倍数 × 假设PE ÷ (1 + 折现率)^年数；PE是压力参数，不是同业中位数。"
+        },
+        "limits": [
+          "单季年化存在季节性，折现一年仅为统一情景口径，不是完整DCF。",
+          "未从台币利润除美元报价计算PE，也未把普通股数当ADR数。"
+        ],
+        "correction": "SEC标准字段落后于公司最新季报，主报告改用官方Q3每ADR美元口径。",
+        "sources": [
+          {
+            "id": "TSM",
+            "title": "台积电 官方业绩披露",
+            "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/qr/phase4_reports/2026-10/cb1c588cc3b2009f97afa57a6d7c146ae1e27808/3Q26%20EarningsRelease_WoG.pdf",
+            "published": "2026-10-15",
+            "receipt": {
+              "url": "https://investor.tsmc.com/english/encrypt/files/encrypt_file/qr/phase4_reports/2026-10/cb1c588cc3b2009f97afa57a6d7c146ae1e27808/3Q26%20EarningsRelease_WoG.pdf",
+              "fetched_at": "2026-10-19T18:20:08+08:00",
+              "http_status": 200,
+              "sha256": "f309546ad88dc07408a5614cc1d541013e7b85fa168c97f5ae3d3df149b25d80",
+              "attempts": 1,
+              "status": "ok",
+              "bytes": 162119
+            }
+          }
+        ],
+        "authorship": "当前Codex对话逐家检索官方披露、编辑研究框架及代码复算；不是一次新的全自动CLI运行，也不是用户已确认的投资观点。"
+      },
+      "quote": {
+        "symbol": "TSM",
+        "price": 412.61,
+        "currency": "USD",
+        "market_time_utc": "2026-10-16T20:00:02+00:00",
+        "exchange": "NYQ",
+        "exchange_timezone": "America/New_York",
+        "observation_age_days": 3,
+        "provider": "Yahoo Finance chart (unofficial)",
+        "realtime_entitlement": "not_verified",
+        "boundary": "Last reported regular-session price; not guaranteed real time. Weekend/holiday age is not itself a feed failure.",
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TSM?interval=1d&range=5d",
+        "status": "ok"
+      },
+      "scenarios": {
+        "bear": {
+          "value_per_share": 214.10909090909087,
+          "ledger": {
+            "annual_eps_anchor": 18.4,
+            "earnings_factor": 0.8,
+            "scenario_eps": 14.719999999999999,
+            "pe_assumption": 16,
+            "discount_years": 1
+          },
+          "parameters": {
+            "eps": 18.4,
+            "factor": 0.8,
+            "pe": 16,
+            "years": 1,
+            "discount": 0.1
+          },
+          "upside_pct": -48.10860354594148
+        },
+        "base": {
+          "value_per_share": 461.6727272727272,
+          "ledger": {
+            "annual_eps_anchor": 18.4,
+            "earnings_factor": 1.15,
+            "scenario_eps": 21.159999999999997,
+            "pe_assumption": 24,
+            "discount_years": 1
+          },
+          "parameters": {
+            "eps": 18.4,
+            "factor": 1.15,
+            "pe": 24,
+            "years": 1,
+            "discount": 0.1
+          },
+          "upside_pct": 11.890823604063684
+        },
+        "bull": {
+          "value_per_share": 752.7272727272725,
+          "ledger": {
+            "annual_eps_anchor": 18.4,
+            "earnings_factor": 1.5,
+            "scenario_eps": 27.599999999999998,
+            "pe_assumption": 30,
+            "discount_years": 1
+          },
+          "parameters": {
+            "eps": 18.4,
+            "factor": 1.5,
+            "pe": 30,
+            "years": 1,
+            "discount": 0.1
+          },
+          "upside_pct": 82.43069065879946
+        }
+      },
+      "implied": 1.0277875905797105,
+      "sensitivity": [
+        {
+          "x": 0.25,
+          "y": 8.0,
+          "value": 33.454545454545446
+        },
+        {
+          "x": 0.25,
+          "y": 26.0,
+          "value": 108.72727272727272
+        },
+        {
+          "x": 0.25,
+          "y": 44.0,
+          "value": 183.99999999999997
+        },
+        {
+          "x": 0.25,
+          "y": 62.0,
+          "value": 259.27272727272725
+        },
+        {
+          "x": 0.25,
+          "y": 80.0,
+          "value": 334.5454545454545
+        },
+        {
+          "x": 0.6875,
+          "y": 8.0,
+          "value": 91.99999999999999
+        },
+        {
+          "x": 0.6875,
+          "y": 26.0,
+          "value": 298.99999999999994
+        },
+        {
+          "x": 0.6875,
+          "y": 44.0,
+          "value": 505.9999999999999
+        },
+        {
+          "x": 0.6875,
+          "y": 62.0,
+          "value": 712.9999999999999
+        },
+        {
+          "x": 0.6875,
+          "y": 80.0,
+          "value": 919.9999999999998
+        },
+        {
+          "x": 1.125,
+          "y": 8.0,
+          "value": 150.54545454545453
+        },
+        {
+          "x": 1.125,
+          "y": 26.0,
+          "value": 489.2727272727272
+        },
+        {
+          "x": 1.125,
+          "y": 44.0,
+          "value": 827.9999999999999
+        },
+        {
+          "x": 1.125,
+          "y": 62.0,
+          "value": 1166.7272727272725
+        },
+        {
+          "x": 1.125,
+          "y": 80.0,
+          "value": 1505.4545454545453
+        },
+        {
+          "x": 1.5625,
+          "y": 8.0,
+          "value": 209.09090909090904
+        },
+        {
+          "x": 1.5625,
+          "y": 26.0,
+          "value": 679.5454545454544
+        },
+        {
+          "x": 1.5625,
+          "y": 44.0,
+          "value": 1149.9999999999998
+        },
+        {
+          "x": 1.5625,
+          "y": 62.0,
+          "value": 1620.454545454545
+        },
+        {
+          "x": 1.5625,
+          "y": 80.0,
+          "value": 2090.9090909090905
+        },
+        {
+          "x": 2.0,
+          "y": 8.0,
+          "value": 267.63636363636357
+        },
+        {
+          "x": 2.0,
+          "y": 26.0,
+          "value": 869.8181818181818
+        },
+        {
+          "x": 2.0,
+          "y": 44.0,
+          "value": 1471.9999999999998
+        },
+        {
+          "x": 2.0,
+          "y": 62.0,
+          "value": 2074.181818181818
+        },
+        {
+          "x": 2.0,
+          "y": 80.0,
+          "value": 2676.363636363636
+        }
+      ],
+      "boundary": "Conditional pricing experiment, not consensus, recommendation, audited valuation or a probability-weighted forecast. Editorial facts are dated and are not automatically refreshed by quote changes."
+    },
+    "ORCL": {
+      "symbol": "ORCL",
+      "profile": {
+        "symbol": "ORCL",
+        "name": "甲骨文",
+        "question": "OCI高速增长后，现金流能否跟上资本开支？",
+        "verdict": "订单与收入增长是真的，资本密集化也是真的；不能把RPO当成已赚到的现金。",
+        "thesis": "OCI扩张正在推动集团增长，但客户预收、ATM融资和数据中心投入改变了商业模式。先检验部署和回款，再判断软件时代的估值倍数是否仍适用。",
+        "editorial_as_of": "2026-10-19",
+        "facts": [
+          {
+            "title": "OCI实际收入",
+            "fact": "FY2027 Q1总收入193.45亿美元；IaaS收入约74亿美元，同比增长121%。",
+            "interpretation": "高增长已进入损益表，不只是未来合同。",
+            "source": "ORCL"
+          },
+          {
+            "title": "订单与融资",
+            "fact": "RPO为6,640亿美元，当季完成200亿美元普通股ATM融资。",
+            "interpretation": "RPO不是当季收入，融资也不是经营利润。",
+            "source": "ORCL"
+          },
+          {
+            "title": "现金投入",
+            "fact": "当季CFO231.03亿美元、capex284.99亿美元，差额为−53.96亿美元。",
+            "interpretation": "CFO强不代表FCF为正；还要核对预收和后续义务。",
+            "source": "ORCL"
+          }
+        ],
+        "views": [
+          {
+            "name": "产业与供需",
+            "text": "算力需求、数据中心交付和企业软件分发构成组合优势，不能只按传统SaaS理解。"
+          },
+          {
+            "name": "成长与兑现",
+            "text": "OCI收入增长与实际新增容量说明交付进展；RPO转换节奏仍重要。"
+          },
+          {
+            "name": "预期与催化",
+            "text": "后续云收入兑现与融资需求相对先前计划的变化，是主要预期差来源。"
+          },
+          {
+            "name": "宏观与资金",
+            "text": "债务与租赁、融资成本及客户信用共同影响扩张回报。"
+          },
+          {
+            "name": "经营质量",
+            "text": "预收款可以支持建设，却对应未来服务成本；不能将本季CFO当稳定现金利润。"
+          },
+          {
+            "name": "周期与风险",
+            "text": "大量投入如果不能取得长期合理利用率，收入增长可能伴随低资本回报。"
+          }
+        ],
+        "watch": [
+          {
+            "signal": "订单变收入",
+            "test": "检查RPO消化、云收入与容量交付是否同向。",
+            "invalidates": "订单增长但交付与回款延迟。"
+          },
+          {
+            "signal": "现金缺口",
+            "test": "持续核对CFO-capex、预收和新增债股融资。",
+            "invalidates": "扩张必须依赖超过计划的融资。"
+          },
+          {
+            "signal": "利润含金量",
+            "test": "比较GAAP与非GAAP利润、SBC及利息。",
+            "invalidates": "倍数依赖剔除越来越多实际成本。"
+          }
+        ],
+        "model": {
+          "kind": "earnings",
+          "title": "盈利能力 × 估值倍数",
+          "basis": "管理层FY2027非GAAP全年EPS指引，不是已实现结果。",
+          "parameters": {
+            "eps": 8.1,
+            "factor": 1,
+            "pe": 20,
+            "years": 1,
+            "discount": 0.1
+          },
+          "controls": [
+            {
+              "key": "factor",
+              "label": "盈利相对锚点的倍数",
+              "min": 0.25,
+              "max": 2,
+              "step": 0.05,
+              "unit": "倍"
+            },
+            {
+              "key": "pe",
+              "label": "市盈率假设",
+              "min": 8,
+              "max": 80,
+              "step": 1,
+              "unit": "倍"
+            }
+          ],
+          "scenarios": {
+            "bear": {
+              "factor": 0.8,
+              "pe": 14
+            },
+            "base": {
+              "factor": 1,
+              "pe": 20
+            },
+            "bull": {
+              "factor": 1.25,
+              "pe": 28
+            }
+          },
+          "reverse": {
+            "key": "factor",
+            "label": "支持当前报价所需的盈利 / 锚点",
+            "unit": "倍",
+            "range": [
+              0,
+              10
+            ]
+          },
+          "formula": "模型每股价值 = 年度EPS锚点 × 盈利倍数 × 假设PE ÷ (1 + 折现率)^年数；PE是压力参数，不是同业中位数。"
+        },
+        "limits": [
+          "该实验不解决云资本开支的完整DCF问题；非GAAP EPS剔除项须另审。",
+          "20倍为分析参数，没有声称是同行市场中位数；不将当季净利润直接乘4。"
+        ],
+        "correction": "把CFO与capex对齐到2026-08-31同一季度；明确RPO、ATM融资和经营现金的不同性质。",
+        "sources": [
+          {
+            "id": "ORCL",
+            "title": "甲骨文 官方业绩披露",
+            "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Q1-Results-Driven-by-Triple-Digit-Growth-in-Cloud-Infrastructure-Revenues/default.aspx",
+            "published": "2026-09-10",
+            "receipt": {
+              "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Q1-Results-Driven-by-Triple-Digit-Growth-in-Cloud-Infrastructure-Revenues/default.aspx",
+              "fetched_at": "2026-10-19T18:20:08+08:00",
+              "http_status": 200,
+              "sha256": "7122779cdd6708812ca5415d78f8819b759bfe050ca9cb30e3cee58f8956ed08",
+              "attempts": 1,
+              "status": "ok",
+              "bytes": 387014
+            }
+          }
+        ],
+        "authorship": "当前Codex对话逐家检索官方披露、编辑研究框架及代码复算；不是一次新的全自动CLI运行，也不是用户已确认的投资观点。"
+      },
+      "quote": {
+        "symbol": "ORCL",
+        "price": 128.23,
+        "currency": "USD",
+        "market_time_utc": "2026-10-16T20:03:50+00:00",
+        "exchange": "NYQ",
+        "exchange_timezone": "America/New_York",
+        "observation_age_days": 3,
+        "provider": "Yahoo Finance chart (unofficial)",
+        "realtime_entitlement": "not_verified",
+        "boundary": "Last reported regular-session price; not guaranteed real time. Weekend/holiday age is not itself a feed failure.",
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/ORCL?interval=1d&range=5d",
+        "status": "ok"
+      },
+      "scenarios": {
+        "bear": {
+          "value_per_share": 82.47272727272727,
+          "ledger": {
+            "annual_eps_anchor": 8.1,
+            "earnings_factor": 0.8,
+            "scenario_eps": 6.48,
+            "pe_assumption": 14,
+            "discount_years": 1
+          },
+          "parameters": {
+            "eps": 8.1,
+            "factor": 0.8,
+            "pe": 14,
+            "years": 1,
+            "discount": 0.1
+          },
+          "upside_pct": -35.683750079757246
+        },
+        "base": {
+          "value_per_share": 147.27272727272725,
+          "ledger": {
+            "annual_eps_anchor": 8.1,
+            "earnings_factor": 1,
+            "scenario_eps": 8.1,
+            "pe_assumption": 20,
+            "discount_years": 1
+          },
+          "parameters": {
+            "eps": 8.1,
+            "factor": 1,
+            "pe": 20,
+            "years": 1,
+            "discount": 0.1
+          },
+          "upside_pct": 14.850446286147756
+        },
+        "bull": {
+          "value_per_share": 257.7272727272727,
+          "ledger": {
+            "annual_eps_anchor": 8.1,
+            "earnings_factor": 1.25,
+            "scenario_eps": 10.125,
+            "pe_assumption": 28,
+            "discount_years": 1
+          },
+          "parameters": {
+            "eps": 8.1,
+            "factor": 1.25,
+            "pe": 28,
+            "years": 1,
+            "discount": 0.1
+          },
+          "upside_pct": 100.98828100075856
+        }
+      },
+      "implied": 0.8706975308641975,
+      "sensitivity": [
+        {
+          "x": 0.25,
+          "y": 8.0,
+          "value": 14.727272727272725
+        },
+        {
+          "x": 0.25,
+          "y": 26.0,
+          "value": 47.86363636363636
+        },
+        {
+          "x": 0.25,
+          "y": 44.0,
+          "value": 80.99999999999999
+        },
+        {
+          "x": 0.25,
+          "y": 62.0,
+          "value": 114.13636363636363
+        },
+        {
+          "x": 0.25,
+          "y": 80.0,
+          "value": 147.27272727272725
+        },
+        {
+          "x": 0.6875,
+          "y": 8.0,
+          "value": 40.49999999999999
+        },
+        {
+          "x": 0.6875,
+          "y": 26.0,
+          "value": 131.62499999999997
+        },
+        {
+          "x": 0.6875,
+          "y": 44.0,
+          "value": 222.74999999999997
+        },
+        {
+          "x": 0.6875,
+          "y": 62.0,
+          "value": 313.87499999999994
+        },
+        {
+          "x": 0.6875,
+          "y": 80.0,
+          "value": 404.99999999999994
+        },
+        {
+          "x": 1.125,
+          "y": 8.0,
+          "value": 66.27272727272727
+        },
+        {
+          "x": 1.125,
+          "y": 26.0,
+          "value": 215.3863636363636
+        },
+        {
+          "x": 1.125,
+          "y": 44.0,
+          "value": 364.4999999999999
+        },
+        {
+          "x": 1.125,
+          "y": 62.0,
+          "value": 513.6136363636363
+        },
+        {
+          "x": 1.125,
+          "y": 80.0,
+          "value": 662.7272727272725
+        },
+        {
+          "x": 1.5625,
+          "y": 8.0,
+          "value": 92.04545454545453
+        },
+        {
+          "x": 1.5625,
+          "y": 26.0,
+          "value": 299.14772727272725
+        },
+        {
+          "x": 1.5625,
+          "y": 44.0,
+          "value": 506.24999999999994
+        },
+        {
+          "x": 1.5625,
+          "y": 62.0,
+          "value": 713.3522727272726
+        },
+        {
+          "x": 1.5625,
+          "y": 80.0,
+          "value": 920.4545454545454
+        },
+        {
+          "x": 2.0,
+          "y": 8.0,
+          "value": 117.8181818181818
+        },
+        {
+          "x": 2.0,
+          "y": 26.0,
+          "value": 382.9090909090909
+        },
+        {
+          "x": 2.0,
+          "y": 44.0,
+          "value": 647.9999999999999
+        },
+        {
+          "x": 2.0,
+          "y": 62.0,
+          "value": 913.090909090909
+        },
+        {
+          "x": 2.0,
+          "y": 80.0,
+          "value": 1178.181818181818
+        }
+      ],
+      "boundary": "Conditional pricing experiment, not consensus, recommendation, audited valuation or a probability-weighted forecast. Editorial facts are dated and are not automatically refreshed by quote changes."
+    },
+    "BE": {
+      "symbol": "BE",
+      "profile": {
+        "symbol": "BE",
+        "name": "Bloom Energy",
+        "question": "供电瓶颈带来增长，当前价格提前计入了多少兑现？",
+        "verdict": "收入与盈利改善支持需求逻辑，但当前报价要求明显超出当年指引的盈利能力。",
+        "thesis": "现场供电可以缩短部分数据中心等待周期，但订单、部署、验收、服务成本与最终利润是不同阶段。核心不是AI缺不缺电，而是这家公司能否按时、按利润交付。",
+        "editorial_as_of": "2026-10-19",
+        "facts": [
+          {
+            "title": "需求已进收入",
+            "fact": "2026 Q2收入10.654亿美元，同比增长165.5%。",
+            "interpretation": "项目落地已有证明，仍需关注安装与验收周期。",
+            "source": "BE"
+          },
+          {
+            "title": "盈利口径",
+            "fact": "Q2 GAAP EPS0.62美元，非GAAP0.78美元。",
+            "interpretation": "剔除SBC等项目后利润不同，不把调整后利润当GAAP。",
+            "source": "BE"
+          },
+          {
+            "title": "年度指引",
+            "fact": "公司全年收入指引39–42亿美元，非GAAP EPS2.55–2.85美元。",
+            "interpretation": "以中点2.70作为盈利实验锚点，未把合作总额当当年收入。",
+            "source": "BE"
+          }
+        ],
+        "views": [
+          {
+            "name": "产业与供需",
+            "text": "现场电力的交付速度可能形成优势，但不是所有电网短缺都能由燃料电池解决。"
+          },
+          {
+            "name": "成长与兑现",
+            "text": "季度收入与利润提升证明部分兑现，继续区分产品、安装和服务质量。"
+          },
+          {
+            "name": "预期与催化",
+            "text": "新订单转成可确认收入的速度，比合作框架总额更值得追踪。"
+          },
+          {
+            "name": "宏观与资金",
+            "text": "燃料价格、融资、税收政策和客户建设计划会共同影响需求与项目回报。"
+          },
+          {
+            "name": "经营质量",
+            "text": "非GAAP利润排除SBC等实际成本；长期服务和质保义务不能忽略。"
+          },
+          {
+            "name": "周期与风险",
+            "text": "交付延期、客户集中或高估值压缩可能抵消业务增长。"
+          }
+        ],
+        "watch": [
+          {
+            "signal": "交付质量",
+            "test": "检查后续实际收入与39–42亿美元全年区间。",
+            "invalidates": "合作框架没有相应产品部署或验收。"
+          },
+          {
+            "signal": "盈利转现金",
+            "test": "检查服务利润、质保、营运资本与现金回款。",
+            "invalidates": "收入快增但服务成本和资金占用持续恶化。"
+          },
+          {
+            "signal": "价格要求",
+            "test": "对照后续EPS变化重算所需盈利倍数。",
+            "invalidates": "必须持续依赖更高PE而非盈利兑现来支撑报价。"
+          }
+        ],
+        "model": {
+          "kind": "earnings",
+          "title": "盈利能力 × 估值倍数",
+          "basis": "2026全年非GAAP EPS指引中点；以未来一年情景折现。",
+          "parameters": {
+            "eps": 2.7,
+            "factor": 1,
+            "pe": 50,
+            "years": 1,
+            "discount": 0.12
+          },
+          "controls": [
+            {
+              "key": "factor",
+              "label": "盈利相对锚点的倍数",
+              "min": 0.25,
+              "max": 2,
+              "step": 0.05,
+              "unit": "倍"
+            },
+            {
+              "key": "pe",
+              "label": "市盈率假设",
+              "min": 8,
+              "max": 80,
+              "step": 1,
+              "unit": "倍"
+            }
+          ],
+          "scenarios": {
+            "bear": {
+              "factor": 0.7,
+              "pe": 30
+            },
+            "base": {
+              "factor": 1,
+              "pe": 50
+            },
+            "bull": {
+              "factor": 1.5,
+              "pe": 75
+            }
+          },
+          "reverse": {
+            "key": "factor",
+            "label": "支持当前报价所需的盈利 / 锚点",
+            "unit": "倍",
+            "range": [
+              0,
+              10
+            ]
+          },
+          "formula": "模型每股价值 = 年度EPS锚点 × 盈利倍数 × 假设PE ÷ (1 + 折现率)^年数；PE是压力参数，不是同业中位数。"
+        },
+        "limits": [
+          "30/50/75倍PE是宽幅压力假设，不是同业估值证据。",
+          "未计入更长远新品或全部合作计划的收入；也没有因需求强就给确定目标价。"
+        ],
+        "correction": "通用SEC快照只到Q1；研究改用7月28日官方Q2披露，避免把旧字段称为最新。",
+        "sources": [
+          {
+            "id": "BE",
+            "title": "Bloom Energy 官方业绩披露",
+            "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Second-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx",
+            "published": "2026-07-28",
+            "receipt": {
+              "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Bloom-Energy-Reports-Record-Second-Quarter-2026-Financial-Results-and-Raises-Full-Year-2026-Guidance/default.aspx",
+              "fetched_at": "2026-10-19T18:20:11+08:00",
+              "http_status": 200,
+              "sha256": "5c2004c6aabd96a9dcbdcc809c32cc8f80272f2c3c080a7b4aaaf34382b41bae",
+              "attempts": 1,
+              "status": "ok",
+              "bytes": 412972
+            }
+          }
+        ],
+        "authorship": "当前Codex对话逐家检索官方披露、编辑研究框架及代码复算；不是一次新的全自动CLI运行，也不是用户已确认的投资观点。"
+      },
+      "quote": {
+        "symbol": "BE",
+        "price": 221.31,
+        "currency": "USD",
+        "market_time_utc": "2026-10-16T20:00:03+00:00",
+        "exchange": "NYQ",
+        "exchange_timezone": "America/New_York",
+        "observation_age_days": 3,
+        "provider": "Yahoo Finance chart (unofficial)",
+        "realtime_entitlement": "not_verified",
+        "boundary": "Last reported regular-session price; not guaranteed real time. Weekend/holiday age is not itself a feed failure.",
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/BE?interval=1d&range=5d",
+        "status": "ok"
+      },
+      "scenarios": {
+        "bear": {
+          "value_per_share": 50.62499999999999,
+          "ledger": {
+            "annual_eps_anchor": 2.7,
+            "earnings_factor": 0.7,
+            "scenario_eps": 1.89,
+            "pe_assumption": 30,
+            "discount_years": 1
+          },
+          "parameters": {
+            "eps": 2.7,
+            "factor": 0.7,
+            "pe": 30,
+            "years": 1,
+            "discount": 0.12
+          },
+          "upside_pct": -77.12484749898333
+        },
+        "base": {
+          "value_per_share": 120.53571428571428,
+          "ledger": {
+            "annual_eps_anchor": 2.7,
+            "earnings_factor": 1,
+            "scenario_eps": 2.7,
+            "pe_assumption": 50,
+            "discount_years": 1
+          },
+          "parameters": {
+            "eps": 2.7,
+            "factor": 1,
+            "pe": 50,
+            "years": 1,
+            "discount": 0.12
+          },
+          "upside_pct": -45.53535118805554
+        },
+        "bull": {
+          "value_per_share": 271.20535714285717,
+          "ledger": {
+            "annual_eps_anchor": 2.7,
+            "earnings_factor": 1.5,
+            "scenario_eps": 4.050000000000001,
+            "pe_assumption": 75,
+            "discount_years": 1
+          },
+          "parameters": {
+            "eps": 2.7,
+            "factor": 1.5,
+            "pe": 75,
+            "years": 1,
+            "discount": 0.12
+          },
+          "upside_pct": 22.545459826875035
+        }
+      },
+      "implied": 1.8360533333333335,
+      "sensitivity": [
+        {
+          "x": 0.25,
+          "y": 8.0,
+          "value": 4.821428571428571
+        },
+        {
+          "x": 0.25,
+          "y": 26.0,
+          "value": 15.669642857142856
+        },
+        {
+          "x": 0.25,
+          "y": 44.0,
+          "value": 26.517857142857142
+        },
+        {
+          "x": 0.25,
+          "y": 62.0,
+          "value": 37.36607142857142
+        },
+        {
+          "x": 0.25,
+          "y": 80.0,
+          "value": 48.21428571428571
+        },
+        {
+          "x": 0.6875,
+          "y": 8.0,
+          "value": 13.258928571428571
+        },
+        {
+          "x": 0.6875,
+          "y": 26.0,
+          "value": 43.091517857142854
+        },
+        {
+          "x": 0.6875,
+          "y": 44.0,
+          "value": 72.92410714285715
+        },
+        {
+          "x": 0.6875,
+          "y": 62.0,
+          "value": 102.75669642857143
+        },
+        {
+          "x": 0.6875,
+          "y": 80.0,
+          "value": 132.5892857142857
+        },
+        {
+          "x": 1.125,
+          "y": 8.0,
+          "value": 21.69642857142857
+        },
+        {
+          "x": 1.125,
+          "y": 26.0,
+          "value": 70.51339285714286
+        },
+        {
+          "x": 1.125,
+          "y": 44.0,
+          "value": 119.33035714285714
+        },
+        {
+          "x": 1.125,
+          "y": 62.0,
+          "value": 168.14732142857142
+        },
+        {
+          "x": 1.125,
+          "y": 80.0,
+          "value": 216.9642857142857
+        },
+        {
+          "x": 1.5625,
+          "y": 8.0,
+          "value": 30.13392857142857
+        },
+        {
+          "x": 1.5625,
+          "y": 26.0,
+          "value": 97.93526785714285
+        },
+        {
+          "x": 1.5625,
+          "y": 44.0,
+          "value": 165.73660714285714
+        },
+        {
+          "x": 1.5625,
+          "y": 62.0,
+          "value": 233.53794642857142
+        },
+        {
+          "x": 1.5625,
+          "y": 80.0,
+          "value": 301.33928571428567
+        },
+        {
+          "x": 2.0,
+          "y": 8.0,
+          "value": 38.57142857142857
+        },
+        {
+          "x": 2.0,
+          "y": 26.0,
+          "value": 125.35714285714285
+        },
+        {
+          "x": 2.0,
+          "y": 44.0,
+          "value": 212.14285714285714
+        },
+        {
+          "x": 2.0,
+          "y": 62.0,
+          "value": 298.9285714285714
+        },
+        {
+          "x": 2.0,
+          "y": 80.0,
+          "value": 385.71428571428567
+        }
+      ],
+      "boundary": "Conditional pricing experiment, not consensus, recommendation, audited valuation or a probability-weighted forecast. Editorial facts are dated and are not automatically refreshed by quote changes."
+    },
+    "AAOI": {
+      "symbol": "AAOI",
+      "profile": {
+        "symbol": "AAOI",
+        "name": "Applied Optoelectronics",
+        "question": "光模块放量已经开始，能否转成股东可获得的利润？",
+        "verdict": "出货增长有证据，GAAP盈利尚未跟上；价格更多依赖未来毛利、规模与稀释。",
+        "thesis": "高增长不等于卡住了整个产业链。需要从客户采用和产品出货，追到毛利、经营费用、融资与每股收益，避免把所有800G/1.6T厂商都叫独占瓶颈。",
+        "editorial_as_of": "2026-10-19",
+        "facts": [
+          {
+            "title": "实际放量",
+            "fact": "2026 Q2收入1.919亿美元，上一季1.511亿美元。",
+            "interpretation": "出货或结构改善在收入体现，但不直接等于定价权。",
+            "source": "AAOI"
+          },
+          {
+            "title": "盈利仍分歧",
+            "fact": "Q2 GAAP亏损2,280万美元，非GAAP盈利550万美元。",
+            "interpretation": "规模增长还没有稳定转成GAAP利润。",
+            "source": "AAOI"
+          },
+          {
+            "title": "指引与股数",
+            "fact": "Q3收入指引2.55–2.90亿美元，非GAAPEPS使用约9,280万股。",
+            "interpretation": "模型使用指引股数并另设未来稀释，不把8月基本股数当全摊薄。",
+            "source": "AAOI"
+          }
+        ],
+        "views": [
+          {
+            "name": "产业与供需",
+            "text": "产业链位置不等于定价权，需验证资格认证、良率与交付是否具有替代难度。"
+          },
+          {
+            "name": "成长与兑现",
+            "text": "Q2收入增长和Q3指引支持放量，但GAAP亏损说明利润链条尚未闭环。"
+          },
+          {
+            "name": "预期与催化",
+            "text": "后续实际出货、毛利和客户确认相对指引的偏差是催化。"
+          },
+          {
+            "name": "宏观与资金",
+            "text": "客户资本开支、贸易限制与融资窗口影响扩产和股数。"
+          },
+          {
+            "name": "经营质量",
+            "text": "非GAAP转正不能替代GAAP净利润与现金流；扩产占用同样重要。"
+          },
+          {
+            "name": "周期与风险",
+            "text": "竞争导致降价、认证延迟和新增融资均可削弱每股回报。"
+          }
+        ],
+        "watch": [
+          {
+            "signal": "Q3交付",
+            "test": "核对实际收入是否达到2.55–2.90亿美元并看毛利。",
+            "invalidates": "收入低于指引且利润率进一步下降。"
+          },
+          {
+            "signal": "盈利转换",
+            "test": "检查GAAP亏损是否收窄及营运资本消耗。",
+            "invalidates": "规模上去但单位经济性不改善。"
+          },
+          {
+            "signal": "稀释",
+            "test": "核对新股、可转债、期权与摊薄股数。",
+            "invalidates": "收入增长被股数扩张大幅抵消。"
+          }
+        ],
+        "model": {
+          "kind": "growth_profit",
+          "title": "出货增长 → 净利润 → 条件价格",
+          "basis": "Q3收入指引中点2.725亿美元×4，形成10.90亿美元年化收入起点；不冒充全年指引。",
+          "parameters": {
+            "revenue": 1090000000.0,
+            "growth": 0.3,
+            "margin": 0.12,
+            "shares": 92800000.0,
+            "dilution": 1.15,
+            "pe": 25,
+            "years": 3,
+            "discount": 0.12
+          },
+          "controls": [
+            {
+              "key": "growth",
+              "label": "未来三年收入年均增长",
+              "min": 0,
+              "max": 0.8,
+              "step": 0.01,
+              "unit": "%"
+            },
+            {
+              "key": "margin",
+              "label": "税后且扣利息净利率",
+              "min": 0.02,
+              "max": 0.25,
+              "step": 0.005,
+              "unit": "%"
+            },
+            {
+              "key": "pe",
+              "label": "退出PE假设",
+              "min": 10,
+              "max": 40,
+              "step": 1,
+              "unit": "倍"
+            },
+            {
+              "key": "dilution",
+              "label": "股数扩张倍数",
+              "min": 1,
+              "max": 1.6,
+              "step": 0.05,
+              "unit": "倍"
+            }
+          ],
+          "scenarios": {
+            "bear": {
+              "growth": 0,
+              "margin": 0.06,
+              "pe": 18
+            },
+            "base": {
+              "growth": 0.3,
+              "margin": 0.12,
+              "pe": 25
+            },
+            "bull": {
+              "growth": 0.55,
+              "margin": 0.18,
+              "pe": 30
+            }
+          },
+          "reverse": {
+            "key": "growth",
+            "label": "固定净利率与PE后所需三年收入年均增长",
+            "unit": "%",
+            "range": [
+              -0.5,
+              2
+            ]
+          },
+          "formula": "三年后收入 × 税后净利率 ÷ 假设摊薄股数 × PE，再以12%折现三年；未计期间分红，不是完整DCF。"
+        },
+        "limits": [
+          "净利率6%/12%/18%、未来增长和退出PE均为分析假设，不是管理层预测。",
+          "不把GAAP亏损硬套当前PE；本模型忽略期间分红，不解决完整资本开支与融资现金流。"
+        ],
+        "correction": "通用capex累计值落后于当期，未拿不同期间的CFO-capex构造假FCF。",
+        "sources": [
+          {
+            "id": "AAOI",
+            "title": "Applied Optoelectronics 官方业绩披露",
+            "url": "https://investors.ao-inc.com/news-releases/news-release-details/applied-optoelectronics-reports-second-quarter-2026-results",
+            "published": "2026-08-06",
+            "receipt": {
+              "url": "https://investors.ao-inc.com/news-releases/news-release-details/applied-optoelectronics-reports-second-quarter-2026-results",
+              "fetched_at": "2026-10-19T18:20:13+08:00",
+              "http_status": 200,
+              "sha256": "c66bc455a036b91d0c4ff8113e66de25a8c55a6ea629506d6370724d80f7a398",
+              "attempts": 1,
+              "status": "ok",
+              "bytes": 197877
+            }
+          }
+        ],
+        "authorship": "当前Codex对话逐家检索官方披露、编辑研究框架及代码复算；不是一次新的全自动CLI运行，也不是用户已确认的投资观点。"
+      },
+      "quote": {
+        "symbol": "AAOI",
+        "price": 75.57,
+        "currency": "USD",
+        "market_time_utc": "2026-10-16T20:00:01+00:00",
+        "exchange": "NGM",
+        "exchange_timezone": "America/New_York",
+        "observation_age_days": 3,
+        "provider": "Yahoo Finance chart (unofficial)",
+        "realtime_entitlement": "not_verified",
+        "boundary": "Last reported regular-session price; not guaranteed real time. Weekend/holiday age is not itself a feed failure.",
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AAOI?interval=1d&range=5d",
+        "status": "ok"
+      },
+      "scenarios": {
+        "bear": {
+          "value_per_share": 7.8514590304155485,
+          "ledger": {
+            "scenario_annual_revenue": 1090000000.0,
+            "post_tax_post_interest_net_margin": 0.06,
+            "scenario_net_profit": 65400000.0,
+            "assumed_diluted_shares": 106719999.99999999,
+            "years": 3
+          },
+          "parameters": {
+            "revenue": 1090000000.0,
+            "growth": 0,
+            "margin": 0.06,
+            "shares": 92800000.0,
+            "dilution": 1.15,
+            "pe": 18,
+            "years": 3,
+            "discount": 0.12
+          },
+          "upside_pct": -89.61034930472998
+        },
+        "base": {
+          "value_per_share": 47.91570969395267,
+          "ledger": {
+            "scenario_annual_revenue": 2394730000.0,
+            "post_tax_post_interest_net_margin": 0.12,
+            "scenario_net_profit": 287367600.0,
+            "assumed_diluted_shares": 106719999.99999999,
+            "years": 3
+          },
+          "parameters": {
+            "revenue": 1090000000.0,
+            "growth": 0.3,
+            "margin": 0.12,
+            "shares": 92800000.0,
+            "dilution": 1.15,
+            "pe": 25,
+            "years": 3,
+            "discount": 0.12
+          },
+          "upside_pct": -36.59427061803272
+        },
+        "bull": {
+          "value_per_share": 146.1892599844435,
+          "ledger": {
+            "scenario_annual_revenue": 4059023750.0000005,
+            "post_tax_post_interest_net_margin": 0.18,
+            "scenario_net_profit": 730624275.0,
+            "assumed_diluted_shares": 106719999.99999999,
+            "years": 3
+          },
+          "parameters": {
+            "revenue": 1090000000.0,
+            "growth": 0.55,
+            "margin": 0.18,
+            "shares": 92800000.0,
+            "dilution": 1.15,
+            "pe": 30,
+            "years": 3,
+            "discount": 0.12
+          },
+          "upside_pct": 93.44880241424312
+        }
+      },
+      "implied": 0.5132145832323494,
+      "sensitivity": [
+        {
+          "x": 0.0,
+          "y": 0.02,
+          "value": 3.634934736303495
+        },
+        {
+          "x": 0.0,
+          "y": 0.0775,
+          "value": 14.085372103176043
+        },
+        {
+          "x": 0.0,
+          "y": 0.135,
+          "value": 24.53580947004859
+        },
+        {
+          "x": 0.0,
+          "y": 0.1925,
+          "value": 34.98624683692113
+        },
+        {
+          "x": 0.0,
+          "y": 0.25,
+          "value": 45.43668420379369
+        },
+        {
+          "x": 0.2,
+          "y": 0.02,
+          "value": 6.281167224332439
+        },
+        {
+          "x": 0.2,
+          "y": 0.0775,
+          "value": 24.339522994288195
+        },
+        {
+          "x": 0.2,
+          "y": 0.135,
+          "value": 42.39787876424396
+        },
+        {
+          "x": 0.2,
+          "y": 0.1925,
+          "value": 60.456234534199716
+        },
+        {
+          "x": 0.2,
+          "y": 0.25,
+          "value": 78.51459030415548
+        },
+        {
+          "x": 0.4,
+          "y": 0.02,
+          "value": 9.974260916416787
+        },
+        {
+          "x": 0.4,
+          "y": 0.0775,
+          "value": 38.65026105111505
+        },
+        {
+          "x": 0.4,
+          "y": 0.135,
+          "value": 67.32626118581331
+        },
+        {
+          "x": 0.4,
+          "y": 0.1925,
+          "value": 96.00226132051158
+        },
+        {
+          "x": 0.4,
+          "y": 0.25,
+          "value": 124.67826145520984
+        },
+        {
+          "x": 0.6000000000000001,
+          "y": 0.02,
+          "value": 14.888692679899119
+        },
+        {
+          "x": 0.6000000000000001,
+          "y": 0.0775,
+          "value": 57.69368413460908
+        },
+        {
+          "x": 0.6000000000000001,
+          "y": 0.135,
+          "value": 100.49867558931903
+        },
+        {
+          "x": 0.6000000000000001,
+          "y": 0.1925,
+          "value": 143.303667044029
+        },
+        {
+          "x": 0.6000000000000001,
+          "y": 0.25,
+          "value": 186.10865849873898
+        },
+        {
+          "x": 0.8,
+          "y": 0.02,
+          "value": 21.198939382121985
+        },
+        {
+          "x": 0.8,
+          "y": 0.0775,
+          "value": 82.1458901057227
+        },
+        {
+          "x": 0.8,
+          "y": 0.135,
+          "value": 143.09284082932342
+        },
+        {
+          "x": 0.8,
+          "y": 0.1925,
+          "value": 204.0397915529241
+        },
+        {
+          "x": 0.8,
+          "y": 0.25,
+          "value": 264.9867422765248
+        }
+      ],
+      "boundary": "Conditional pricing experiment, not consensus, recommendation, audited valuation or a probability-weighted forecast. Editorial facts are dated and are not automatically refreshed by quote changes."
+    },
+    "IREN": {
+      "symbol": "IREN",
+      "profile": {
+        "symbol": "IREN",
+        "name": "IREN",
+        "question": "从矿场转向AI云，合同ARR能否变成每股回报？",
+        "verdict": "融资与合同降低部分交付风险，但ARR、收入和可分配现金之间仍有很长距离。",
+        "thesis": "重点在于已经运营的容量、合同覆盖、客户验收及融资成本。拥有电力与土地提供选择权，但高资本支出业务需要用交付和资金结构验证，不能套纯软件倍数。",
+        "editorial_as_of": "2026-10-19",
+        "facts": [
+          {
+            "title": "运营与合同分开",
+            "fact": "8月26日运营ARR约10亿美元；2026容量合同ARR约40亿美元。",
+            "interpretation": "两者均为经营指标，不能当已确认年度收入。",
+            "source": "IREN"
+          },
+          {
+            "title": "旧业务仍占比大",
+            "fact": "FY2026AI云收入1.288亿美元，总收入7.070亿美元。",
+            "interpretation": "财年历史与年底目标不在同一量级，转型尚未在全年损益完成。",
+            "source": "IREN"
+          },
+          {
+            "title": "融资有成本",
+            "fact": "公司披露微软相关GPU融资利率6%，另一项融资9%。",
+            "interpretation": "融资可支持交付，但利息、折旧与偿债优先于股东现金。",
+            "source": "IREN"
+          }
+        ],
+        "views": [
+          {
+            "name": "产业与供需",
+            "text": "电力和建成数据中心是资源基础，真正瓶颈要由客户签约、通电和验收证明。"
+          },
+          {
+            "name": "成长与兑现",
+            "text": "10亿美元运营ARR与40亿美元合同ARR之间的交付进度是核心观察点。"
+          },
+          {
+            "name": "预期与催化",
+            "text": "后续验收和运营ARR提升可改变判断；新目标上调本身不等于兑现。"
+          },
+          {
+            "name": "宏观与资金",
+            "text": "融资成本、预付款条件、GPU抵押与客户信用共同影响扩张可行性。"
+          },
+          {
+            "name": "经营质量",
+            "text": "CFO包含预收，capex还需加入单列电脑硬件付款；不能只减一个标准tag。"
+          },
+          {
+            "name": "周期与风险",
+            "text": "GPU折旧、客户议价、融资和股数扩张可能使营收增长不转成每股利润。"
+          }
+        ],
+        "watch": [
+          {
+            "signal": "运营兑现",
+            "test": "跟踪通电、客户验收、运营ARR与实际AI收入。",
+            "invalidates": "合同多但容量迟迟不能投入服务。"
+          },
+          {
+            "signal": "融资成本",
+            "test": "核对融资提款条件、利率、预付款与偿债义务。",
+            "invalidates": "资金缺口需要高成本融资或大幅增发。"
+          },
+          {
+            "signal": "完整再投资",
+            "test": "同时计固定资产和电脑硬件付款、未付承诺。",
+            "invalidates": "只看标准capex会低估资金需求。"
+          }
+        ],
+        "model": {
+          "kind": "growth_profit",
+          "title": "合同容量兑现与每股盈利压力测试",
+          "basis": "40亿美元2026容量合同ARR锚点，非GAAP收入；实现比例通过收入倍数表示。",
+          "parameters": {
+            "revenue": 4000000000.0,
+            "growth": -0.133975,
+            "margin": 0.18,
+            "shares": 357378674,
+            "dilution": 1.25,
+            "pe": 20,
+            "years": 2,
+            "discount": 0.15
+          },
+          "controls": [
+            {
+              "key": "growth",
+              "label": "两年年均变化（含交付、价格和利用率）",
+              "min": -0.5,
+              "max": 0.6,
+              "step": 1e-06,
+              "unit": "%"
+            },
+            {
+              "key": "margin",
+              "label": "扣折旧、利息和税后的净利率",
+              "min": 0.02,
+              "max": 0.35,
+              "step": 0.005,
+              "unit": "%"
+            },
+            {
+              "key": "dilution",
+              "label": "相对披露股数扩张倍数",
+              "min": 1,
+              "max": 2,
+              "step": 0.05,
+              "unit": "倍"
+            },
+            {
+              "key": "pe",
+              "label": "退出PE假设",
+              "min": 8,
+              "max": 35,
+              "step": 1,
+              "unit": "倍"
+            }
+          ],
+          "scenarios": {
+            "bear": {
+              "growth": -0.292893,
+              "margin": 0.1,
+              "pe": 14,
+              "dilution": 1.5
+            },
+            "base": {
+              "growth": -0.133975,
+              "margin": 0.18,
+              "pe": 20
+            },
+            "bull": {
+              "growth": 0,
+              "margin": 0.25,
+              "pe": 25
+            }
+          },
+          "reverse": {
+            "key": "growth",
+            "label": "支持当前报价所需两年收入变化率",
+            "unit": "%",
+            "range": [
+              -0.8,
+              2
+            ]
+          },
+          "formula": "合同ARR锚点 × 两年兑现/增长因子 × 税后净利率 ÷ 假设摊薄股数 × PE，再以15%折现两年。净利率假设必须已扣GPU折旧和融资利息。"
+        },
+        "limits": [
+          "起始股数为2026-04-30披露的357,378,674股，另设扩张倍数；不是已验证的实时全摊薄股数。",
+          "不单独给比特币矿业和土地估值，也不另扣净债务：净利率已假设扣融资利息；结果只表示情景盈利能力。"
+        ],
+        "correction": "识别公司把电脑硬件付款单列；将ARR和GAAP收入、客户预收与利润分开。",
+        "sources": [
+          {
+            "id": "IREN",
+            "title": "IREN 官方业绩披露",
+            "url": "https://www.globenewswire.com/news-release/2026/08/27/3352401/0/en/iren-reports-fy26-results.html",
+            "published": "2026-08-27",
+            "receipt": {
+              "url": "https://www.globenewswire.com/news-release/2026/08/27/3352401/0/en/iren-reports-fy26-results.html",
+              "fetched_at": "2026-10-19T18:20:11+08:00",
+              "http_status": 200,
+              "sha256": "2217c2e5834c1cbae344fc80408b718561e2e1e5ce2e1bccd076cda6091c27b5",
+              "attempts": 1,
+              "status": "ok",
+              "bytes": 260730
+            }
+          },
+          {
+            "id": "IREN-sec",
+            "title": "SEC申报中的股数与其他收入口径",
+            "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001878848.json",
+            "published": "2026-10-19查询",
+            "receipt": {
+              "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001878848.json",
+              "fetched_at": "2026-10-19T16:20:49+08:00",
+              "http_status": 200,
+              "sha256": "c7b7e43e891a4841b90ed9cb5f99bed209c784147629aaea2bb27801966f6f5b",
+              "attempts": 1,
+              "adapter": "sec_companyfacts",
+              "asset": "IREN",
+              "status": "ok"
+            }
+          }
+        ],
+        "authorship": "当前Codex对话逐家检索官方披露、编辑研究框架及代码复算；不是一次新的全自动CLI运行，也不是用户已确认的投资观点。"
+      },
+      "quote": {
+        "symbol": "IREN",
+        "price": 26.99,
+        "currency": "USD",
+        "market_time_utc": "2026-10-16T20:00:01+00:00",
+        "exchange": "NMS",
+        "exchange_timezone": "America/New_York",
+        "observation_age_days": 3,
+        "provider": "Yahoo Finance chart (unofficial)",
+        "realtime_entitlement": "not_verified",
+        "boundary": "Last reported regular-session price; not guaranteed real time. Weekend/holiday age is not itself a feed failure.",
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IREN?interval=1d&range=5d",
+        "status": "ok"
+      },
+      "scenarios": {
+        "bear": {
+          "value_per_share": 3.949505539070958,
+          "ledger": {
+            "scenario_annual_revenue": 2000001237.7959995,
+            "post_tax_post_interest_net_margin": 0.1,
+            "scenario_net_profit": 200000123.77959996,
+            "assumed_diluted_shares": 536068011.0,
+            "years": 2
+          },
+          "parameters": {
+            "revenue": 4000000000.0,
+            "growth": -0.292893,
+            "margin": 0.1,
+            "shares": 357378674,
+            "dilution": 1.5,
+            "pe": 14,
+            "years": 2,
+            "discount": 0.15
+          },
+          "upside_pct": -85.36678199677303
+        },
+        "base": {
+          "value_per_share": 18.28054013470859,
+          "ledger": {
+            "scenario_annual_revenue": 2999997202.5000005,
+            "post_tax_post_interest_net_margin": 0.18,
+            "scenario_net_profit": 539999496.45,
+            "assumed_diluted_shares": 446723342.5,
+            "years": 2
+          },
+          "parameters": {
+            "revenue": 4000000000.0,
+            "growth": -0.133975,
+            "margin": 0.18,
+            "shares": 357378674,
+            "dilution": 1.25,
+            "pe": 20,
+            "years": 2,
+            "discount": 0.15
+          },
+          "upside_pct": -32.26921031971622
+        },
+        "bull": {
+          "value_per_share": 42.316104586407775,
+          "ledger": {
+            "scenario_annual_revenue": 4000000000.0,
+            "post_tax_post_interest_net_margin": 0.25,
+            "scenario_net_profit": 1000000000.0,
+            "assumed_diluted_shares": 446723342.5,
+            "years": 2
+          },
+          "parameters": {
+            "revenue": 4000000000.0,
+            "growth": 0,
+            "margin": 0.25,
+            "shares": 357378674,
+            "dilution": 1.25,
+            "pe": 25,
+            "years": 2,
+            "discount": 0.15
+          },
+          "upside_pct": 56.78438157246306
+        }
+      },
+      "implied": 0.05229464333751033,
+      "sensitivity": [
+        {
+          "x": -0.5,
+          "y": 0.02,
+          "value": 0.6770576733825244
+        },
+        {
+          "x": -0.5,
+          "y": 0.1025,
+          "value": 3.4699205760854377
+        },
+        {
+          "x": -0.5,
+          "y": 0.18499999999999997,
+          "value": 6.26278347878835
+        },
+        {
+          "x": -0.5,
+          "y": 0.26749999999999996,
+          "value": 9.055646381491265
+        },
+        {
+          "x": -0.5,
+          "y": 0.35,
+          "value": 11.84850928419418
+        },
+        {
+          "x": -0.22499999999999998,
+          "y": 0.02,
+          "value": 1.626631060301515
+        },
+        {
+          "x": -0.22499999999999998,
+          "y": 0.1025,
+          "value": 8.336484184045265
+        },
+        {
+          "x": -0.22499999999999998,
+          "y": 0.18499999999999997,
+          "value": 15.046337307789015
+        },
+        {
+          "x": -0.22499999999999998,
+          "y": 0.26749999999999996,
+          "value": 21.756190431532765
+        },
+        {
+          "x": -0.22499999999999998,
+          "y": 0.35,
+          "value": 28.466043555276514
+        },
+        {
+          "x": 0.050000000000000044,
+          "y": 0.02,
+          "value": 2.985824339616933
+        },
+        {
+          "x": 0.050000000000000044,
+          "y": 0.1025,
+          "value": 15.30234974053678
+        },
+        {
+          "x": 0.050000000000000044,
+          "y": 0.18499999999999997,
+          "value": 27.618875141456623
+        },
+        {
+          "x": 0.050000000000000044,
+          "y": 0.26749999999999996,
+          "value": 39.93540054237647
+        },
+        {
+          "x": 0.050000000000000044,
+          "y": 0.35,
+          "value": 52.25192594329633
+        },
+        {
+          "x": 0.32500000000000007,
+          "y": 0.02,
+          "value": 4.754637511328779
+        },
+        {
+          "x": 0.32500000000000007,
+          "y": 0.1025,
+          "value": 24.36751724555999
+        },
+        {
+          "x": 0.32500000000000007,
+          "y": 0.18499999999999997,
+          "value": 43.9803969797912
+        },
+        {
+          "x": 0.32500000000000007,
+          "y": 0.26749999999999996,
+          "value": 63.59327671402241
+        },
+        {
+          "x": 0.32500000000000007,
+          "y": 0.35,
+          "value": 83.20615644825362
+        },
+        {
+          "x": 0.6000000000000001,
+          "y": 0.02,
+          "value": 6.933070575437051
+        },
+        {
+          "x": 0.6000000000000001,
+          "y": 0.1025,
+          "value": 35.53198669911488
+        },
+        {
+          "x": 0.6000000000000001,
+          "y": 0.18499999999999997,
+          "value": 64.1309028227927
+        },
+        {
+          "x": 0.6000000000000001,
+          "y": 0.26749999999999996,
+          "value": 92.72981894647054
+        },
+        {
+          "x": 0.6000000000000001,
+          "y": 0.35,
+          "value": 121.3287350701484
+        }
+      ],
+      "boundary": "Conditional pricing experiment, not consensus, recommendation, audited valuation or a probability-weighted forecast. Editorial facts are dated and are not automatically refreshed by quote changes."
+    },
+    "CRCL": {
+      "symbol": "CRCL",
+      "profile": {
+        "symbol": "CRCL",
+        "name": "Circle",
+        "question": "USDC规模增长，多少收益真正留给Circle股东？",
+        "verdict": "规模增长不等于利润等比例增长；储备收益率、分销分成和费用才是关键杠杆。",
+        "thesis": "Circle可作为稳定币采用的商业入口，但每单位流通量的经济价值会随利率与渠道成本变化。新产品可以提供选择权，不能在缺少盈利数据时直接加入股东价值。",
+        "editorial_as_of": "2026-10-19",
+        "facts": [
+          {
+            "title": "完整收入口径",
+            "fact": "2026 Q2总收入及储备收益约7.01亿美元，其中储备收益6.68亿美元。",
+            "interpretation": "通用收入tag的3,358.2万美元仅是其他收入，不能当全公司收入。",
+            "source": "CRCL"
+          },
+          {
+            "title": "规模与利率",
+            "fact": "平均USDC规模同比增长25%，储备收益率下降66个基点。",
+            "interpretation": "规模增长与收益率下行方向相反，解释利润时必须同时看。",
+            "source": "CRCL"
+          },
+          {
+            "title": "留存经济性",
+            "fact": "分销、交易及其他成本约4.12亿美元，GAAP费用约2.54亿美元。",
+            "interpretation": "不能把储备收益或USDC链上交易额直接视作股东利润。",
+            "source": "CRCL"
+          }
+        ],
+        "views": [
+          {
+            "name": "产业与供需",
+            "text": "稳定币采用与发行人盈利不是同一个问题，关注支付结算和持有需求能否形成持久余额。"
+          },
+          {
+            "name": "成长与兑现",
+            "text": "平均流通规模与非储备收入增长有意义，但要跟踪单位余额留存收益。"
+          },
+          {
+            "name": "预期与催化",
+            "text": "后续新产品收费、分销条款与实际非储备收入比生态名单更能验证价值捕获。"
+          },
+          {
+            "name": "宏观与资金",
+            "text": "利率下降压低储备收益，若余额增长不足以抵消会压缩利润。"
+          },
+          {
+            "name": "经营质量",
+            "text": "储备资产对应持币人赎回义务，不计为股东净现金；GAAP费用含SBC。"
+          },
+          {
+            "name": "周期与风险",
+            "text": "监管、渠道议价和赎回压力可能改变规模与利润的关系。"
+          }
+        ],
+        "watch": [
+          {
+            "signal": "规模收益拆解",
+            "test": "每季比较平均流通量、收益率与储备收益。",
+            "invalidates": "余额增长不能抵消收益率和分销成本压力。"
+          },
+          {
+            "signal": "真实留存",
+            "test": "比较收入扣分销等成本后的余额及费用增长。",
+            "invalidates": "流通量增加但利润率恶化。"
+          },
+          {
+            "signal": "产品价值捕获",
+            "test": "跟踪新产品实际收费和非储备收入，而非只看交易量。",
+            "invalidates": "大量采用没有可辨认的股东盈利。"
+          }
+        ],
+        "model": {
+          "kind": "circle",
+          "title": "USDC规模 × 利率 × 留存 → 股东盈利",
+          "basis": "Q2储备收益6.68亿美元、其他收入3,358.2万美元、GAAP费用2.54亿美元各乘4，仅作年化起点。",
+          "parameters": {
+            "reserve_income": 2672000000.0,
+            "other_income": 134328000,
+            "opex": 1016000000.0,
+            "balance_growth": 0.25,
+            "yield_factor": 1,
+            "retention": 0.41,
+            "other_growth": 0.2,
+            "opex_growth": 0.1,
+            "years": 3,
+            "shares": 268637000,
+            "dilution": 1.1,
+            "tax": 0.21,
+            "pe": 35,
+            "discount": 0.12
+          },
+          "controls": [
+            {
+              "key": "balance_growth",
+              "label": "平均流通规模年均增长",
+              "min": 0,
+              "max": 0.6,
+              "step": 0.01,
+              "unit": "%"
+            },
+            {
+              "key": "yield_factor",
+              "label": "储备收益率相对当季倍数",
+              "min": 0.5,
+              "max": 1.5,
+              "step": 0.05,
+              "unit": "倍"
+            },
+            {
+              "key": "retention",
+              "label": "分销等成本后收入留存比例",
+              "min": 0.25,
+              "max": 0.6,
+              "step": 0.01,
+              "unit": "%"
+            },
+            {
+              "key": "pe",
+              "label": "退出PE假设",
+              "min": 15,
+              "max": 60,
+              "step": 1,
+              "unit": "倍"
+            }
+          ],
+          "scenarios": {
+            "bear": {
+              "balance_growth": 0.1,
+              "yield_factor": 0.7,
+              "retention": 0.35,
+              "pe": 25
+            },
+            "base": {
+              "balance_growth": 0.25,
+              "yield_factor": 1,
+              "retention": 0.41,
+              "pe": 35
+            },
+            "bull": {
+              "balance_growth": 0.4,
+              "yield_factor": 1.1,
+              "retention": 0.5,
+              "pe": 45
+            }
+          },
+          "reverse": {
+            "key": "balance_growth",
+            "label": "其余基准不变时所需USDC规模年均增长",
+            "unit": "%",
+            "range": [
+              0,
+              2
+            ]
+          },
+          "formula": "储备收益随规模和收益率变化，其他收入按20%增长；分销后收入减按10%增长的GAAP费用，税后利润÷假设摊薄股数×PE，折现三年。不是把储备资产当股东资产。"
+        },
+        "limits": [
+          "所有未来规模、留存、收益率和PE均为压力假设；没有给Arc或未确认Token价值额外估值。",
+          "2.68637亿股是Q2加权摊薄股数，不是即时报价时点股数；另设10%扩张，仅为假设。"
+        ],
+        "correction": "修正通用收入tag漏掉储备收益的问题；储备现金与股东资产严格分开。",
+        "sources": [
+          {
+            "id": "CRCL",
+            "title": "Circle 官方业绩披露",
+            "url": "https://www.circle.com/pressroom/circle-reports-second-quarter-2026-results",
+            "published": "2026-08-05",
+            "receipt": {
+              "url": "https://www.circle.com/pressroom/circle-reports-second-quarter-2026-results",
+              "fetched_at": "2026-10-19T18:20:13+08:00",
+              "http_status": 200,
+              "sha256": "860f612ee0e98d348ad246207c4b98f140cb305342b881809bea04a001b1e704",
+              "attempts": 1,
+              "status": "ok",
+              "bytes": 280707
+            }
+          },
+          {
+            "id": "CRCL-sec",
+            "title": "SEC申报中的股数与其他收入口径",
+            "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001876042.json",
+            "published": "2026-10-19查询",
+            "receipt": {
+              "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001876042.json",
+              "fetched_at": "2026-10-19T16:20:44+08:00",
+              "http_status": 200,
+              "sha256": "f7139545b482a7b31520225bc155cb41241b82f004eb8fbca55f4ab66d1426af",
+              "attempts": 1,
+              "adapter": "sec_companyfacts",
+              "asset": "CRCL",
+              "status": "ok"
+            }
+          }
+        ],
+        "authorship": "当前Codex对话逐家检索官方披露、编辑研究框架及代码复算；不是一次新的全自动CLI运行，也不是用户已确认的投资观点。"
+      },
+      "quote": {
+        "symbol": "CRCL",
+        "price": 82.22,
+        "currency": "USD",
+        "market_time_utc": "2026-10-16T20:00:02+00:00",
+        "exchange": "NYQ",
+        "exchange_timezone": "America/New_York",
+        "observation_age_days": 3,
+        "provider": "Yahoo Finance chart (unofficial)",
+        "realtime_entitlement": "not_verified",
+        "boundary": "Last reported regular-session price; not guaranteed real time. Weekend/holiday age is not itself a feed failure.",
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CRCL?interval=1d&range=5d",
+        "status": "ok"
+      },
+      "scenarios": {
+        "bear": {
+          "value_per_share": 0.0,
+          "ledger": {
+            "scenario_reserve_income": 2489502400.0000005,
+            "scenario_other_revenue": 232118783.99999997,
+            "net_revenue_after_distribution": 952567414.4000001,
+            "scenario_gaap_opex": 1352296000.0000005,
+            "scenario_after_tax_profit": 0.0,
+            "assumed_diluted_shares": 295500700.0
+          },
+          "parameters": {
+            "reserve_income": 2672000000.0,
+            "other_income": 134328000,
+            "opex": 1016000000.0,
+            "balance_growth": 0.1,
+            "yield_factor": 0.7,
+            "retention": 0.35,
+            "other_growth": 0.2,
+            "opex_growth": 0.1,
+            "years": 3,
+            "shares": 268637000,
+            "dilution": 1.1,
+            "tax": 0.21,
+            "pe": 25,
+            "discount": 0.12
+          },
+          "upside_pct": -100.0
+        },
+        "base": {
+          "value_per_share": 58.7796360798541,
+          "ledger": {
+            "scenario_reserve_income": 5218750000.0,
+            "scenario_other_revenue": 232118783.99999997,
+            "net_revenue_after_distribution": 2234856201.44,
+            "scenario_gaap_opex": 1352296000.0000005,
+            "scenario_after_tax_profit": 697222559.1375997,
+            "assumed_diluted_shares": 295500700.0
+          },
+          "parameters": {
+            "reserve_income": 2672000000.0,
+            "other_income": 134328000,
+            "opex": 1016000000.0,
+            "balance_growth": 0.25,
+            "yield_factor": 1,
+            "retention": 0.41,
+            "other_growth": 0.2,
+            "opex_growth": 0.1,
+            "years": 3,
+            "shares": 268637000,
+            "dilution": 1.1,
+            "tax": 0.21,
+            "pe": 35,
+            "discount": 0.12
+          },
+          "upside_pct": -28.50932123588652
+        },
+        "bull": {
+          "value_per_share": 239.45168510092236,
+          "ledger": {
+            "scenario_reserve_income": 8065164799.999998,
+            "scenario_other_revenue": 232118783.99999997,
+            "net_revenue_after_distribution": 4148641791.999999,
+            "scenario_gaap_opex": 1352296000.0000005,
+            "scenario_after_tax_profit": 2209113175.679999,
+            "assumed_diluted_shares": 295500700.0
+          },
+          "parameters": {
+            "reserve_income": 2672000000.0,
+            "other_income": 134328000,
+            "opex": 1016000000.0,
+            "balance_growth": 0.4,
+            "yield_factor": 1.1,
+            "retention": 0.5,
+            "other_growth": 0.2,
+            "opex_growth": 0.1,
+            "years": 3,
+            "shares": 268637000,
+            "dilution": 1.1,
+            "tax": 0.21,
+            "pe": 45,
+            "discount": 0.12
+          },
+          "upside_pct": 191.23289357932666
+        }
+      },
+      "implied": 0.3150882221413104,
+      "sensitivity": [
+        {
+          "x": 0.0,
+          "y": 0.5,
+          "value": 0.0
+        },
+        {
+          "x": 0.0,
+          "y": 0.75,
+          "value": 0.0
+        },
+        {
+          "x": 0.0,
+          "y": 1.0,
+          "value": 0.0
+        },
+        {
+          "x": 0.0,
+          "y": 1.25,
+          "value": 7.477505241656794
+        },
+        {
+          "x": 0.0,
+          "y": 1.5,
+          "value": 25.71826287301583
+        },
+        {
+          "x": 0.15,
+          "y": 0.5,
+          "value": 0.0
+        },
+        {
+          "x": 0.15,
+          "y": 0.75,
+          "value": 0.0
+        },
+        {
+          "x": 0.15,
+          "y": 1.0,
+          "value": 27.241366135234294
+        },
+        {
+          "x": 0.15,
+          "y": 1.25,
+          "value": 54.983278397827476
+        },
+        {
+          "x": 0.15,
+          "y": 1.5,
+          "value": 82.72519066042065
+        },
+        {
+          "x": 0.3,
+          "y": 0.5,
+          "value": 0.0
+        },
+        {
+          "x": 0.3,
+          "y": 0.75,
+          "value": 36.49855063314903
+        },
+        {
+          "x": 0.3,
+          "y": 1.0,
+          "value": 76.57349514924485
+        },
+        {
+          "x": 0.3,
+          "y": 1.25,
+          "value": 116.64843966534062
+        },
+        {
+          "x": 0.3,
+          "y": 1.5,
+          "value": 156.72338418143642
+        },
+        {
+          "x": 0.44999999999999996,
+          "y": 0.5,
+          "value": 27.4921765526655
+        },
+        {
+          "x": 0.44999999999999996,
+          "y": 0.75,
+          "value": 83.10140628656745
+        },
+        {
+          "x": 0.44999999999999996,
+          "y": 1.0,
+          "value": 138.71063602046937
+        },
+        {
+          "x": 0.44999999999999996,
+          "y": 1.25,
+          "value": 194.31986575437134
+        },
+        {
+          "x": 0.44999999999999996,
+          "y": 1.5,
+          "value": 249.92909548827325
+        },
+        {
+          "x": 0.6,
+          "y": 0.5,
+          "value": 65.70200360095485
+        },
+        {
+          "x": 0.6,
+          "y": 0.75,
+          "value": 140.41614685900151
+        },
+        {
+          "x": 0.6,
+          "y": 1.0,
+          "value": 215.13029011704813
+        },
+        {
+          "x": 0.6,
+          "y": 1.25,
+          "value": 289.8444333750948
+        },
+        {
+          "x": 0.6,
+          "y": 1.5,
+          "value": 364.55857663314146
+        }
+      ],
+      "boundary": "Conditional pricing experiment, not consensus, recommendation, audited valuation or a probability-weighted forecast. Editorial facts are dated and are not automatically refreshed by quote changes."
+    },
+    "SKHY": {
+      "symbol": "SKHY",
+      "profile": {
+        "symbol": "SKHY",
+        "name": "SK hynix",
+        "question": "HBM业务很强，ADR是否还额外支付了溢价？",
+        "verdict": "先分清企业经营表现与ADR溢价；业务看对，也可能因跨市场价差收敛承受损失。",
+        "thesis": "HBM和服务器存储是经营主线，但美元ADR还有一个独立价格变量：相对韩国普通股的溢价。将两者分开后，才知道自己是在承担产业判断风险，还是额外承担交易载体风险。",
+        "editorial_as_of": "2026-10-19",
+        "facts": [
+          {
+            "title": "经营兑现",
+            "fact": "2026 Q2收入79.3187万亿韩元，经营利润60.5426万亿韩元。",
+            "interpretation": "经营利润与收入同为韩元，不直接除以美元ADR报价。",
+            "source": "SKHY"
+          },
+          {
+            "title": "净利不等同主营",
+            "fact": "Q2净利润93.9226万亿韩元，高于当季收入。",
+            "interpretation": "存在非经营影响，不能把118%净利率当可持续主营净利率。",
+            "source": "SKHY"
+          },
+          {
+            "title": "存托比例已核实",
+            "fact": "Citi披露普通股:ADR为1:10。",
+            "interpretation": "每ADS对应0.1普通股；本页另外计算跨市场换算价。",
+            "source": "SKHY"
+          }
+        ],
+        "views": [
+          {
+            "name": "产业与供需",
+            "text": "HBM、服务器DRAM与NAND各自有不同供需条件，不能将全部利润归于HBM。"
+          },
+          {
+            "name": "成长与兑现",
+            "text": "经营利润已经体现需求；长期协议仍要看价格和交付约束。"
+          },
+          {
+            "name": "预期与催化",
+            "text": "新季HBM交付及合同经济性是业务催化；ADR转换和溢价是另一个催化。"
+          },
+          {
+            "name": "宏观与资金",
+            "text": "韩元汇率、美国风险偏好与当地市场时差会影响ADR观测价格。"
+          },
+          {
+            "name": "经营质量",
+            "text": "净利高于收入提示非经营项目，优先看经营利润、现金流与资本开支。"
+          },
+          {
+            "name": "周期与风险",
+            "text": "ADR溢价可以独立于公司盈利压缩；换算价不是无成本、无约束的套利承诺。"
+          }
+        ],
+        "watch": [
+          {
+            "signal": "业务兑现",
+            "test": "核对后续收入、HBM交付与经营利润。",
+            "invalidates": "价格或产品结构转弱且经营利润下行。"
+          },
+          {
+            "signal": "价差",
+            "test": "同日核对普通股、汇率、ADR与存托比例。",
+            "invalidates": "溢价下降抵消了基本面的改善。"
+          },
+          {
+            "signal": "净利口径",
+            "test": "审阅非经营收益、税项和资本开支。",
+            "invalidates": "把一次性净利当成持续盈利会误判PE。"
+          }
+        ],
+        "model": {
+          "kind": "adr",
+          "title": "ADR与当地股价格一致性",
+          "basis": "存托行确认1普通股对应10 ADS；采用与US报价相同日历日的当地收盘和汇率，仍存在收盘时差。",
+          "parameters": {
+            "local_price": 1272000.0,
+            "fx": 1340.949951,
+            "ordinary_per_ads": 0.1,
+            "premium": 0.2
+          },
+          "controls": [
+            {
+              "key": "premium",
+              "label": "假设ADR溢价",
+              "min": -0.1,
+              "max": 0.6,
+              "step": 0.01,
+              "unit": "%"
+            },
+            {
+              "key": "fx",
+              "label": "每美元韩元",
+              "min": 1100,
+              "max": 1600,
+              "step": 1e-06,
+              "unit": "KRW"
+            }
+          ],
+          "scenarios": {
+            "bear": {
+              "premium": 0
+            },
+            "base": {
+              "premium": 0.2
+            },
+            "bull": {
+              "premium": 0.4
+            }
+          },
+          "reverse": {
+            "key": "premium",
+            "label": "当前ADR相对换算价的观察溢价",
+            "unit": "%",
+            "range": [
+              -0.9,
+              3
+            ]
+          },
+          "formula": "当地普通股韩元收盘 ÷ 韩元/美元 × 0.1 × (1 + 假设ADR溢价)。这是跨市场报价诊断，不是海力士内在价值。"
+        },
+        "limits": [
+          "当地市场、外汇和美国收盘不是同一时刻；观察溢价包含时差影响，不代表可执行套利利润。",
+          "本页经营研究已完成本轮核查，但不提供未经证实的美元ADR内在价值目标；溢价20%/40%仅为压力参数。"
+        ],
+        "correction": "SEC companyfacts仅有费用标签，改用公司韩元业绩披露；用存托行确认比例，并拒绝用周一汇率搭配周五ADR。",
+        "sources": [
+          {
+            "id": "SKHY",
+            "title": "SK hynix 官方业绩披露",
+            "url": "https://news.skhynix.com/en/q2-2026-business-results/",
+            "published": "2026-07-29",
+            "receipt": {
+              "url": "https://news.skhynix.com/en/q2-2026-business-results/",
+              "fetched_at": "2026-10-19T18:20:06+08:00",
+              "http_status": 200,
+              "sha256": "1ebe2bfae67904e4455164da7a4794a5d9637bacae8b13317de8fae3ea7809be",
+              "attempts": 1,
+              "status": "ok",
+              "bytes": 152951
+            }
+          },
+          {
+            "id": "SKHY-ratio",
+            "title": "Citi存托比例",
+            "url": "https://depositaryreceipts.citi.com/adr/guides/pgm_dispabook.aspx?cusip=78392B206&pageId=15&subpageID=111",
+            "published": "2026-10-19",
+            "receipt": {
+              "url": "https://depositaryreceipts.citi.com/adr/guides/pgm_dispabook.aspx?cusip=78392B206&pageId=15&subpageID=111",
+              "fetched_at": "2026-10-19T18:20:08+08:00",
+              "http_status": 200,
+              "sha256": "61705f28c41ab1f794f8967a85b1ce7fbcc5bb4c113dfe903767e504eb660131",
+              "attempts": 2,
+              "status": "ok",
+              "bytes": 16283
+            }
+          },
+          {
+            "id": "SKHY-underlying",
+            "title": "韩国普通股公开报价",
+            "url": "https://query1.finance.yahoo.com/v8/finance/chart/000660.KS?interval=1d&range=5d",
+            "published": "2026-10-19",
+            "receipt": {
+              "url": "https://query1.finance.yahoo.com/v8/finance/chart/000660.KS?interval=1d&range=5d",
+              "fetched_at": "2026-10-19T18:20:15+08:00",
+              "http_status": 200,
+              "sha256": "df16da7e34f4d021d714c355ed012256af942178774e6537946f6acb3bfd1774",
+              "attempts": 1,
+              "status": "ok",
+              "bytes": 1544,
+              "quote": {
+                "symbol": "000660.KS",
+                "currency": "KRW",
+                "regularMarketPrice": 1277000.0,
+                "regularMarketTime": 1792391408
+              }
+            }
+          },
+          {
+            "id": "KRWFX",
+            "title": "公开KRW/USD汇率",
+            "url": "https://query1.finance.yahoo.com/v8/finance/chart/KRW%3DX?interval=1d&range=5d",
+            "published": "2026-10-19",
+            "receipt": {
+              "url": "https://query1.finance.yahoo.com/v8/finance/chart/KRW%3DX?interval=1d&range=5d",
+              "fetched_at": "2026-10-19T18:20:16+08:00",
+              "http_status": 200,
+              "sha256": "3185a16e165aa6a9da231f380a28da2dd85a9d5c3784ab96e2aae01ff3461e0c",
+              "attempts": 1,
+              "status": "ok",
+              "bytes": 1693,
+              "quote": {
+                "symbol": "KRW=X",
+                "currency": "KRW",
+                "regularMarketPrice": 1330.57,
+                "regularMarketTime": 1792405206
+              }
+            }
+          }
+        ],
+        "authorship": "当前Codex对话逐家检索官方披露、编辑研究框架及代码复算；不是一次新的全自动CLI运行，也不是用户已确认的投资观点。",
+        "market_alignment": {
+          "date": "2026-10-16",
+          "local_daily_bar_utc": "2026-10-16T00:00:00+00:00",
+          "fx_daily_bar_utc": "2026-10-15T23:00:00+00:00",
+          "local_close_krw": 1272000.0,
+          "krw_per_usd": 1340.949951171875
+        }
+      },
+      "quote": {
+        "symbol": "SKHY",
+        "price": 136.49,
+        "currency": "USD",
+        "market_time_utc": "2026-10-16T20:00:01+00:00",
+        "exchange": "NMS",
+        "exchange_timezone": "America/New_York",
+        "observation_age_days": 3,
+        "provider": "Yahoo Finance chart (unofficial)",
+        "realtime_entitlement": "not_verified",
+        "boundary": "Last reported regular-session price; not guaranteed real time. Weekend/holiday age is not itself a feed failure.",
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SKHY?interval=1d&range=5d",
+        "status": "ok"
+      },
+      "scenarios": {
+        "bear": {
+          "value_per_share": 94.85812643875477,
+          "ledger": {
+            "local_price_krw": 1272000.0,
+            "krw_per_usd": 1340.949951,
+            "ordinary_per_ads": 0.1,
+            "parity_usd": 94.85812643875477,
+            "assumed_adr_premium": 0
+          },
+          "parameters": {
+            "local_price": 1272000.0,
+            "fx": 1340.949951,
+            "ordinary_per_ads": 0.1,
+            "premium": 0
+          },
+          "upside_pct": -30.501775632826757
+        },
+        "base": {
+          "value_per_share": 113.82975172650572,
+          "ledger": {
+            "local_price_krw": 1272000.0,
+            "krw_per_usd": 1340.949951,
+            "ordinary_per_ads": 0.1,
+            "parity_usd": 94.85812643875477,
+            "assumed_adr_premium": 0.2
+          },
+          "parameters": {
+            "local_price": 1272000.0,
+            "fx": 1340.949951,
+            "ordinary_per_ads": 0.1,
+            "premium": 0.2
+          },
+          "upside_pct": -16.602130759392107
+        },
+        "bull": {
+          "value_per_share": 132.80137701425667,
+          "ledger": {
+            "local_price_krw": 1272000.0,
+            "krw_per_usd": 1340.949951,
+            "ordinary_per_ads": 0.1,
+            "parity_usd": 94.85812643875477,
+            "assumed_adr_premium": 0.4
+          },
+          "parameters": {
+            "local_price": 1272000.0,
+            "fx": 1340.949951,
+            "ordinary_per_ads": 0.1,
+            "premium": 0.4
+          },
+          "upside_pct": -2.702485885957462
+        }
+      },
+      "implied": 0.4388856824841979,
+      "sensitivity": [
+        {
+          "x": -0.1,
+          "y": 1100.0,
+          "value": 104.07272727272726
+        },
+        {
+          "x": -0.1,
+          "y": 1225.0,
+          "value": 93.45306122448979
+        },
+        {
+          "x": -0.1,
+          "y": 1350.0,
+          "value": 84.80000000000001
+        },
+        {
+          "x": -0.1,
+          "y": 1475.0,
+          "value": 77.61355932203391
+        },
+        {
+          "x": -0.1,
+          "y": 1600.0,
+          "value": 71.55
+        },
+        {
+          "x": 0.07499999999999998,
+          "y": 1100.0,
+          "value": 124.3090909090909
+        },
+        {
+          "x": 0.07499999999999998,
+          "y": 1225.0,
+          "value": 111.62448979591835
+        },
+        {
+          "x": 0.07499999999999998,
+          "y": 1350.0,
+          "value": 101.28888888888889
+        },
+        {
+          "x": 0.07499999999999998,
+          "y": 1475.0,
+          "value": 92.70508474576272
+        },
+        {
+          "x": 0.07499999999999998,
+          "y": 1600.0,
+          "value": 85.46249999999999
+        },
+        {
+          "x": 0.24999999999999997,
+          "y": 1100.0,
+          "value": 144.54545454545453
+        },
+        {
+          "x": 0.24999999999999997,
+          "y": 1225.0,
+          "value": 129.79591836734693
+        },
+        {
+          "x": 0.24999999999999997,
+          "y": 1350.0,
+          "value": 117.77777777777779
+        },
+        {
+          "x": 0.24999999999999997,
+          "y": 1475.0,
+          "value": 107.79661016949154
+        },
+        {
+          "x": 0.24999999999999997,
+          "y": 1600.0,
+          "value": 99.375
+        },
+        {
+          "x": 0.42499999999999993,
+          "y": 1100.0,
+          "value": 164.78181818181815
+        },
+        {
+          "x": 0.42499999999999993,
+          "y": 1225.0,
+          "value": 147.96734693877548
+        },
+        {
+          "x": 0.42499999999999993,
+          "y": 1350.0,
+          "value": 134.26666666666665
+        },
+        {
+          "x": 0.42499999999999993,
+          "y": 1475.0,
+          "value": 122.88813559322034
+        },
+        {
+          "x": 0.42499999999999993,
+          "y": 1600.0,
+          "value": 113.28749999999998
+        },
+        {
+          "x": 0.6,
+          "y": 1100.0,
+          "value": 185.0181818181818
+        },
+        {
+          "x": 0.6,
+          "y": 1225.0,
+          "value": 166.13877551020408
+        },
+        {
+          "x": 0.6,
+          "y": 1350.0,
+          "value": 150.75555555555556
+        },
+        {
+          "x": 0.6,
+          "y": 1475.0,
+          "value": 137.97966101694917
+        },
+        {
+          "x": 0.6,
+          "y": 1600.0,
+          "value": 127.2
+        }
+      ],
+      "boundary": "Conditional pricing experiment, not consensus, recommendation, audited valuation or a probability-weighted forecast. Editorial facts are dated and are not automatically refreshed by quote changes."
     }
   }
 }

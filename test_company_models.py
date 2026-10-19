@@ -32,6 +32,17 @@ class ModelTests(unittest.TestCase):
             self.assertEqual(len(p['views']),6)
             self.assertEqual(m.evaluate(p['model']),m.evaluate(p['model'],p['model']['scenarios']['base']))
             self.assertTrue(p['sources'][0]['receipt']['sha256'])
+    def test_all_public_reports_match_the_public_universe(self):
+        profiles=json.loads((ROOT/'examples/company-profiles.example.json').read_text(encoding='utf-8'))['profiles']
+        watchlist=json.loads((ROOT/'watchlist.case.example.json').read_text(encoding='utf-8'))['assets']
+        symbols={a['id'] for a in watchlist}
+        self.assertEqual(len(symbols),10)
+        self.assertEqual({p['symbol'] for p in profiles}|{'AVGO'},symbols)
+        self.assertTrue(all(a.get('kind')!='etf' for a in watchlist))
+        for p in profiles:
+            self.assertEqual(len(p['views']),6)
+            self.assertEqual(m.evaluate(p['model']),m.evaluate(p['model'],p['model']['scenarios']['base']))
+            self.assertTrue(all(s['url'].startswith('https://') for s in p['sources']))
     def test_html_json_roundtrip(self):
         text='</script><script>bad</script> & test'
         payload=company_reports.json_script({'text':text})
