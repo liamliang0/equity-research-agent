@@ -178,7 +178,9 @@ def collect(assets,output,as_of=None):
         for key,item,receipts in pool.map(one,assets):
             result['assets'][key]=item; result['requests'].extend(receipts)
     result['coverage']={'assets':len(assets),'quotes_ok':sum(a['quote']['status']=='ok' for a in result['assets'].values()),
-        'companyfacts_ok':sum(a['fundamentals']['status']=='ok' for a in result['assets'].values()),'treasury_ok':result['macro']['status']=='ok'}
+        'companyfacts_ok':sum(a['fundamentals']['status']=='ok' for a in result['assets'].values()),
+        'companyfacts_with_metrics':sum(a['fundamentals']['status']=='ok' and bool(a['fundamentals'].get('metrics')) for a in result['assets'].values()),
+        'treasury_ok':result['macro']['status']=='ok'}
     u.save(output/'data-snapshot.json',result)
     print('Data adapters: '+json.dumps(result['coverage']),flush=True)
     return result

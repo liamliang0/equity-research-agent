@@ -10,7 +10,7 @@ e=lambda x:html.escape(str(x))
 def header(snapshot):
     c=snapshot['coverage']; macro=snapshot['macro']
     cards=[('Yahoo Finance / 行情',f"{c['quotes_ok']}/{c['assets']} 个标的取得报价",'公共非官方接口；显示交易时点，不保证实时订阅'),
-           ('SEC EDGAR / 财报',f"{c['companyfacts_ok']} 家取得XBRL",'保留原币种与单位，分开单季、年内累计和全年'),
+           ('SEC EDGAR / 财报',f"{c.get('companyfacts_with_metrics',sum(bool(a['fundamentals'].get('metrics')) for a in snapshot['assets'].values()))} 家有可解析财务字段 / {c['companyfacts_ok']} 家接口返回成功",'接口成功不代表字段完整；保留币种、单位与财务期间'),
            ('US Treasury / 利率','已连接' if c['treasury_ok'] else '获取失败','官方XML；国债收益率不是WACC')]
     content=''.join(f'<article><h3>{e(k)}</h3><p>{e(v)}</p><small>{e(b)}</small></article>' for k,v,b in cards)
     rate=''
@@ -31,6 +31,8 @@ def asset(item):
             for kind,row in periods.items():
                 old=' · 较旧数据' if row['stale_days']>450 else ''
                 rows.append(f'<tr><td>{e(d.LABELS[key])}</td><td>{e(kind)}</td><td>{row["val"]:,.0f} {e(row["unit"])}</td><td>{e(row.get("start","时点"))} → {e(row["end"])}{old}</td><td>{e(row["filed"])}</td></tr>')
+        if not rows:
+            parts.append('<p class="gap">SEC接口返回成功，但没有解析出支持的财务字段；不能据此视为已取得可用于分析的财报。需核对申报类型、原始报表或发行方资料。</p>')
         parts.append(f'<details><summary>查看SEC结构化财报 · {e(f["entity_name"])}</summary><p><a href="{e(f["source_url"])}">SEC companyfacts原始JSON ↗</a> · 不将年内累计冒充单季、不自动换汇或推算ADR每股值。</p><div class="scroll"><table><tr><th>项目</th><th>口径</th><th>原始数值与单位</th><th>期间</th><th>申报日期</th></tr>{"".join(rows)}</table></div><p>未匹配字段：{e("、".join(d.LABELS[k] for k in f["missing_metrics"])) or "无"}。标签未匹配不代表公司不存在该项目；净债务还需核对债务组成。</p></details>')
     else: parts.append(f'<p class="gap">财务接口：{e(f["status"])} · {e(f.get("reason",f.get("error","")))}</p>')
     return ''.join(parts)

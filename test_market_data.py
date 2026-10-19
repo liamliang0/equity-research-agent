@@ -61,5 +61,12 @@ class DataTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             d.parse_quote({'chart':{'result':[{'meta':meta}]}},'AVGO','2026-10-19')
 
+    def test_http_success_is_not_financial_coverage(self):
+        import data_view
+        snapshot={'coverage':{'assets':1,'quotes_ok':1,'companyfacts_ok':1,'treasury_ok':False},
+            'assets':{'X':{'fundamentals':{'status':'ok','metrics':{}}}},
+            'macro':{'status':'failed'},'fetched_at':'2026-10-19','as_of':'2026-10-19','requests':[]}
+        self.assertIn('0 家有可解析财务字段 / 1 家接口返回成功',data_view.header(snapshot))
+
 
 if __name__=='__main__': unittest.main()
