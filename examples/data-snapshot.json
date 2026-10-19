@@ -1,0 +1,511 @@
+{
+  "as_of": "2026-10-19",
+  "fetched_at": "2026-10-19T16:25:13+08:00",
+  "assets": {
+    "AAPL": {
+      "id": "AAPL",
+      "kind": "equity",
+      "quote": {
+        "symbol": "AAPL",
+        "price": 343.46,
+        "currency": "USD",
+        "market_time_utc": "2026-10-16T20:00:01+00:00",
+        "exchange": "NMS",
+        "exchange_timezone": "America/New_York",
+        "observation_age_days": 3,
+        "provider": "Yahoo Finance chart (unofficial)",
+        "realtime_entitlement": "not_verified",
+        "boundary": "Last reported regular-session price; not guaranteed real time. Weekend/holiday age is not itself a feed failure.",
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?interval=1d&range=5d",
+        "status": "ok"
+      },
+      "fundamentals": {
+        "entity_name": "Apple Inc.",
+        "cik": 320193,
+        "metrics": {
+          "revenue": {
+            "quarter": {
+              "start": "2026-03-29",
+              "end": "2026-06-27",
+              "val": 109417000000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "frame": "CY2026Q2",
+              "unit": "USD",
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "namespace": "us-gaap",
+              "period_type": "quarter",
+              "stale_days": 114,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            },
+            "year_to_date": {
+              "start": "2025-09-28",
+              "end": "2026-06-27",
+              "val": 364357000000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "unit": "USD",
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "namespace": "us-gaap",
+              "period_type": "year_to_date",
+              "stale_days": 114,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            },
+            "annual": {
+              "start": "2024-09-29",
+              "end": "2025-09-27",
+              "val": 416161000000,
+              "accn": "0000320193-25-000079",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-10-31",
+              "frame": "CY2025",
+              "unit": "USD",
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "namespace": "us-gaap",
+              "period_type": "annual",
+              "stale_days": 387,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            }
+          },
+          "operating_income": {
+            "quarter": {
+              "start": "2026-03-29",
+              "end": "2026-06-27",
+              "val": 35695000000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "frame": "CY2026Q2",
+              "unit": "USD",
+              "tag": "OperatingIncomeLoss",
+              "namespace": "us-gaap",
+              "period_type": "quarter",
+              "stale_days": 114,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            },
+            "year_to_date": {
+              "start": "2025-09-28",
+              "end": "2026-06-27",
+              "val": 122432000000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "unit": "USD",
+              "tag": "OperatingIncomeLoss",
+              "namespace": "us-gaap",
+              "period_type": "year_to_date",
+              "stale_days": 114,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            },
+            "annual": {
+              "start": "2024-09-29",
+              "end": "2025-09-27",
+              "val": 133050000000,
+              "accn": "0000320193-25-000079",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-10-31",
+              "frame": "CY2025",
+              "unit": "USD",
+              "tag": "OperatingIncomeLoss",
+              "namespace": "us-gaap",
+              "period_type": "annual",
+              "stale_days": 387,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            }
+          },
+          "net_income": {
+            "quarter": {
+              "start": "2026-03-29",
+              "end": "2026-06-27",
+              "val": 29789000000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "frame": "CY2026Q2",
+              "unit": "USD",
+              "tag": "NetIncomeLoss",
+              "namespace": "us-gaap",
+              "period_type": "quarter",
+              "stale_days": 114,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            },
+            "year_to_date": {
+              "start": "2025-09-28",
+              "end": "2026-06-27",
+              "val": 101464000000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "unit": "USD",
+              "tag": "NetIncomeLoss",
+              "namespace": "us-gaap",
+              "period_type": "year_to_date",
+              "stale_days": 114,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            },
+            "annual": {
+              "start": "2024-09-29",
+              "end": "2025-09-27",
+              "val": 112010000000,
+              "accn": "0000320193-25-000079",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-10-31",
+              "frame": "CY2025",
+              "unit": "USD",
+              "tag": "NetIncomeLoss",
+              "namespace": "us-gaap",
+              "period_type": "annual",
+              "stale_days": 387,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            }
+          },
+          "operating_cash_flow": {
+            "quarter": {
+              "start": "2025-09-28",
+              "end": "2025-12-27",
+              "val": 53925000000,
+              "accn": "0000320193-26-000006",
+              "fy": 2026,
+              "fp": "Q1",
+              "form": "10-Q",
+              "filed": "2026-01-30",
+              "frame": "CY2025Q4",
+              "unit": "USD",
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "namespace": "us-gaap",
+              "period_type": "quarter",
+              "stale_days": 296,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            },
+            "year_to_date": {
+              "start": "2025-09-28",
+              "end": "2026-06-27",
+              "val": 116996000000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "unit": "USD",
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "namespace": "us-gaap",
+              "period_type": "year_to_date",
+              "stale_days": 114,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            },
+            "annual": {
+              "start": "2024-09-29",
+              "end": "2025-09-27",
+              "val": 111482000000,
+              "accn": "0000320193-25-000079",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-10-31",
+              "frame": "CY2025",
+              "unit": "USD",
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "namespace": "us-gaap",
+              "period_type": "annual",
+              "stale_days": 387,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            }
+          },
+          "capex": {
+            "quarter": {
+              "start": "2025-09-28",
+              "end": "2025-12-27",
+              "val": 2373000000,
+              "accn": "0000320193-26-000006",
+              "fy": 2026,
+              "fp": "Q1",
+              "form": "10-Q",
+              "filed": "2026-01-30",
+              "frame": "CY2025Q4",
+              "unit": "USD",
+              "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+              "namespace": "us-gaap",
+              "period_type": "quarter",
+              "stale_days": 296,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            },
+            "year_to_date": {
+              "start": "2025-09-28",
+              "end": "2026-06-27",
+              "val": 6799000000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "unit": "USD",
+              "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+              "namespace": "us-gaap",
+              "period_type": "year_to_date",
+              "stale_days": 114,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            },
+            "annual": {
+              "start": "2024-09-29",
+              "end": "2025-09-27",
+              "val": 12715000000,
+              "accn": "0000320193-25-000079",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-10-31",
+              "frame": "CY2025",
+              "unit": "USD",
+              "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+              "namespace": "us-gaap",
+              "period_type": "annual",
+              "stale_days": 387,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            }
+          },
+          "cash": {
+            "instant": {
+              "end": "2026-06-27",
+              "val": 39544000000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "frame": "CY2026Q2I",
+              "unit": "USD",
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "namespace": "us-gaap",
+              "period_type": "instant",
+              "stale_days": 114,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            }
+          },
+          "debt_current": {
+            "instant": {
+              "end": "2026-06-27",
+              "val": 11007000000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "frame": "CY2026Q2I",
+              "unit": "USD",
+              "tag": "LongTermDebtCurrent",
+              "namespace": "us-gaap",
+              "period_type": "instant",
+              "stale_days": 114,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            }
+          },
+          "debt_noncurrent": {
+            "instant": {
+              "end": "2026-06-27",
+              "val": 71340000000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "frame": "CY2026Q2I",
+              "unit": "USD",
+              "tag": "LongTermDebtNoncurrent",
+              "namespace": "us-gaap",
+              "period_type": "instant",
+              "stale_days": 114,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            }
+          },
+          "shares": {
+            "instant": {
+              "end": "2026-07-17",
+              "val": 14594180000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "frame": "CY2026Q2I",
+              "unit": "shares",
+              "tag": "EntityCommonStockSharesOutstanding",
+              "namespace": "dei",
+              "period_type": "instant",
+              "stale_days": 94,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            }
+          },
+          "sbc": {
+            "quarter": {
+              "start": "2025-09-28",
+              "end": "2025-12-27",
+              "val": 3594000000,
+              "accn": "0000320193-26-000006",
+              "fy": 2026,
+              "fp": "Q1",
+              "form": "10-Q",
+              "filed": "2026-01-30",
+              "frame": "CY2025Q4",
+              "unit": "USD",
+              "tag": "ShareBasedCompensation",
+              "namespace": "us-gaap",
+              "period_type": "quarter",
+              "stale_days": 296,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            },
+            "year_to_date": {
+              "start": "2025-09-28",
+              "end": "2026-06-27",
+              "val": 10523000000,
+              "accn": "0000320193-26-000020",
+              "fy": 2026,
+              "fp": "Q3",
+              "form": "10-Q",
+              "filed": "2026-07-31",
+              "unit": "USD",
+              "tag": "ShareBasedCompensation",
+              "namespace": "us-gaap",
+              "period_type": "year_to_date",
+              "stale_days": 114,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            },
+            "annual": {
+              "start": "2024-09-29",
+              "end": "2025-09-27",
+              "val": 12863000000,
+              "accn": "0000320193-25-000079",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-10-31",
+              "frame": "CY2025",
+              "unit": "USD",
+              "tag": "ShareBasedCompensation",
+              "namespace": "us-gaap",
+              "period_type": "annual",
+              "stale_days": 387,
+              "provenance": "SEC companyfacts; filed standard taxonomy; no currency conversion"
+            }
+          }
+        },
+        "missing_metrics": [],
+        "boundary": "Filed data, not guidance. Quarter/YTD/annual are separate. Tags differ by issuer; net debt and ADR per-share values are not inferred.",
+        "status": "ok",
+        "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
+      }
+    },
+    "SPY": {
+      "id": "SPY",
+      "kind": "etf",
+      "quote": {
+        "symbol": "SPY",
+        "price": 763.25,
+        "currency": "USD",
+        "market_time_utc": "2026-10-16T20:00:00+00:00",
+        "exchange": "PCX",
+        "exchange_timezone": "America/New_York",
+        "observation_age_days": 3,
+        "provider": "Yahoo Finance chart (unofficial)",
+        "realtime_entitlement": "not_verified",
+        "boundary": "Last reported regular-session price; not guaranteed real time. Weekend/holiday age is not itself a feed failure.",
+        "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?interval=1d&range=5d",
+        "status": "ok"
+      },
+      "fundamentals": {
+        "status": "not_applicable",
+        "reason": "ETF: needs issuer NAV, holdings and tracking data, not company XBRL"
+      }
+    }
+  },
+  "macro": {
+    "date": "2026-10-16",
+    "yields_pct": {
+      "BC_3MONTH": 4.26,
+      "BC_2YEAR": 4.74,
+      "BC_10YEAR": 5.09,
+      "BC_30YEAR": 5.43
+    },
+    "boundary": "Treasury par yields in percent. A 10-year yield is a risk-free-rate reference, not WACC or a market outlook.",
+    "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_yield_curve&field_tdr_date_value=2026",
+    "status": "ok"
+  },
+  "requests": [
+    {
+      "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_yield_curve&field_tdr_date_value=2026",
+      "fetched_at": "2026-10-19T16:25:13+08:00",
+      "http_status": 200,
+      "sha256": "4daa686f9123ce70252853a4f9307d131b1ee41731f16a5a8f793795898ac77b",
+      "attempts": 1,
+      "adapter": "treasury",
+      "status": "ok"
+    },
+    {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?interval=1d&range=5d",
+      "fetched_at": "2026-10-19T16:25:17+08:00",
+      "http_status": 200,
+      "sha256": "1ea809f5985adf35c12886cdcd6b992772e00935b9956d8e99957e0ee78745a5",
+      "attempts": 1,
+      "adapter": "yahoo_chart",
+      "asset": "AAPL",
+      "status": "ok"
+    },
+    {
+      "url": "https://data.sec.gov/submissions/CIK0000320193.json",
+      "fetched_at": "2026-10-19T16:25:19+08:00",
+      "http_status": 200,
+      "sha256": "aad00f6aa75ba1405e0a34c788bdba9042281b2724fe1db3ff26f434b9a92e44",
+      "attempts": 1,
+      "adapter": "sec_identity",
+      "asset": "AAPL",
+      "status": "ok"
+    },
+    {
+      "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+      "fetched_at": "2026-10-19T16:25:21+08:00",
+      "http_status": 200,
+      "sha256": "73a86c6aedc31f77cac2ea4df5f80f0b3bd7e6eb58bb4e01444fbedf3afb9c43",
+      "attempts": 1,
+      "adapter": "sec_companyfacts",
+      "asset": "AAPL",
+      "status": "ok"
+    },
+    {
+      "url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?interval=1d&range=5d",
+      "fetched_at": "2026-10-19T16:25:17+08:00",
+      "http_status": 200,
+      "sha256": "8b91a3fa11624b22ebd098583350ef3e4b1063fe86940c353453bc2d949fe64c",
+      "attempts": 1,
+      "adapter": "yahoo_chart",
+      "asset": "SPY",
+      "status": "ok"
+    }
+  ],
+  "brokerage_access": false,
+  "positions_sync": "not_performed; input watchlist only",
+  "coverage": {
+    "assets": 2,
+    "quotes_ok": 2,
+    "companyfacts_ok": 1,
+    "treasury_ok": true
+  }
+}

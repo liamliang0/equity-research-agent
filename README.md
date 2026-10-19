@@ -2,7 +2,9 @@
 
 **展示我如何把研究需求拆成 Agent 任务，并检查 AI 的输出。** A two-pass, evidence-tracked research workflow built with Codex CLI and Python.
 
-**新版入口：[直接打开演示](https://liamliang0.github.io/equity-research-agent/) · [真实第二轮审阅](examples/showcase-review.json) · [设计与迭代](docs/design-and-iteration.md)**
+**新版入口：[直接打开演示](https://liamliang0.github.io/equity-research-agent/) · [原始AI审阅](examples/showcase-model-review.json) · [实际数据快照](examples/data-snapshot.json) · [设计与迭代](docs/design-and-iteration.md)**
+
+**真实数据层：**SEC EDGAR财报、US Treasury利率、Yahoo公共行情接口；端点、时间、单位、实际覆盖和失败状态可展开。见[数据接口与边界](docs/data-sources.md)。这不是IBKR实时交易系统。
 
 以“趋势→路线→叙事→预期差→量化→赔率”为主线，将产业、成长、预期、宏观、质量与风险拆成明确任务。第一轮联网研究，第二轮在同一证据包上提出批评和修订；确定性代码检查引用并执行估值计算。人物名气不是验收标准，实际输出和运行记录才是。
 
@@ -29,6 +31,7 @@ flowchart LR
 ## 已实现
 
 - **真实 Agent 调用：**使用已登录的 Codex CLI 检索与分析；运行日志必须出现实际 web search，不能用静态文字冒充联网研究。
+- **真实接口取数：**HTTP读取报价、XBRL财报和国债曲线，按季度/累计/年度保留口径；结构化API证据可进入第二轮分析。仅刷新数据不会冒充重新生成AI观点。
 - **可配置证券：**支持1–30个观察对象，分别处理经营公司、ADR 和 ETF；不是写死几个 ticker。首次记录不会伪装成趋势。
 - **质量检查：**核验日期、来源域名、证券覆盖及引用关系；失败保留错误与历史结果，不能静默变成“中性”。
 - **证据与复盘：**逐条生成 `evidence.csv`、`thesis-ledger.json`、`review.md` 和文件指纹；下一轮对照前次判断。
@@ -45,6 +48,7 @@ flowchart LR
 ```bash
 python -m pip install -r requirements.txt
 codex login
+python market_data.py --output output/data
 python showcase.py --valuation-input examples/valuation-assumptions.json
 python research_agent.py --plan-only
 python research_agent.py --watchlist watchlist.example.json

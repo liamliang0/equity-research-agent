@@ -59,7 +59,7 @@ class ValuationTests(unittest.TestCase):
 
 class ReviewTests(unittest.TestCase):
     def setUp(self):
-        self.report={'as_of':'2026-10-19','facts':[{'id':'f','company':'A'}],'companies':[{'id':'A'}]}
+        self.report={'as_of':'2026-10-19','facts':[{'id':'f','company':'A'}],'companies':[{'id':'A'}],'sources':[]}
         point={'text':'test','fact_ids':['f']}
         self.review={'as_of':'2026-10-19','assets':[{'id':'A','candidate_thesis':point,'key_disagreement':point,
             'lenses':[{'id':k,'finding':'test','fact_ids':['f'],'missing_evidence':[]} for k in s.LENSES],
@@ -94,7 +94,7 @@ class ReviewTests(unittest.TestCase):
             previous=Path.cwd()
             try:
                 os.chdir(folder)
-                with patch('sys.argv',['showcase.py','--private','--research-file',str(packet),'--output','relative']), patch.object(s.r,'load_watchlist',return_value=assets), patch.object(s.r,'validate_report'), patch.object(s.r,'invoke',return_value=(copy.deepcopy(self.review),{'search_events':0})), patch.object(s,'write_case') as write:
+                with patch('sys.argv',['showcase.py','--private','--research-file',str(packet),'--output','relative']), patch.object(s.r,'load_watchlist',return_value=assets), patch.object(s.r,'validate_report'), patch.object(s.market_data,'collect',return_value={}), patch.object(s.r,'invoke',return_value=(copy.deepcopy(self.review),{'search_events':0})), patch.object(s,'write_case') as write:
                     s.main()
                     self.assertTrue(write.call_args.args[3].is_absolute())
                     self.assertTrue(write.call_args.kwargs['private'])

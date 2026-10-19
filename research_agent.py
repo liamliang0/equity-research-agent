@@ -39,10 +39,12 @@ def load_watchlist(path):
             raise ValueError("Instrument identity, type or research question missing")
         if not a.get("domains"):
             raise ValueError("Register official issuer domains before research")
+        if a.get('sec_cik') and not re.fullmatch(r'[0-9]{1,10}',str(a['sec_cik'])):
+            raise ValueError('Invalid SEC CIK')
         for d in a["domains"]:
             if not re.fullmatch(r"[a-z0-9-]+(?:\.[a-z0-9-]+)+", d) or d.endswith((".local", ".localhost")) or re.fullmatch(r"[0-9.]+", d):
                 raise ValueError("Invalid issuer domain")
-    allowed = {"id", "name", "kind", "group", "currency", "domains", "questions"}
+    allowed = {"id", "name", "kind", "group", "currency", "domains", "questions", "sec_cik"}
     return [{k: v for k, v in a.items() if k in allowed} for a in data["assets"]]
 
 
