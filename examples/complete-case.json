@@ -1,0 +1,827 @@
+{
+  "symbol": "AVGO",
+  "as_of": "2026-10-19",
+  "issuer": "Broadcom Inc.",
+  "quote": {
+    "symbol": "AVGO",
+    "price": 328.75,
+    "currency": "USD",
+    "market_time_utc": "2026-10-16T20:00:01+00:00",
+    "exchange": "NMS",
+    "exchange_timezone": "America/New_York",
+    "observation_age_days": 3,
+    "provider": "Yahoo Finance chart (unofficial)",
+    "realtime_entitlement": "not_verified",
+    "boundary": "Last reported regular-session price; not guaranteed real time. Weekend/holiday age is not itself a feed failure.",
+    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/AVGO?interval=1d&range=5d",
+    "status": "ok"
+  },
+  "profile": {
+    "symbol": "AVGO",
+    "editorial_as_of": "2026-10-19",
+    "authorship": "Codex-assisted case study; assumptions are illustrative analyst judgments, not the user's confirmed thesis or market consensus.",
+    "question": "AI 业务正在兑现，但当前价格要求多快的现金流增长？",
+    "thesis": "AI 半导体收入和经营现金流已有披露支撑。真正的分歧是：扣除股权薪酬等经济成本后，未来现金流能否持续增长到足以支持当前价格。",
+    "tax_assumption": 0.21,
+    "beta_assumption": 1.2,
+    "erp_assumption": 0.05,
+    "terminal_growth": 0.03,
+    "growth": {
+      "bear": 0.15,
+      "base": 0.25,
+      "bull": 0.35
+    },
+    "growth_rationale": "15%/25%/35%用于压力测试增长持续性，不是统计预测。研究采用扣除再投资后的现金流增长，不能直接用单季收入86%增长代替；三种情景不赋主观概率。",
+    "sources": [
+      {
+        "id": "q3-release",
+        "title": "Broadcom FY2026 Q3 results",
+        "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-third-quarter-fiscal-year-2026-financial",
+        "published": "2026-09-02"
+      },
+      {
+        "id": "q3-filing",
+        "title": "Broadcom FY2026 Q3 Form 10-Q",
+        "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm",
+        "published": "2026-09-10"
+      }
+    ],
+    "evidence": [
+      {
+        "title": "收入兑现，不只是订单叙事",
+        "fact": "FY2026 Q3收入295.91亿美元；公司披露AI半导体收入167亿美元。",
+        "interpretation": "AI业务已进入确认收入，但整体增速还不能直接变成未来五年现金流增速。",
+        "source": "q3-release"
+      },
+      {
+        "title": "现金流要和同一期间对齐",
+        "fact": "季度现金流由Q3累计值减Q2累计值推导，再与业绩公告的约142亿美元核对。",
+        "interpretation": "接口中最近的直接quarter值可能仍是Q1；直接套用会把不同期间混到一起。",
+        "source": "q3-filing"
+      },
+      {
+        "title": "软件增长也有确认时点因素",
+        "fact": "10-Q指出：VCF增长包括客户不能任意终止的合同所确认的额外许可收入。",
+        "interpretation": "需要区分持续需求与收入确认时点；不能把本季增长全部当作新增使用量。",
+        "source": "q3-filing"
+      }
+    ],
+    "different_views": [
+      {
+        "name": "产业与成长",
+        "view": "已有AI收入比概念叙事更扎实；下一步看收入规模与现金兑现能否持续。",
+        "challenge": "增长变慢不一定等于逻辑失效，关键是是否低于当前价格要求。"
+      },
+      {
+        "name": "生意质量",
+        "view": "较低自有资本开支支持现金产生能力；仍需扣除SBC等经济成本。",
+        "challenge": "公司的FCF口径与归属于股东的长期经济收益不能直接画等号。"
+      },
+      {
+        "name": "预期与周期",
+        "view": "高增长可支持高估值，但价格也会放大增速、客户和融资环境的变化。",
+        "challenge": "不把某个情景价值当成唯一正确答案；先观察哪项假设最脆弱。"
+      }
+    ],
+    "watch": [
+      {
+        "signal": "下一次季度披露",
+        "test": "将实际AI收入与上一季明确指引分列比较，再复核整体现金流与SBC。",
+        "invalidates": "收入兑现持续低于指引，同时现金兑现率下降，削弱高增长持续性假设。"
+      },
+      {
+        "signal": "软件收入质量",
+        "test": "检查许可确认、合同终止条款与现金回款的桥接。",
+        "invalidates": "确认收入增长明显快于可持续现金回款，需要下调质量判断。"
+      },
+      {
+        "signal": "模型价格要求",
+        "test": "每次更新同期间TTM现金流、股数和报价，重算隐含增长。",
+        "invalidates": "可验证经营证据无法支持模型所需增长时，不能沿用原价格判断。"
+      }
+    ]
+  },
+  "financial_period": {
+    "start": "2025-08-04",
+    "end": "2026-08-02",
+    "shares_date": "2026-08-28"
+  },
+  "ttm": {
+    "revenue": {
+      "value": 89104000000,
+      "start": "2025-08-04",
+      "end": "2026-08-02",
+      "formula": "prior fiscal year + current YTD - prior comparable YTD",
+      "inputs": [
+        {
+          "start": "2024-11-04",
+          "end": "2025-11-02",
+          "val": 63887000000,
+          "accn": "0001730168-25-000121",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-12-18",
+          "frame": "CY2025",
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2025-11-03",
+          "end": "2026-08-02",
+          "val": 71089000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-11-04",
+          "end": "2025-08-03",
+          "val": 45872000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        }
+      ]
+    },
+    "cfo": {
+      "value": 40653000000,
+      "start": "2025-08-04",
+      "end": "2026-08-02",
+      "formula": "prior fiscal year + current YTD - prior comparable YTD",
+      "inputs": [
+        {
+          "start": "2024-11-04",
+          "end": "2025-11-02",
+          "val": 27537000000,
+          "accn": "0001730168-25-000121",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-12-18",
+          "frame": "CY2025",
+          "tag": "NetCashProvidedByUsedInOperatingActivities",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2025-11-03",
+          "end": "2026-08-02",
+          "val": 32950000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "NetCashProvidedByUsedInOperatingActivities",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-11-04",
+          "end": "2025-08-03",
+          "val": 19834000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "NetCashProvidedByUsedInOperatingActivities",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        }
+      ]
+    },
+    "capex": {
+      "value": 1250000000,
+      "start": "2025-08-04",
+      "end": "2026-08-02",
+      "formula": "prior fiscal year + current YTD - prior comparable YTD",
+      "inputs": [
+        {
+          "start": "2024-11-04",
+          "end": "2025-11-02",
+          "val": 623000000,
+          "accn": "0001730168-25-000121",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-12-18",
+          "frame": "CY2025",
+          "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2025-11-03",
+          "end": "2026-08-02",
+          "val": 1013000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-11-04",
+          "end": "2025-08-03",
+          "val": 386000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        }
+      ]
+    },
+    "sbc": {
+      "value": 8482000000,
+      "start": "2025-08-04",
+      "end": "2026-08-02",
+      "formula": "prior fiscal year + current YTD - prior comparable YTD",
+      "inputs": [
+        {
+          "start": "2024-11-04",
+          "end": "2025-11-02",
+          "val": 7568000000,
+          "accn": "0001730168-25-000121",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-12-18",
+          "frame": "CY2025",
+          "tag": "ShareBasedCompensation",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2025-11-03",
+          "end": "2026-08-02",
+          "val": 6287000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "ShareBasedCompensation",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-11-04",
+          "end": "2025-08-03",
+          "val": 5373000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "ShareBasedCompensation",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        }
+      ]
+    },
+    "interest": {
+      "value": 2687000000,
+      "start": "2025-08-04",
+      "end": "2026-08-02",
+      "formula": "prior fiscal year + current YTD - prior comparable YTD",
+      "inputs": [
+        {
+          "start": "2024-11-04",
+          "end": "2025-11-02",
+          "val": 2672000000,
+          "accn": "0001730168-25-000121",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-12-18",
+          "frame": "CY2025",
+          "tag": "InterestPaidNet",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2025-11-03",
+          "end": "2026-08-02",
+          "val": 1988000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "InterestPaidNet",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-11-04",
+          "end": "2025-08-03",
+          "val": 1973000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "InterestPaidNet",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        }
+      ]
+    },
+    "interest_expense": {
+      "value": 3116000000,
+      "start": "2025-08-04",
+      "end": "2026-08-02",
+      "formula": "prior fiscal year + current YTD - prior comparable YTD",
+      "inputs": [
+        {
+          "start": "2024-11-04",
+          "end": "2025-11-02",
+          "val": 3210000000,
+          "accn": "0001730168-25-000121",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2025-12-18",
+          "frame": "CY2025",
+          "tag": "InterestExpenseNonoperating",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2025-11-03",
+          "end": "2026-08-02",
+          "val": 2355000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "InterestExpense",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2024-11-04",
+          "end": "2025-08-03",
+          "val": 2449000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "InterestExpense",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        }
+      ]
+    }
+  },
+  "quarters": {
+    "revenue": {
+      "value": 29591000000,
+      "start": "2026-05-04",
+      "end": "2026-08-02",
+      "formula": "reported quarter",
+      "inputs": [
+        {
+          "start": "2026-05-04",
+          "end": "2026-08-02",
+          "val": 29591000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "frame": "CY2026Q2",
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        }
+      ]
+    },
+    "cfo": {
+      "value": 14197000000,
+      "start": "2026-05-04",
+      "end": "2026-08-02",
+      "formula": "current YTD - previous YTD",
+      "inputs": [
+        {
+          "start": "2025-11-03",
+          "end": "2026-08-02",
+          "val": 32950000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "NetCashProvidedByUsedInOperatingActivities",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2025-11-03",
+          "end": "2026-05-03",
+          "val": 18753000000,
+          "accn": "0001730168-26-000054",
+          "fy": 2026,
+          "fp": "Q2",
+          "form": "10-Q",
+          "filed": "2026-06-09",
+          "tag": "NetCashProvidedByUsedInOperatingActivities",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        }
+      ]
+    },
+    "capex": {
+      "value": 532000000,
+      "start": "2026-05-04",
+      "end": "2026-08-02",
+      "formula": "current YTD - previous YTD",
+      "inputs": [
+        {
+          "start": "2025-11-03",
+          "end": "2026-08-02",
+          "val": 1013000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2025-11-03",
+          "end": "2026-05-03",
+          "val": 481000000,
+          "accn": "0001730168-26-000054",
+          "fy": 2026,
+          "fp": "Q2",
+          "form": "10-Q",
+          "filed": "2026-06-09",
+          "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        }
+      ]
+    },
+    "sbc": {
+      "value": 2019000000,
+      "start": "2026-05-04",
+      "end": "2026-08-02",
+      "formula": "current YTD - previous YTD",
+      "inputs": [
+        {
+          "start": "2025-11-03",
+          "end": "2026-08-02",
+          "val": 6287000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "tag": "ShareBasedCompensation",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        },
+        {
+          "start": "2025-11-03",
+          "end": "2026-05-03",
+          "val": 4268000000,
+          "accn": "0001730168-26-000054",
+          "fy": 2026,
+          "fp": "Q2",
+          "form": "10-Q",
+          "filed": "2026-06-09",
+          "tag": "ShareBasedCompensation",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        }
+      ]
+    },
+    "interest": {
+      "value": 674000000,
+      "start": "2026-05-04",
+      "end": "2026-08-02",
+      "formula": "reported quarter",
+      "inputs": [
+        {
+          "start": "2026-05-04",
+          "end": "2026-08-02",
+          "val": 674000000,
+          "accn": "0001730168-26-000080",
+          "fy": 2026,
+          "fp": "Q3",
+          "form": "10-Q",
+          "filed": "2026-09-10",
+          "frame": "CY2026Q2",
+          "tag": "InterestPaidNet",
+          "namespace": "us-gaap",
+          "unit": "USD"
+        }
+      ]
+    }
+  },
+  "bridge": {
+    "cfo": 40653000000,
+    "capex": 1250000000,
+    "company_fcf_proxy": 39403000000,
+    "sbc": 8482000000,
+    "after_tax_cash_interest": 2122730000.0,
+    "fcff_proxy": 33043730000.0
+  },
+  "balance": {
+    "gross_debt": 59419000000,
+    "cash": 23975000000,
+    "net_debt": 35444000000,
+    "shares": 4773629865,
+    "market_cap": 1569330818118.75,
+    "enterprise_value": 1604774818118.75
+  },
+  "assumptions": {
+    "risk_free": 0.0509,
+    "erp": 0.05,
+    "beta": 1.2,
+    "normalized_tax": 0.21,
+    "debt_cost_proxy": 0.052441138356417984,
+    "base_wacc": 0.1084,
+    "terminal_growth": 0.03,
+    "note": "ERP, beta, normalized tax, cash-flow growth and terminal growth are explicit analyst assumptions, not consensus. Debt cost uses TTM expense / period-end book debt. WACC uses market equity + book debt."
+  },
+  "scenarios": {
+    "bear": {
+      "value_per_share": 119.88050473166707,
+      "enterprise_value": 607709157618.3597,
+      "terminal_pv_share": 0.7058067043066937,
+      "years": [
+        {
+          "year": 1,
+          "cash_flow": 38000289500.0,
+          "pv": 33916716797.572292
+        },
+        {
+          "year": 2,
+          "cash_flow": 43700332924.99999,
+          "pv": 34812767152.095795
+        },
+        {
+          "year": 3,
+          "cash_flow": 50255382863.74999,
+          "pv": 35732490382.81878
+        },
+        {
+          "year": 4,
+          "cash_flow": 57793690293.312485,
+          "pv": 36676511906.677605
+        },
+        {
+          "year": 5,
+          "cash_flow": 66462743837.30936,
+          "pv": 37645473663.58376
+        }
+      ],
+      "growth": 0.15,
+      "wacc": 0.1204,
+      "upside_pct": -63.53444722991115
+    },
+    "base": {
+      "value_per_share": 208.83105067921318,
+      "enterprise_value": 1032326140261.6206,
+      "terminal_pv_share": 0.7671155421131219,
+      "years": [
+        {
+          "year": 1,
+          "cash_flow": 41304662500.0,
+          "pv": 37265123150.48719
+        },
+        {
+          "year": 2,
+          "cash_flow": 51630828125.0,
+          "pv": 42025806512.18782
+        },
+        {
+          "year": 3,
+          "cash_flow": 64538535156.25,
+          "pv": 47394675334.02632
+        },
+        {
+          "year": 4,
+          "cash_flow": 80673168945.3125,
+          "pv": 53449426351.07623
+        },
+        {
+          "year": 5,
+          "cash_flow": 100841461181.64062,
+          "pv": 60277682189.50314
+        }
+      ],
+      "growth": 0.25,
+      "wacc": 0.1084,
+      "upside_pct": -36.47724694168421
+    },
+    "bull": {
+      "value_per_share": 351.9396962948055,
+      "enterprise_value": 1715473844911.9133,
+      "terminal_pv_share": 0.813490167860877,
+      "years": [
+        {
+          "year": 1,
+          "cash_flow": 44609035500.0,
+          "pv": 40612741715.22214
+        },
+        {
+          "year": 2,
+          "cash_flow": 60222197925.00001,
+          "pv": 49915514671.84076
+        },
+        {
+          "year": 3,
+          "cash_flow": 81299967198.75002,
+          "pv": 61349185002.71762
+        },
+        {
+          "year": 4,
+          "cash_flow": 109754955718.31253,
+          "pv": 75401857022.64091
+        },
+        {
+          "year": 5,
+          "cash_flow": 148169190219.72192,
+          "pv": 92673440441.15553
+        }
+      ],
+      "growth": 0.35,
+      "wacc": 0.0984,
+      "upside_pct": 7.053900013629044
+    }
+  },
+  "implied_growth": 0.374840992086943,
+  "sensitivity": [
+    {
+      "wacc": 0.0984,
+      "terminal_growth": 0.02,
+      "value": 216.3405848349118
+    },
+    {
+      "wacc": 0.0984,
+      "terminal_growth": 0.025,
+      "value": 228.95032602235753
+    },
+    {
+      "wacc": 0.0984,
+      "terminal_growth": 0.03,
+      "value": 243.40359662317252
+    },
+    {
+      "wacc": 0.0984,
+      "terminal_growth": 0.035,
+      "value": 260.13656290234945
+    },
+    {
+      "wacc": 0.0984,
+      "terminal_growth": 0.04,
+      "value": 279.73476313344025
+    },
+    {
+      "wacc": 0.10339999999999999,
+      "terminal_growth": 0.02,
+      "value": 201.64621018525324
+    },
+    {
+      "wacc": 0.10339999999999999,
+      "terminal_growth": 0.025,
+      "value": 212.5441990685695
+    },
+    {
+      "wacc": 0.10339999999999999,
+      "terminal_growth": 0.03,
+      "value": 224.92692758176545
+    },
+    {
+      "wacc": 0.10339999999999999,
+      "terminal_growth": 0.035,
+      "value": 239.11999652086715
+    },
+    {
+      "wacc": 0.10339999999999999,
+      "terminal_growth": 0.04,
+      "value": 255.55171986676731
+    },
+    {
+      "wacc": 0.1084,
+      "terminal_growth": 0.02,
+      "value": 188.63641643243972
+    },
+    {
+      "wacc": 0.1084,
+      "terminal_growth": 0.025,
+      "value": 198.12837881221805
+    },
+    {
+      "wacc": 0.1084,
+      "terminal_growth": 0.03,
+      "value": 208.83105067921318
+    },
+    {
+      "wacc": 0.1084,
+      "terminal_growth": 0.035,
+      "value": 220.99185222836016
+    },
+    {
+      "wacc": 0.1084,
+      "terminal_growth": 0.04,
+      "value": 234.9305487408327
+    },
+    {
+      "wacc": 0.1134,
+      "terminal_growth": 0.02,
+      "value": 177.0401564983171
+    },
+    {
+      "wacc": 0.1134,
+      "terminal_growth": 0.025,
+      "value": 185.36462248689008
+    },
+    {
+      "wacc": 0.1134,
+      "terminal_growth": 0.03,
+      "value": 194.68722588416492
+    },
+    {
+      "wacc": 0.1134,
+      "terminal_growth": 0.035,
+      "value": 205.1989368576227
+    },
+    {
+      "wacc": 0.1134,
+      "terminal_growth": 0.04,
+      "value": 217.14276104272332
+    },
+    {
+      "wacc": 0.11839999999999999,
+      "terminal_growth": 0.02,
+      "value": 166.64148794398926
+    },
+    {
+      "wacc": 0.11839999999999999,
+      "terminal_growth": 0.025,
+      "value": 173.98713037556146
+    },
+    {
+      "wacc": 0.11839999999999999,
+      "terminal_growth": 0.03,
+      "value": 182.16372783332963
+    },
+    {
+      "wacc": 0.11839999999999999,
+      "terminal_growth": 0.035,
+      "value": 191.32073266013472
+    },
+    {
+      "wacc": 0.11839999999999999,
+      "terminal_growth": 0.04,
+      "value": 201.64572279648132
+    }
+  ],
+  "runrate_sensitivity": {
+    "cash_proxy": 48713840000.0,
+    "implied_growth": 0.26450952728760246,
+    "base_value": 311.384710330952,
+    "boundary": "Latest quarter multiplied by four is only a starting-point sensitivity, not a forecast. Working capital, timing and seasonality can make it misleading."
+  },
+  "baseline_fcf_multiple": 48.56518371620728,
+  "baseline_cash_yield": 0.020590882675200872,
+  "source_receipt": {
+    "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001730168.json",
+    "fetched_at": "2026-10-19T17:56:45+08:00",
+    "http_status": 200,
+    "sha256": "3bdb6644c12addf1e63c4dc861008d7804fbf3d3f5aa6eb9b97f72c0e89a7adf",
+    "attempts": 1,
+    "adapter": "sec_companyfacts",
+    "asset": "AVGO",
+    "status": "ok"
+  },
+  "boundary": "FCFF proxy = CFO - capex - SBC + after-tax net cash interest. Not GAAP FCFF or a formal target price. Starting CFO includes working-capital movements. Cash-flow growth is after reinvestment; fixed shares with SBC treated as a cost. Lease/noncontrolling adjustments and peer/SOTP valuation are not included. No buy/sell action."
+}

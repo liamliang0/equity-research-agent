@@ -13,7 +13,7 @@
 ## English
 
 - Translated a personal research framework into six analytical tasks and configured a two-pass Codex workflow: live research followed by a separate evidence-grounded critique with explicit revisions and follow-up experiments.
-- Defined citation and source checks and used Python for scenario valuation, reverse-growth solving and sensitivity analysis; published a real research case and a clearly labeled synthetic calculation demo.
+- Defined citation and source checks and used Python for scenario valuation, reverse-growth solving and sensitivity analysis; published an auditable case with reconciled TTM cash flow, explicit assumptions and interactive sensitivity analysis.
 - Owned problem framing, workflow configuration, validation criteria and output review; used Codex for implementation and published reproducible examples with limitations.
 
 ## 面试能解释的内容
@@ -25,6 +25,6 @@
 5. 真正遇到的失败：官方财报 PDF 超过旧上限；曾显示待复核，修复解析和大小限制后仅重做来源检查，没有再付费生成同一份分析。
 6. 当前边界：原文匹配不是完整事实核查；ETF集中度、ADR换算和跨币种比较需要相应数据；模型依然可能出错。
 7. 为什么增加第二轮：明确审阅第一轮的具体结论，并留下实际修订；它共享证据，不叫独立专家共识。六项视角是任务，不是六位大师人格。
-8. 估值展示的边界：虚构输入用于证明计算过程；真实AAPL/SPY案例缺少完整报价与模型输入，不输出“便宜/贵”。
+8. 估值展示的边界：公开 AVGO 案例使用实际报价与披露，期间衔接后运行现金流代理模型；假设和高终值占比显式展示，不将条件结果当精确目标价。旧虚构输入仅保留为工程测试。
 
 项目链接：https://github.com/liamliang0/equity-research-agent

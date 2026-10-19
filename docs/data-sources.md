@@ -21,7 +21,7 @@ python showcase.py
 python showcase.py --research-file examples/research-packet.json --output output/showcase --refresh-data-only
 ```
 
-SEC股票总映射可能403。可以在名单对象中提供`sec_cik`，程序仍会读取官方submissions核对ticker；身份不匹配则拒绝财报关联，不猜ADR对应关系。公开默认配置中AAPL用于演示，私人名单不发布。
+SEC股票总映射可能403。可以在名单对象中提供`sec_cik`，程序仍会读取官方submissions核对ticker；身份不匹配则拒绝财报关联，不猜ADR对应关系。基础配置中 AAPL 用于演示，完整案例另用 AVGO 及经核验的 CIK；私人名单不发布。
 
 每次保存`data/data-snapshot.json`与`data/raw/<sha256>.raw`。快照包含实际端点、HTTP状态、获取时间、响应指纹、失败原因与覆盖率；原始文件可用于复盘。没有悄悄用过期缓存代替本次成功响应。
 

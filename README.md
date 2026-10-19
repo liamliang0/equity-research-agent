@@ -2,7 +2,7 @@
 
 **展示我如何把研究需求拆成 Agent 任务，并检查 AI 的输出。** A two-pass, evidence-tracked research workflow built with Codex CLI and Python.
 
-**新版入口：[直接打开演示](https://liamliang0.github.io/equity-research-agent/) · [原始AI审阅](examples/showcase-model-review.json) · [实际数据快照](examples/data-snapshot.json) · [设计与迭代](docs/design-and-iteration.md)**
+**新版入口：[直接打开演示](https://liamliang0.github.io/equity-research-agent/) · [完整案例与假设](examples/complete-case.json) · [实际数据快照](examples/complete-case-data.json) · [设计与迭代](docs/design-and-iteration.md)**
 
 **真实数据层：**SEC EDGAR财报、US Treasury利率、Yahoo公共行情接口；端点、时间、单位、实际覆盖和失败状态可展开。见[数据接口与边界](docs/data-sources.md)。这不是IBKR实时交易系统。
 
@@ -39,7 +39,7 @@ flowchart LR
 - **明确输入的计算账本：**用 Decimal 复算比例、增幅、差值或求和，保存输入与来源。不会猜出所有模型计算的输入，也不声称自动审计全部数字。
 - **私人输入最小化：**观察名单加载只保留证券标识与研究配置，不把份额、成本、盈亏等附加字段放入模型提示。私人名单与结果默认不发布。
 
-**公开演示用 AAPL / SPY，属于独立选择的演示对象，不是券商账户展示。** 样例记录初次PDF核验失败、修复后的重新核验，以及仍需人工复核的派生计算范围。没有虚构生产用户、投资收益或金融专业资质。
+**当前公开主案例为独立选择的 AVGO，不是券商账户展示。** 将 SEC 财报的年度、年内累计与可比累计衔接为 TTM，检查现金流、股权薪酬和债务，再计算条件情景与价格隐含增长。AAPL/SPY 旧样例保留为早期工作流记录，不代表新版主案例。没有虚构生产用户、投资收益或金融专业资质。
 
 ## 快速运行
 
@@ -49,22 +49,31 @@ flowchart LR
 python -m pip install -r requirements.txt
 codex login
 python market_data.py --output output/data
-python showcase.py --valuation-input examples/valuation-assumptions.json
+python render_case.py
+# 重新联网研究及第二轮审阅（需要 Codex 额度）
+python showcase.py --watchlist watchlist.case.example.json --case-profile examples/avgo-case-profile.json --output output/public-case
 python research_agent.py --plan-only
 python research_agent.py --watchlist watchlist.example.json
 ```
 
 Windows 可双击 `setup.cmd` 安装项目内环境，再运行 `showcase.cmd` 生成并打开新版案例；`run.cmd` 保留原研究流程。不修改全局配置，不要求复制 API Key。PDF 检查使用 pypdf；HTML 与其他流程使用标准库。Codex 采用只读沙箱运行。
 
-### 新版展示的三个区别
+### 当前案例怎样读
 
-- 第二轮是一次真实的新模型调用，检查原判断的推理缺口、明确修订和下一步可验证任务。它共享第一轮证据，不冒充独立专家共识。
-- 五年FCFF情景、WACC×永续增长敏感性和价格隐含增长由Python执行，终值显式扣除增长所需再投资，不由模型口算。
-- 展示页可展开证据、来源、任务流、输入和逐年现金流。**公开估值实验的输入为虚构，与AAPL/SPY研究分开；没有声称算出它们的当前合理价格。** 未提供完整真实输入时不输出价格结论。
+先读结论与三条证据，再切换“价格与假设”，调整增长、WACC、永续增长或现金流起点，最后在“来源与过程”核查原始披露与接口记录。页面离线可读，不需要前端服务器。
+
+- 用“上一财年 + 本年累计 − 上年可比累计”构造 TTM，不将九个月数字误当全年。最近季度现金流由累计差额取得。
+- 从经营现金流扣资本支出、股权薪酬经济成本，再加税后现金利息代理；这是显式简化的 FCFF 代理，缺少租赁、少数股东等完整调整。
+- 情景、反推增长和敏感性由 Python 计算；浏览器重算与 Python 核对。TTM 和最近季度年化都展示，后者只是起点敏感性，不是预测。
+- ERP、Beta、正常化税率及未来增长属于分析假设；没有机构共识或情景概率。终值占比显式展示，不把模型输出说成精确目标价。
+
+`python render_case.py` 会重新读取公共接口并计算，**不会重新生成 AI 观点**。研究叙述保留原日期。当前完整案例由本次交互式 Codex 研究、原披露核对及程序计算组成，不冒充一次新的自动 CLI 研究成功。`showcase.py` 则可运行完整两轮流程；网络或认证失败会明确报错。
+
+视觉采用 [Anthropic frontend-design](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md) 的设计指导，按“结论—证据—条件—过程”组织；没有引入其交易功能或任何前端运行依赖。详见 [研究质量与边界](docs/research-quality.md)。
 
 ### 使用自己的名单
 
-默认AAPL/SPY只用于公开演示，不是用户的实际持仓。私人持仓研究使用独立的本地名单和输出目录：
+基础研究命令默认 AAPL/SPY，新版完整案例使用 watchlist.case.example.json 的 AVGO；两者都是公开演示配置。私人持仓研究使用独立的本地名单和输出目录：
 
 ```bash
 python showcase.py --watchlist private/watchlist.json --output private/results --private

@@ -18,3 +18,8 @@
 5. 公共项目应让陌生人看懂并复现；不需要同时公开用户的私人研究对象和账户数据。
 
 本仓库没有复制上述项目的代码。依赖的 Codex CLI 和 pypdf 各自保留其原有许可与使用条件。对比只覆盖本次阅读范围，不声称已审计其全部实现或验证其投资表现。
+
+
+## 报告呈现
+
+已阅读、安装并应用 Anthropic 官方 [frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)（Apache-2.0）的排版与信息层级指导。具体 HTML/CSS/JS 为本项目实现；没有复制其组件库，也不以美学替代研究核对。

@@ -1,14 +1,14 @@
 @echo off
 cd /d "%~dp0"
 if exist ".venv\Scripts\python.exe" (
-  ".venv\Scripts\python.exe" showcase.py --valuation-input examples\valuation-assumptions.json
+  ".venv\Scripts\python.exe" showcase.py --watchlist watchlist.case.example.json --case-profile examples\avgo-case-profile.json --output output\public-case
 ) else (
-  python showcase.py --valuation-input examples\valuation-assumptions.json
+  python showcase.py --watchlist watchlist.case.example.json --case-profile examples\avgo-case-profile.json --output output\public-case
 )
 if errorlevel 1 (
-  echo Research did not complete. Existing public demo: docs\index.html
+  echo Research did not complete. Existing public case: docs\index.html
   pause
   exit /b 1
 )
-start "" "output\showcase\index.html"
+start "" "output\public-case\index.html"
 pause

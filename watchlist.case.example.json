@@ -1,0 +1,20 @@
+{
+  "label": "Independent public research case; not an account portfolio",
+  "assets": [
+    {
+      "id": "AVGO",
+      "name": "Broadcom",
+      "kind": "equity",
+      "currency": "USD",
+      "sec_cik": "1730168",
+      "domains": [
+        "investors.broadcom.com",
+        "www.sec.gov",
+        "data.sec.gov"
+      ],
+      "questions": [
+        "AI业务已兑现到什么程度？软件收入确认、SBC和现金流期间如何影响价格判断？"
+      ]
+    }
+  ]
+}

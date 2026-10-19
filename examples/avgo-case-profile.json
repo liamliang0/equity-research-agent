@@ -1,0 +1,32 @@
+{
+  "symbol": "AVGO",
+  "editorial_as_of": "2026-10-19",
+  "authorship": "Codex-assisted case study; assumptions are illustrative analyst judgments, not the user's confirmed thesis or market consensus.",
+  "question": "AI 业务正在兑现，但当前价格要求多快的现金流增长？",
+  "thesis": "AI 半导体收入和经营现金流已有披露支撑。真正的分歧是：扣除股权薪酬等经济成本后，未来现金流能否持续增长到足以支持当前价格。",
+  "tax_assumption": 0.21,
+  "beta_assumption": 1.2,
+  "erp_assumption": 0.05,
+  "terminal_growth": 0.03,
+  "growth": {"bear": 0.15, "base": 0.25, "bull": 0.35},
+  "growth_rationale": "15%/25%/35%用于压力测试增长持续性，不是统计预测。研究采用扣除再投资后的现金流增长，不能直接用单季收入86%增长代替；三种情景不赋主观概率。",
+  "sources": [
+    {"id": "q3-release", "title": "Broadcom FY2026 Q3 results", "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-third-quarter-fiscal-year-2026-financial", "published": "2026-09-02"},
+    {"id": "q3-filing", "title": "Broadcom FY2026 Q3 Form 10-Q", "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm", "published": "2026-09-10"}
+  ],
+  "evidence": [
+    {"title": "收入兑现，不只是订单叙事", "fact": "FY2026 Q3收入295.91亿美元；公司披露AI半导体收入167亿美元。", "interpretation": "AI业务已进入确认收入，但整体增速还不能直接变成未来五年现金流增速。", "source": "q3-release"},
+    {"title": "现金流要和同一期间对齐", "fact": "季度现金流由Q3累计值减Q2累计值推导，再与业绩公告的约142亿美元核对。", "interpretation": "接口中最近的直接quarter值可能仍是Q1；直接套用会把不同期间混到一起。", "source": "q3-filing"},
+    {"title": "软件增长也有确认时点因素", "fact": "10-Q指出：VCF增长包括客户不能任意终止的合同所确认的额外许可收入。", "interpretation": "需要区分持续需求与收入确认时点；不能把本季增长全部当作新增使用量。", "source": "q3-filing"}
+  ],
+  "different_views": [
+    {"name": "产业与成长", "view": "已有AI收入比概念叙事更扎实；下一步看收入规模与现金兑现能否持续。", "challenge": "增长变慢不一定等于逻辑失效，关键是是否低于当前价格要求。"},
+    {"name": "生意质量", "view": "较低自有资本开支支持现金产生能力；仍需扣除SBC等经济成本。", "challenge": "公司的FCF口径与归属于股东的长期经济收益不能直接画等号。"},
+    {"name": "预期与周期", "view": "高增长可支持高估值，但价格也会放大增速、客户和融资环境的变化。", "challenge": "不把某个情景价值当成唯一正确答案；先观察哪项假设最脆弱。"}
+  ],
+  "watch": [
+    {"signal": "下一次季度披露", "test": "将实际AI收入与上一季明确指引分列比较，再复核整体现金流与SBC。", "invalidates": "收入兑现持续低于指引，同时现金兑现率下降，削弱高增长持续性假设。"},
+    {"signal": "软件收入质量", "test": "检查许可确认、合同终止条款与现金回款的桥接。", "invalidates": "确认收入增长明显快于可持续现金回款，需要下调质量判断。"},
+    {"signal": "模型价格要求", "test": "每次更新同期间TTM现金流、股数和报价，重算隐含增长。", "invalidates": "可验证经营证据无法支持模型所需增长时，不能沿用原价格判断。"}
+  ]
+}

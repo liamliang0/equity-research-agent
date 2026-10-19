@@ -136,6 +136,9 @@ def write_case(report, review, telemetry, output, model=None, private=False):
     u.save(output/'review.json',review)
     if model: u.save(output/'valuation-result.json',model)
     u.save(output/'case-run.json',{'research_runtime':report.get('runtime',{}),'review_runtime':telemetry,'generated_at':u.now(),'boundary':review_note if interactive else 'Two separate calls of the same runtime; not independent expert consensus.'})
+    if (output/'case-study.json').exists() and report.get('data_snapshot'):
+        import report_ui
+        report_ui.rebuild(report,review,telemetry,output,private)
 
 
 def main():
@@ -146,6 +149,7 @@ def main():
     p.add_argument('--valuation-input',type=Path,help='Optional explicit assumptions; no default valuation')
     p.add_argument('--private',action='store_true',help='Label this local page as private; never publish it')
     p.add_argument('--refresh-data-only',action='store_true',help='Refresh actual APIs and availability in an existing case, without claiming fresh AI analysis')
+    p.add_argument('--case-profile',type=Path,help='Explicit dated research narrative and cash-flow assumptions for a complete case')
     p.add_argument('--timeout',type=int,default=600)
     args=p.parse_args()
     # Codex runs from SOURCE_ROOT; keep paths independent of caller's working directory.
@@ -158,6 +162,11 @@ def main():
     r.validate_report(report,report['as_of'])
     report['data_snapshot']=snapshot
     u.save(args.output/'research-with-data.json',report)
+    if args.case_profile:
+        import case_research
+        profile=u.load(args.case_profile)
+        case=case_research.build(snapshot,args.output/'data',profile['symbol'],profile)
+        u.save(args.output/'case-study.json',case)
     if args.refresh_data_only:
         review=data_view.refresh_gaps(u.load(args.output/'review.json'),snapshot)
         validate_review(review,report)
