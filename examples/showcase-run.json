@@ -1,0 +1,40 @@
+{
+  "research_runtime": {
+    "provider": "Codex CLI",
+    "run_id": "20261019-135059-304351",
+    "generated_at": "2026-10-19T13:55:05+08:00",
+    "search_events": 5,
+    "turns": [
+      {
+        "type": "turn.completed",
+        "usage": {
+          "input_tokens": 223740,
+          "cached_input_tokens": 169728,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2436,
+          "reasoning_output_tokens": 14
+        }
+      }
+    ]
+  },
+  "review_runtime": {
+    "search_events": 0,
+    "turns": [
+      {
+        "type": "turn.completed",
+        "usage": {
+          "input_tokens": 19166,
+          "cached_input_tokens": 18944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2460,
+          "reasoning_output_tokens": 0
+        }
+      }
+    ],
+    "run_id": "20261019-151551-722548",
+    "generated_at": "2026-10-19T15:18:22+08:00",
+    "mode": "separate-call-shared-evidence"
+  },
+  "generated_at": "2026-10-19T15:18:22+08:00",
+  "boundary": "Two separate calls of the same runtime; not independent expert consensus."
+}

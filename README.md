@@ -1,6 +1,10 @@
 # Equity Research Agent
 
-**把研究问题交给 AI，把来源与判断留下来。** An on-demand, evidence-tracked research workflow for equities, ADRs and ETFs, built with Codex CLI and Python.
+**展示我如何把研究需求拆成 Agent 任务，并检查 AI 的输出。** A two-pass, evidence-tracked research workflow built with Codex CLI and Python.
+
+**新版入口：[完整案例展示页](docs/index.html) · [真实第二轮审阅](examples/showcase-review.json) · [设计与迭代](docs/design-and-iteration.md)**
+
+以“趋势→路线→叙事→预期差→量化→赔率”为主线，将产业、成长、预期、宏观、质量与风险拆成明确任务。第一轮联网研究，第二轮在同一证据包上提出批评和修订；确定性代码检查引用并执行估值计算。人物名气不是验收标准，实际输出和运行记录才是。
 
 **先看结果：** [真实报告样例](examples/report.md) · [运行与核验记录](examples/run-summary.json) · [证据表](examples/evidence.csv) · [判断账本](examples/thesis-ledger.json) · [程序审查](examples/review.md)
 
@@ -41,11 +45,18 @@ flowchart LR
 ```bash
 python -m pip install -r requirements.txt
 codex login
+python showcase.py --valuation-input examples/valuation-assumptions.json
 python research_agent.py --plan-only
 python research_agent.py --watchlist watchlist.example.json
 ```
 
-Windows 可双击 `setup.cmd` 安装项目内环境，再运行 `run.cmd`。不修改全局配置，不要求复制 API Key。PDF 检查使用 pypdf；HTML 与其他流程使用标准库。Codex 采用只读沙箱运行。
+Windows 可双击 `setup.cmd` 安装项目内环境，再运行 `showcase.cmd` 生成并打开新版案例；`run.cmd` 保留原研究流程。不修改全局配置，不要求复制 API Key。PDF 检查使用 pypdf；HTML 与其他流程使用标准库。Codex 采用只读沙箱运行。
+
+### 新版展示的三个区别
+
+- 第二轮是一次真实的新模型调用，检查原判断的推理缺口、明确修订和下一步可验证任务。它共享第一轮证据，不冒充独立专家共识。
+- 五年FCFF情景、WACC×永续增长敏感性和价格隐含增长由Python执行，终值显式扣除增长所需再投资，不由模型口算。
+- 展示页可展开证据、来源、任务流、输入和逐年现金流。**公开估值实验的输入为虚构，与AAPL/SPY研究分开；没有声称算出它们的当前合理价格。** 未提供完整真实输入时不输出价格结论。
 
 ### 使用自己的名单
 
@@ -78,7 +89,7 @@ python calculations.py --input examples/calculation-inputs.json --output output/
 
 - 原文片段匹配、引用检查和文件指纹是程序检查，**不是完整事实核查或独立审计**。
 - 动态页面、403、文件过大或扫描PDF可能留下证据缺口；报告必须显示待复核。
-- 只做研究；不接订单、不承诺收益、不自动给出目标价。ETF/ADR与经营公司不能直接混排财务指标。
+- 只做研究；不接订单、不承诺收益。可计算显式假设下的普通股模型价值，缺少数据不猜目标价。ETF/ADR暂不进入该估值模块。
 - 公开样例是固定日期快照，不是实时数据。后续学习与行业变化可能使判断过时。
 
 ## 验证

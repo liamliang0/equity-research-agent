@@ -119,9 +119,9 @@ def codex_path():
     return found
 
 
-def invoke(prompt, run_dir, attempt=1, timeout=600):
+def invoke(prompt, run_dir, attempt=1, timeout=600, schema=None, require_search=True):
     schema_path = run_dir / "schema.json"
-    agent.save(schema_path, SCHEMA)
+    agent.save(schema_path, schema or SCHEMA)
     final_path = run_dir / f"model-output-{attempt}.json"
     events_path = run_dir / f"events-{attempt}.jsonl"
     stderr_path = run_dir / f"cli-{attempt}.log"
@@ -145,7 +145,7 @@ def invoke(prompt, run_dir, attempt=1, timeout=600):
         except json.JSONDecodeError:
             pass
     searches = [e for e in events if e.get("type") == "item.completed" and isinstance(e.get("item"), dict) and e["item"].get("type") in ("web_search", "web_search_call")]
-    if not searches:
+    if require_search and not searches:
         raise ValueError("本轮未记录到实际 web search 调用；不能冒充完成联网研究。")
     return agent.load(final_path), {"search_events": len(searches), "turns": [e for e in events if e.get("type") == "turn.completed"]}
 

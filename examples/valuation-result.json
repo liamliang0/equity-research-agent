@@ -1,0 +1,224 @@
+{
+  "input": {
+    "asset": "SYNTHETIC-DEMO",
+    "synthetic": true,
+    "kind": "equity",
+    "currency": "USD",
+    "unit": "millions; revenue and net debt in USD millions, shares in millions",
+    "revenue": 1000,
+    "shares": 100,
+    "price": 25,
+    "net_debt": 200,
+    "provenance": [
+      {
+        "field": "all inputs",
+        "type": "synthetic",
+        "note": "Invented engineering demo, not market data, not AAPL/SPY valuation or a user view."
+      }
+    ],
+    "scenarios": {
+      "bear": {
+        "growth": 0.03,
+        "ebit_margin": 0.14,
+        "tax_rate": 0.25,
+        "da_ratio": 0.03,
+        "capex_ratio": 0.05,
+        "nwc_ratio": 0.1,
+        "wacc": 0.12,
+        "terminal_growth": 0.02,
+        "terminal_roic": 0.12
+      },
+      "base": {
+        "growth": 0.12,
+        "ebit_margin": 0.2,
+        "tax_rate": 0.25,
+        "da_ratio": 0.03,
+        "capex_ratio": 0.05,
+        "nwc_ratio": 0.1,
+        "wacc": 0.1,
+        "terminal_growth": 0.025,
+        "terminal_roic": 0.15
+      },
+      "bull": {
+        "growth": 0.22,
+        "ebit_margin": 0.26,
+        "tax_rate": 0.25,
+        "da_ratio": 0.03,
+        "capex_ratio": 0.05,
+        "nwc_ratio": 0.1,
+        "wacc": 0.09,
+        "terminal_growth": 0.03,
+        "terminal_roic": 0.2
+      }
+    }
+  },
+  "scenarios": {
+    "bear": {
+      "value_per_share": 7.085642366529311,
+      "upside_pct": -71.65743053388276,
+      "enterprise_value": 908.5642366529311,
+      "equity_value_before_floor": 708.5642366529311,
+      "terminal_pv_share": 0.6461726871922545,
+      "years": [
+        {
+          "year": 1,
+          "revenue": 1030.0,
+          "fcff": 84.55000000000001,
+          "discounted_fcff": 75.49107142857143
+        },
+        {
+          "year": 2,
+          "revenue": 1060.9,
+          "fcff": 87.0865,
+          "discounted_fcff": 69.42482461734693
+        },
+        {
+          "year": 3,
+          "revenue": 1092.727,
+          "fcff": 89.699095,
+          "discounted_fcff": 63.84604406773868
+        },
+        {
+          "year": 4,
+          "revenue": 1125.50881,
+          "fcff": 92.39006785000001,
+          "discounted_fcff": 58.715558383723966
+        },
+        {
+          "year": 5,
+          "revenue": 1159.2740743000002,
+          "fcff": 95.16176988550001,
+          "discounted_fcff": 53.99734387074615
+        }
+      ]
+    },
+    "base": {
+      "value_per_share": 22.991479009191703,
+      "upside_pct": -8.034083963233185,
+      "enterprise_value": 2499.1479009191703,
+      "equity_value_before_floor": 2299.1479009191703,
+      "terminal_pv_share": 0.7480098966549654,
+      "years": [
+        {
+          "year": 1,
+          "revenue": 1120.0,
+          "fcff": 133.6,
+          "discounted_fcff": 121.45454545454544
+        },
+        {
+          "year": 2,
+          "revenue": 1254.4,
+          "fcff": 149.63200000000003,
+          "discounted_fcff": 123.66280991735537
+        },
+        {
+          "year": 3,
+          "revenue": 1404.9280000000003,
+          "fcff": 167.58784000000003,
+          "discounted_fcff": 125.91122464312545
+        },
+        {
+          "year": 4,
+          "revenue": 1573.5193600000005,
+          "fcff": 187.69838080000008,
+          "discounted_fcff": 128.20051963663687
+        },
+        {
+          "year": 5,
+          "revenue": 1762.3416832000007,
+          "fcff": 210.22218649600012,
+          "discounted_fcff": 130.53143817548482
+        }
+      ]
+    },
+    "bull": {
+      "value_per_share": 59.12607173233215,
+      "upside_pct": 136.5042869293286,
+      "enterprise_value": 6112.607173233215,
+      "equity_value_before_floor": 5912.607173233215,
+      "terminal_pv_share": 0.8176730583079,
+      "years": [
+        {
+          "year": 1,
+          "revenue": 1220.0,
+          "fcff": 191.5,
+          "discounted_fcff": 175.6880733944954
+        },
+        {
+          "year": 2,
+          "revenue": 1488.3999999999999,
+          "fcff": 233.63,
+          "discounted_fcff": 196.6416968268664
+        },
+        {
+          "year": 3,
+          "revenue": 1815.8479999999997,
+          "fcff": 285.0285999999999,
+          "discounted_fcff": 220.09437626493298
+        },
+        {
+          "year": 4,
+          "revenue": 2215.33456,
+          "fcff": 347.7348919999999,
+          "discounted_fcff": 246.34416425983318
+        },
+        {
+          "year": 5,
+          "revenue": 2702.7081631999995,
+          "fcff": 424.2365682399999,
+          "discounted_fcff": 275.72466091467567
+        }
+      ]
+    }
+  },
+  "sensitivity": [
+    {
+      "wacc": 0.09000000000000001,
+      "terminal_growth": 0.02,
+      "value_per_share": 26.172369714299194
+    },
+    {
+      "wacc": 0.09000000000000001,
+      "terminal_growth": 0.025,
+      "value_per_share": 27.052818198605593
+    },
+    {
+      "wacc": 0.09000000000000001,
+      "terminal_growth": 0.030000000000000002,
+      "value_per_share": 28.070463087185622
+    },
+    {
+      "wacc": 0.1,
+      "terminal_growth": 0.02,
+      "value_per_share": 22.435222281637497
+    },
+    {
+      "wacc": 0.1,
+      "terminal_growth": 0.025,
+      "value_per_share": 22.991479009191703
+    },
+    {
+      "wacc": 0.1,
+      "terminal_growth": 0.030000000000000002,
+      "value_per_share": 23.619384729756415
+    },
+    {
+      "wacc": 0.11,
+      "terminal_growth": 0.02,
+      "value_per_share": 19.53649517088607
+    },
+    {
+      "wacc": 0.11,
+      "terminal_growth": 0.025,
+      "value_per_share": 19.89229400647296
+    },
+    {
+      "wacc": 0.11,
+      "terminal_growth": 0.030000000000000002,
+      "value_per_share": 20.2860310464308
+    }
+  ],
+  "implied_five_year_growth": 0.1401580910219008,
+  "reverse_status": "solved",
+  "boundary": "Conditional model output, not market consensus or a recommendation. Fixed margins, share count and annual growth; no probability weighting. Terminal growth requires reinvestment. Cyclicals require normalized assumptions."
+}

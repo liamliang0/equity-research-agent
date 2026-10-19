@@ -1,0 +1,28 @@
+[
+  {
+    "type": "thread.started",
+    "item_type": null,
+    "usage": null
+  },
+  {
+    "type": "turn.started",
+    "item_type": null,
+    "usage": null
+  },
+  {
+    "type": "item.completed",
+    "item_type": "agent_message",
+    "usage": null
+  },
+  {
+    "type": "turn.completed",
+    "item_type": null,
+    "usage": {
+      "input_tokens": 19166,
+      "cached_input_tokens": 18944,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2460,
+      "reasoning_output_tokens": 0
+    }
+  }
+]
