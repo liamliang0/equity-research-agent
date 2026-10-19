@@ -48,7 +48,7 @@ class DataTests(unittest.TestCase):
 
     def test_live_observations_are_available_to_ai_prompt(self):
         import showcase
-        snapshot={'assets':{'AVGO':{'quote':{'status':'ok','symbol':'AVGO','price':328.75,'currency':'USD','market_time_utc':'2026-10-16T20:00:01+00:00','source_url':'https://query1.finance.yahoo.com/v8/finance/chart/AVGO'},'fundamentals':{'status':'failed'}}},
+        snapshot={'assets':{'AVGO':{'quote':{'status':'ok','symbol':'AVGO','provider':'Yahoo Finance chart (unofficial)','price':328.75,'currency':'USD','market_time_utc':'2026-10-16T20:00:01+00:00','source_url':'https://query1.finance.yahoo.com/v8/finance/chart/AVGO'},'fundamentals':{'status':'failed'}}},
                   'macro':{'status':'ok','date':'2026-10-16','yields_pct':{'BC_10YEAR':4.2},'source_url':'https://home.treasury.gov/'}}
         report={'as_of':'2026-10-19','question':'test','facts':[],'sources':[],'companies':[],'scope_limitations':[],'data_snapshot':snapshot}
         prompt=showcase.review_prompt(report)
